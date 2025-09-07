@@ -1,0 +1,16 @@
+<div class="audios-container ">
+   <h2 class="derriereBleu">Audios</h2>
+  <div *ngFor="let audio of audios; let i = index" class="audio-card">
+    <!-- Titre -->
+    <div class="audio-title">{{ audio.title }}</div>
+
+    <!-- Barre de progression + boutons + temps -->
+    <div class="audio-controls">
+      <input type="range" min="0" [max]="audio.duration" [value]="audio.currentTime"
+             (input)="seek(i, $event)">
+      <span class="audio-time">{{ formatTime(audio.currentTime) }} / {{ formatTime(audio.duration) }}</span>
+      <button (click)="togglePlay(i)">{{ audio.playing ? 'Pause' : 'Play' }}</button>
+      <button (click)="stop(i)">Stop</button>
+    </div>
+  </div>
+</div>

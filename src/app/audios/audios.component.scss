@@ -1,0 +1,37 @@
+.audios-container {
+  padding: 10px;
+  max-height: 100vh; /* Scrollable */
+  overflow-y: auto;
+
+
+}
+
+.audio-card {
+  background-color: #f0f0f0; /* fond gris */
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 6px;
+}
+
+.audio-title {
+  font-weight: bold;
+  margin-bottom: 8px;
+  font-size: 1.1rem;
+}
+
+.audio-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* espace entre barre, temps et boutons */
+}
+
+.audio-controls input[type="range"] {
+  flex: 1; /* occupe le maximum d'espace */
+}
+
+.audio-time {
+  min-width: 70px;
+  text-align: center;
+}
+
+h2{color:#67a8dc;}

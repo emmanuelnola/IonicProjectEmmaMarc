@@ -1,18 +1,18 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Component, OnInit } from '@angular/core';
+import { IonicModule } from '@ionic/angular';
+import { CommonModule } from '@angular/common';
 
-import { HomePage } from './home.page';
+@Component({
+  selector: 'app-home',
+   templateUrl: './home.page.html',
+  styleUrls: ['./home.page.scss'],
+   standalone: true,
+  imports: [IonicModule, CommonModule]
+})
+export class HomeComponent  implements OnInit {
 
-describe('HomePage', () => {
-  let component: HomePage;
-  let fixture: ComponentFixture<HomePage>;
+  constructor() { }
 
-  beforeEach(async () => {
-    fixture = TestBed.createComponent(HomePage);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+  ngOnInit() {}
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+}

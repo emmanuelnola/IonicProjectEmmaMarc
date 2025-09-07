@@ -1,0 +1,58 @@
+/* ✅ Container global avec scroll */
+.videos-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 15px;
+}
+
+/* ✅ Chaque bloc vidéo */
+.video-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ✅ Wrapper pour forcer le ratio 16:9 */
+.video-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 900px; /* limite la taille sur grand écran */
+  aspect-ratio: 16/9; /* ✅ garde le bon ratio */
+  background: #000;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+/* ✅ Iframe prend tout l’espace du wrapper */
+.video-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.gris{
+    background-color: #f0f0f0; /* fond gris */
+    padding:8px;
+   }
+
+
+/* ✅ Titre sous la vidéo */
+.video-title {
+  margin-top: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  text-align: center;
+  color: #222;
+}
+
+/* ✅ Responsive smartphone */
+@media (max-width: 768px) {
+  .video-title {
+    font-size: 14px;
+  }
+}

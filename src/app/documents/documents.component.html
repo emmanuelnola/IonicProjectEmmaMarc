@@ -1,0 +1,20 @@
+<ion-content class="ion-padding ">
+
+  <h2 class="titre violet" > Documents PDF</h2>
+  <div class="gris">
+    <div class="doc-card gris" *ngFor="let doc of documents">
+     <!-- Titre du document -->
+     <h2 class="doc-title">{{ doc.title }}</h2>
+
+     <!-- Icône PDF -->
+     <div class="doc-icon">
+      📄
+     </div>
+
+    <!-- Bouton de téléchargement -->
+    <a [href]="doc.url" download class="download-btn">
+      ⬇ Télécharger
+    </a>
+   </div>
+  </div>
+</ion-content>
