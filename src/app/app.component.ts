@@ -4,12 +4,13 @@ import { IonicModule, MenuController } from '@ionic/angular';
 import { RouterModule, Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
+import { AppFontAwesomeModule } from './app-fontawesome.module';
 
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [IonicModule, RouterModule, CommonModule],
+  imports: [IonicModule, RouterModule, CommonModule, AppFontAwesomeModule],
   templateUrl: 'app.component.html',
   styleUrls: ['./app.component.scss'],
 })
@@ -22,7 +23,6 @@ export class AppComponent {
       .subscribe((event: any) => {
         // Hide logo on '/home', show otherwise
         this.showLogo = (event.urlAfterRedirects !== '/home' && event.url !== '/');
-        console.log(event.urlAfterRedirects);
       });
   }
 

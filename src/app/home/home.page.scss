@@ -23,3 +23,19 @@
   line-height: 1;
   padding-bottom: 10px; /* optional, adjust spacing above the border */
 }
+
+.welcome-button {
+  height: 200px;
+  width: 300px;
+  text-align: center;
+  font-size: 34px;
+  line-height: 60px;
+  background-color: #D1E4F3;
+  color:#1a3d72;
+  margin-left: 10px;
+  padding-top: 30px;
+  margin-bottom: 10px;
+}
+.welcome-button > i {
+  font-size: 100px !important;
+}

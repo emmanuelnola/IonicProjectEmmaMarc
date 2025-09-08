@@ -1,40 +1,66 @@
-<div class="row">
-  <div class="col-md-12">
-    <div class="header row">
-      <div class="col-md-12 text-center" style="line-height: 10px;">
-        <img 
-          src="assets/logo.png" 
-          alt="Logo" 
-          width="600" 
-          height="800" 
-          class="img-fluid"
-        >
-      </div>
-      <div class="col-md-12 text-center" style="color: white; font-size: 80px; height: 400px;">
-        Message d'accueil
-      </div>
-    </div>
-    
-    <div class="container" style="position: relative;top: -200px;">
-      <div class="row">
-        <div class="col-md-12 text-center" style="position: relative; display: inline-block;">
+<ion-content class="gris">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="header row">
+        <div class="col-md-12 text-center" style="line-height: 10px;">
           <img 
-            src="assets/blackbird-7543630_640.jpg" 
+            src="assets/logo.png" 
             alt="Logo" 
-            width="100%"
-            height="auto" 
-            class="img-overlay">
-            <span class="overlay-text">Bienvenue</span>
+            width="600" 
+            height="800" 
+            class="img-fluid"
+          >
         </div>
-        <div class="col-md-10 offset-md-1 text-center" class="pt-4">
-          <h2>Bienvenue sur l'application mobile de l'API</h2>
-          <p style="font-size: 20px;">
-            Découvrez les dernières actualités, vidéos, audios, programmes, galeries photos et documents liés à l'API. Restez informé et connecté où que vous soyez !
-          </p>
+        <div class="col-md-12 text-center" style="color: white; font-size: 80px; height: 400px;">
+          Message d'accueil
         </div>
-        
+      </div>
+      
+      <div class="container" style="position: relative;top: -200px;">
+        <div class="row">
+          <div class="col-md-12 text-center" style="position: relative; display: inline-block;">
+            <img 
+              src="assets/blackbird-7543630_640.jpg" 
+              alt="Logo" 
+              width="100%"
+              height="auto" 
+              class="img-overlay">
+              <span class="overlay-text">Bienvenue</span>
+          </div>
+          <div class="col-md-12 text-center" class="pt-4" style="padding-left: 40px;">
+            <a class="btn btn-app welcome-button" href="#">
+              <i class="fas fa-hand-holding-heart"></i><br>
+              Profession de foi
+            </a>
+            <button class="btn btn-app welcome-button" (click)="navigate('/programmes')">
+              <i class="fas fa-list"></i><br>
+              Mon Programme
+            </button>
+            <a class="btn btn-app welcome-button" (click)="navigate('/actutalites')">
+              <i class="fas fa-newspaper"></i><br>
+              Actualités
+            </a>
+            <a class="btn btn-app welcome-button" (click)="navigate('/galeriePhotos')">
+              <i class="fas fa-image"></i><br>
+              Galerie Photos
+            </a>
+            <a class="btn btn-app welcome-button" (click)="navigate('/videos')">
+              <i class="fas fa-file-video"></i><br>
+              Vidéos
+            </a>
+            <a class="btn btn-app welcome-button" (click)="navigate('/audios')">
+              <i class="fas fa-file-audio"></i><br>
+              Audios
+            </a>
+            <a class="btn btn-app welcome-button" (click)="navigate('/audios')">
+              <i class="fas fa-file"></i><br>
+              Documents
+            </a>
+          </div>
+
+        </div>
       </div>
     </div>
-  </div>
 
-</div>
+  </div>
+</ion-content>
