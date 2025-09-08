@@ -1,56 +1,55 @@
 <ion-app>
   <!-- Menu latéral -->
-  <ion-menu contentId="main-content" class="marge"  side="start">
+  <ion-menu contentId="main-content" side="start" menuId="main" class="wide-menu">
     <ion-header>
-      <ion-toolbar >
-        <ion-title>Menu</ion-title>
+      <ion-toolbar>
+        Menu
       </ion-toolbar>
     </ion-header>
     <ion-content>
       <ion-list>
         <!-- Chaque lien devient actif avec routerLinkActive -->
-        <ion-item routerLink="accueil" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+        <ion-menu-toggle><ion-item button (click)="closeMenuAndNavigate('/home')" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
           Accueil
-        </ion-item>
-        <ion-item routerLink="/actualites" routerLinkActive="active">
+        </ion-item></ion-menu-toggle>
+        <ion-menu-toggle><ion-item button (click)="closeMenuAndNavigate('/actualites')">
           Actualité
-        </ion-item>
-        <ion-item routerLink="/videos" routerLinkActive="active">
+        </ion-item></ion-menu-toggle>
+        <ion-menu-toggle><ion-item button (click)="closeMenuAndNavigate('/videos')">
           Vidéos
-        </ion-item>
-        <ion-item routerLink="/audios" routerLinkActive="active">
+        </ion-item></ion-menu-toggle>
+        <ion-menu-toggle><ion-item button (click)="closeMenuAndNavigate('/audios')">
           Audios
-        </ion-item>
-        <ion-item routerLink="/programmes" routerLinkActive="active">
+        </ion-item></ion-menu-toggle>
+        <ion-menu-toggle><ion-item button (click)="closeMenuAndNavigate('/programmes')">
           Programme
-        </ion-item>
-        <ion-item routerLink="/galeriePhotos" routerLinkActive="active">
+        </ion-item></ion-menu-toggle>
+        <ion-menu-toggle><ion-item button (click)="closeMenuAndNavigate('/galeriePhotos')">
           Galerie
-        </ion-item>
-        <ion-item routerLink="/documents" routerLinkActive="active">
+        </ion-item></ion-menu-toggle>
+        <ion-menu-toggle><ion-item button (click)="closeMenuAndNavigate('/documents')">
           Documents
-        </ion-item>
+        </ion-item></ion-menu-toggle>
       </ion-list>
     </ion-content>
   </ion-menu>
 
   <!-- Contenu principal -->
-  <div id="main-content" >
-    <ion-header>
-      <ion-toolbar color="myblue">
-        <!-- Bouton pour ouvrir le menu -->
-        <ion-buttons slot="end">
-          <ion-menu-button></ion-menu-button>
-        </ion-buttons>
-        <ion-title class="bloc-droit">Mon LOGO</ion-title>
-
-      </ion-toolbar>
-    </ion-header>
-
-  </div>
-  <ion-content>
+  <ion-header>
+    <ion-toolbar class="custom-toolbar">
+      <!-- Bouton pour ouvrir le menu -->
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+       <ion-title>
+          <img src="assets/logo-bande.png" alt="LOGO" class="toolbar-logo" />
+        </ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content id="main-content">
     <ion-router-outlet></ion-router-outlet>
   </ion-content>
+  
 </ion-app>
 
 

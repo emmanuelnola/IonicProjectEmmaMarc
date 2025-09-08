@@ -1,1 +1,60 @@
-.marge{margin-top:150px;}
+/* custom toolbar style */
+ion-toolbar.custom-toolbar {
+  --background: #173E71;   /* background color */
+  --min-height: 140px;      /* increase height */
+  display: flex;
+  justify-content: center; /* horizontally center content */
+  align-items: center;     /* vertically center content */
+  color: white;
+  font-size: larger;
+}
+
+ion-title {
+  text-align: center;    /* center content */
+}
+
+ion-title .toolbar-logo {
+  height: 80px;          /* adjust logo size */
+}
+
+ion-menu-button::part(icon) {
+  font-size: 100px;   /* increase icon size */
+  color: white;      /* optional: change color */
+}
+
+/* If you want to enlarge the touch area too */
+ion-menu-button {
+  width: 130px;       /* increase clickable zone */
+  height: 130px;
+}
+
+ion-menu {
+  --width: 400px; /* adjust menu width */
+}
+
+@media (min-width: 768px) {
+  ion-menu {
+    --width: 500px;
+  }
+}
+
+ion-menu ion-header {
+  --background: #173E71; /* header background color */
+  height: 120px;         /* increase header height */
+  display: flex;
+  align-items: center;   /* vertically center content */
+  justify-content: left; /* horizontally center content */
+  font-size: 80px;
+  padding-left: 30px;
+}
+
+ion-menu ion-list ion-item {
+  font-size: 2.4em; /* increase font size for menu items */
+  font-weight: bold;
+  display: flex;
+  padding-left: 80px;
+  height: 120px;
+  padding-top: 20px;
+  align-items: center;     /* vertically center content */
+  padding-bottom: 20px;
+}

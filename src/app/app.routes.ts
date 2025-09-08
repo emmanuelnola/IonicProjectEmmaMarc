@@ -9,6 +9,7 @@ import { GaleriePhotosComponent } from './galerie-photos/galerie-photos.componen
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: 'home', component: HomePage },
   { path: 'actualites', component: ActualitesComponent },
   { path: 'videos', component: VideosComponent },
   { path: 'audios', component: AudiosComponent },
