@@ -1,21 +1,32 @@
 
 import { Component } from '@angular/core';
 import { IonicModule, MenuController } from '@ionic/angular';
-import { RouterModule, Router } from '@angular/router';
+import { RouterModule, Router, NavigationEnd } from '@angular/router';
+import { filter } from 'rxjs/operators';
+import { CommonModule } from '@angular/common';
 
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [IonicModule, RouterModule],
+  imports: [IonicModule, RouterModule, CommonModule],
   templateUrl: 'app.component.html',
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  constructor(private menu: MenuController, private router: Router) {}
+  showLogo = false;
+
+  constructor(private menu: MenuController, private router: Router) {
+    this.router.events
+      .pipe(filter(event => event instanceof NavigationEnd))
+      .subscribe((event: any) => {
+        // Hide logo on '/home', show otherwise
+        this.showLogo = (event.urlAfterRedirects !== '/home' && event.url !== '/');
+        console.log(event.urlAfterRedirects);
+      });
+  }
 
   closeMenuAndNavigate(path: string) {
-    // Try closing by menuId first, then navigate, then close default menu as fallback
     this.router.navigate([path]);
     this.menu.close();
   }

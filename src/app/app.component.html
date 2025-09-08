@@ -42,7 +42,7 @@
         <ion-menu-button></ion-menu-button>
       </ion-buttons>
        <ion-title>
-          <img src="assets/logo-bande.png" alt="LOGO" class="toolbar-logo" />
+          <img *ngIf="showLogo == true" src="assets/logo-bande.png" alt="LOGO" class="toolbar-logo" />
         </ion-title>
     </ion-toolbar>
   </ion-header>
