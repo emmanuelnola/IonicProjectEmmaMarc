@@ -1,12 +1,14 @@
 ion-content {
   --background: #f9f9f9;
-  padding: 16px;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+.titre {
+  color: #1a3d72;
+  font-size: 48px;
+}
+
 .image-container {
-  display: flex;
-  flex-direction: column;
   margin-bottom: 20px;
   border-radius: 12px;
   overflow: hidden;
@@ -18,60 +20,44 @@ ion-content {
     height: auto;
     object-fit: cover;
   }
-
-  h2 {
-    margin: 0;
-    font-size: 18px;
-    font-weight: 600;
+  .titre-article {
+    color: #1a3d72;
+    font-size: 38px;
+    font-weight: 700;
+    margin: 0 0 6px 0;
   }
-
-  p {
-    margin: 4px 0 0;
-    color: #666;
-    font-size: 14px;
+  
+  .date-article {
+    color: #1a3d72;
+    font-size: 24px;
+    font-weight: 400;
+    margin: 0 0 6px 0;
   }
-
-  small {
-    display: block;
-    margin-top: 4px;
-    font-size: 13px;
-    color: #444;
+  
+  .separator {
+    font-size: 38px;
+    color: #1a3d72;
+    margin: 10px 0;
   }
 }
 
 /* Première image : infos en bas */
 .image-container.first {
-  position: relative;
-
   .info-bottom {
-    position: absolute;
-    bottom: 0;
     width: 100%;
-    background: rgba(0, 0, 0, 0.55);
-    color: white;
     padding: 10px;
-    text-align: center;
-
-    h2 {
-      color: #fff;
-    }
-    p {
-      color: #ddd;
-    }
-    small {
-      color: #ccc;
-      font-style: italic;
-    }
+    display: inline-block;
+    justify-content: center;
+    align-items: center;    
   }
 }
 
 /* Autres images : infos à droite */
 .image-container.row {
   flex-direction: row;
-  align-items: center;
 
   img {
-    width: 40%;
+    width: 60%;
     border-right: 2px solid #eee;
   }
 
