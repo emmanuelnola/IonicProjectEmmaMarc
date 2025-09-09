@@ -1,23 +1,36 @@
 <ion-content>
-
-  <div class="gris">
-    <div *ngFor="let category of categories">
-    <!-- Titre de la catégorie -->
-      <h2 class="category-title">{{ category.name }}</h2>
-
-    <!-- Liste des images avec numérotation -->
-       <div class="images-grid">
-       <div *ngFor="let img of category.images; let i = index" class="image-card">
-        <!-- Numéro de l'image -->
-         <div class="image-number">{{ i + 1 }}</div>
-
-        <!-- Image -->
-         <img [src]="img.src" alt="{{ img.title }}" />
-
-        <!-- Titre sous l'image -->
-         <p class="image-title">{{ img.title }}</p>
-       </div>
+  <div class="container  ">
+    <div class="row">
+      <div *ngFor="let category of categories; let catIdx = index" class="col-md-12 mb-4">
+        <h2 class="category-title">{{ category.name }}</h2>
+        <div class="images-grid">
+          <ng-container *ngFor="let img of category.images.slice(0,4); let i = index">
+            <div class="image-card thumb-card" (click)="openPreview(catIdx, i)">
+              <img [src]="img.thumb || img.src" alt="{{ img.title }}" />
+              <!-- Overlay for +X more images -->
+              <div *ngIf="i === 3 && category.images.length > 4" class="more-overlay">
+                +{{ category.images.length - 4 }}
+              </div>
+            </div>
+          </ng-container>
+        </div>
       </div>
-     </div>
+
+      <!-- Overlay Preview -->
+      <div class="preview-overlay" *ngIf="previewOpen">
+        <div class="preview-backdrop" (click)="closePreview()"></div>
+        <div class="preview-content">
+          <button class="close-btn" (click)="closePreview()">&times;</button>
+          <button class="nav-btn left" (click)="prevImage()" [disabled]="previewImageIndex === 0">&#8592;</button>
+    <img class="preview-img"
+      [src]="previewImage.src"
+      [alt]="previewImage.title"
+      (swipeleft)="nextImage()"
+      (swiperight)="prevImage()"
+    />
+          <button class="nav-btn right" (click)="nextImage()" [disabled]="previewImageIndex === categories[previewCategoryIndex].images.length - 1">&#8594;</button>
+         </div>
+      </div>
+    </div>
   </div>
 </ion-content>

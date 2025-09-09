@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { HammerGestureConfig } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 
@@ -10,23 +11,63 @@ import { IonicModule } from '@ionic/angular';
   styleUrls: ['./galerie-photos.component.scss']
 })
 export class GaleriePhotosComponent {
-  // Données : catégories avec leurs images
+  previewOpen = false;
+  previewCategoryIndex = 0;
+  previewImageIndex = 0;
+  
   categories = [
     {
       name: 'Animaux',
       images: [
-        { src: 'assets/blackbird-7543630_640.jpg', title: 'Chat' },
-        { src: 'assets/blackbird-7543630_640.jpg', title: 'Chien' },
-        { src: 'assets/blackbird-7543630_640.jpg', title: 'Lion' }
+        { thumb: 'assets/images/photo3.jpg', src: 'assets/images/photo3.jpg', title: 'Chat' },
+        { thumb: 'assets/images/photo4.jpg', src: 'assets/images/photo4.jpg', title: 'Chat' },
+        { thumb: 'assets/images/prod-1.jpg', src: 'assets/images/prod-1.jpg', title: 'Chat' },
+        { thumb: 'assets/images/prod-2.jpg', src: 'assets/images/prod-2.jpg', title: 'Chat' },
+        { thumb: 'assets/images/prod-3.jpg', src: 'assets/images/prod-3.jpg', title: 'Chat' },
+        { thumb: 'assets/images/prod-4.jpg', src: 'assets/images/prod-4.jpg', title: 'Chat' },
+        { thumb: 'assets/images/prod-5.jpg', src: 'assets/images/prod-5.jpg', title: 'Chat' },
+        { thumb: 'assets/blackbird-7543630_640.jpg', src: 'assets/blackbird-7543630_640.jpg', title: 'Chien' },
       ]
     },
     {
       name: 'Paysages',
       images: [
-        { src: 'assets/blackbird-7543630_640.jpg', title: 'Montagne' },
-        { src: 'assets/blackbird-7543630_640.jpg', title: 'Plage' },
-        { src: 'assets/blackbird-7543630_640.jpg', title: 'Forêt' }
+        { thumb: 'assets/blackbird-7543630_640.jpg', src: 'assets/blackbird-7543630_640.jpg', title: 'Chat' },
+        { thumb: 'assets/blackbird-7543630_640.jpg', src: 'assets/blackbird-7543630_640.jpg', title: 'Chien' },
+        { thumb: 'assets/blackbird-7543630_640.jpg', src: 'assets/blackbird-7543630_640.jpg', title: 'Lion1' },
+        { thumb: 'assets/blackbird-7543630_640.jpg', src: 'assets/blackbird-7543630_640.jpg', title: 'Lion3' },
+        { thumb: 'assets/blackbird-7543630_640.jpg', src: 'assets/blackbird-7543630_640.jpg', title: 'Lion5' },
+        { thumb: 'assets/blackbird-7543630_640.jpg', src: 'assets/blackbird-7543630_640.jpg', title: 'Lion6' },
+        { thumb: 'assets/blackbird-7543630_640.jpg', src: 'assets/blackbird-7543630_640.jpg', title: 'Lion7' }
       ]
     }
   ];
+
+
+  openPreview(categoryIdx: number, imageIdx: number) {
+    this.previewCategoryIndex = categoryIdx;
+    this.previewImageIndex = imageIdx;
+    this.previewOpen = true;
+  }
+
+  closePreview() {
+    this.previewOpen = false;
+  }
+
+  nextImage() {
+    const images = this.categories[this.previewCategoryIndex].images;
+    if (this.previewImageIndex < images.length - 1) {
+      this.previewImageIndex++;
+    }
+  }
+
+  prevImage() {
+    if (this.previewImageIndex > 0) {
+      this.previewImageIndex--;
+    }
+  }
+
+  get previewImage() {
+    return this.categories[this.previewCategoryIndex]?.images[this.previewImageIndex];
+  }
 }
