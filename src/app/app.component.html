@@ -35,7 +35,7 @@
   </ion-menu>
 
   <!-- Contenu principal -->
-  <ion-header>
+  <ion-header *ngIf="showHeader !== false">
     <ion-toolbar class="custom-toolbar">
       <!-- Bouton pour ouvrir le menu -->
       <ion-buttons slot="start">
@@ -47,7 +47,8 @@
     </ion-toolbar>
   </ion-header>
   <ion-content id="main-content">
-    <ion-router-outlet></ion-router-outlet>
+    <app-galerie *ngIf="currentRoute === '/galeriePhotos'" (previewState)="showHeader = !($event)"></app-galerie>
+    <ion-router-outlet *ngIf="currentRoute !== '/galeriePhotos'"></ion-router-outlet>
   </ion-content>
   
 </ion-app>

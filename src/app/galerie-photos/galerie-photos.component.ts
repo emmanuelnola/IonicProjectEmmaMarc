@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { HammerGestureConfig } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
@@ -11,13 +11,15 @@ import { IonicModule } from '@ionic/angular';
   styleUrls: ['./galerie-photos.component.scss']
 })
 export class GaleriePhotosComponent {
+  @Output() previewState = new EventEmitter<boolean>();
   previewOpen = false;
   previewCategoryIndex = 0;
   previewImageIndex = 0;
   
   categories = [
     {
-      name: 'Animaux',
+      titre: 'Un article avec des photos',
+      date: "2024-06-15",
       images: [
         { thumb: 'assets/images/photo3.jpg', src: 'assets/images/photo3.jpg', title: 'Chat' },
         { thumb: 'assets/images/photo4.jpg', src: 'assets/images/photo4.jpg', title: 'Chat' },
@@ -30,7 +32,36 @@ export class GaleriePhotosComponent {
       ]
     },
     {
-      name: 'Paysages',
+      titre: 'Encore Un article avec des photos',
+      date: "2024-06-15",
+      images: [
+        { thumb: 'assets/images/photo3.jpg', src: 'assets/images/photo3.jpg', title: 'Chat' },
+        { thumb: 'assets/images/photo4.jpg', src: 'assets/images/photo4.jpg', title: 'Chat' },
+        { thumb: 'assets/images/prod-1.jpg', src: 'assets/images/prod-1.jpg', title: 'Chat' },
+        { thumb: 'assets/images/prod-2.jpg', src: 'assets/images/prod-2.jpg', title: 'Chat' },
+        { thumb: 'assets/images/prod-3.jpg', src: 'assets/images/prod-3.jpg', title: 'Chat' },
+        { thumb: 'assets/images/prod-4.jpg', src: 'assets/images/prod-4.jpg', title: 'Chat' },
+        { thumb: 'assets/images/prod-5.jpg', src: 'assets/images/prod-5.jpg', title: 'Chat' },
+        { thumb: 'assets/blackbird-7543630_640.jpg', src: 'assets/blackbird-7543630_640.jpg', title: 'Chien' },
+      ]
+    },
+    {
+      titre: 'Encore Un article avec des photos',
+      date: "2024-06-15",
+      images: [
+        { thumb: 'assets/images/photo3.jpg', src: 'assets/images/photo3.jpg', title: 'Chat' },
+        { thumb: 'assets/images/photo4.jpg', src: 'assets/images/photo4.jpg', title: 'Chat' },
+        { thumb: 'assets/images/prod-1.jpg', src: 'assets/images/prod-1.jpg', title: 'Chat' },
+        { thumb: 'assets/images/prod-2.jpg', src: 'assets/images/prod-2.jpg', title: 'Chat' },
+        { thumb: 'assets/images/prod-3.jpg', src: 'assets/images/prod-3.jpg', title: 'Chat' },
+        { thumb: 'assets/images/prod-4.jpg', src: 'assets/images/prod-4.jpg', title: 'Chat' },
+        { thumb: 'assets/images/prod-5.jpg', src: 'assets/images/prod-5.jpg', title: 'Chat' },
+        { thumb: 'assets/blackbird-7543630_640.jpg', src: 'assets/blackbird-7543630_640.jpg', title: 'Chien' },
+      ]
+    },
+    {
+      titre: 'Toujours un article avec des photos',
+      date: "2024-06-15",
       images: [
         { thumb: 'assets/blackbird-7543630_640.jpg', src: 'assets/blackbird-7543630_640.jpg', title: 'Chat' },
         { thumb: 'assets/blackbird-7543630_640.jpg', src: 'assets/blackbird-7543630_640.jpg', title: 'Chien' },
@@ -43,15 +74,16 @@ export class GaleriePhotosComponent {
     }
   ];
 
-
   openPreview(categoryIdx: number, imageIdx: number) {
     this.previewCategoryIndex = categoryIdx;
     this.previewImageIndex = imageIdx;
     this.previewOpen = true;
+    this.previewState.emit(true);
   }
 
   closePreview() {
     this.previewOpen = false;
+    this.previewState.emit(false);
   }
 
   nextImage() {

@@ -1,8 +1,10 @@
 <ion-content>
-  <div class="container  ">
+  <div class="container">
     <div class="row">
-      <div *ngFor="let category of categories; let catIdx = index" class="col-md-12 mb-4">
-        <h2 class="category-title">{{ category.name }}</h2>
+      <div class="col-md-12 mb-4">
+        <h2 class="titre">Galerie Photos</h2>
+      </div>
+      <div *ngFor="let category of categories; let catIdx = index" class="col-md-12 mt-2 mb-4">
         <div class="images-grid">
           <ng-container *ngFor="let img of category.images.slice(0,4); let i = index">
             <div class="image-card thumb-card" (click)="openPreview(catIdx, i)">
@@ -14,10 +16,15 @@
             </div>
           </ng-container>
         </div>
+        <div class="info-bottom">
+          <span class="date-article">{{ category.date }}</span>
+          <span class="separator"><i class="fas fa-minus"></i> </span>
+          <span class="titre-article">{{ category.titre }}</span>
+        </div>
       </div>
 
       <!-- Overlay Preview -->
-      <div class="preview-overlay" *ngIf="previewOpen">
+  <div class="preview-overlay fullscreen" *ngIf="previewOpen">
         <div class="preview-backdrop" (click)="closePreview()"></div>
         <div class="preview-content">
           <button class="close-btn" (click)="closePreview()">&times;</button>

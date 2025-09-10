@@ -1,6 +1,36 @@
+ion-content {
+  --background: #f9f9f9;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
 .thumb-card {
   cursor: pointer;
   position: relative;
+}
+
+.titre {
+  color: #1a3d72;
+  font-size: 48px;
+}
+
+.titre-article {
+  color: #1a3d72;
+  font-size: 38px;
+  font-weight: 700;
+  margin: 0 0 6px 0;
+}
+
+.date-article {
+  color: #1a3d72;
+  font-size: 24px;
+  font-weight: 400;
+  margin: 0 0 6px 0;
+}
+
+.separator {
+  font-size: 38px;
+  color: #1a3d72;
+  margin: 10px 0;
 }
 
 .more-overlay {
@@ -9,9 +39,9 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0,0,0,0.6);
+  background: rgba(160, 216, 233, 0.6);
   color: #fff;
-  font-size: 2em;
+  font-size: 6em;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -19,18 +49,18 @@
   z-index: 2;
 }
 
-.preview-overlay {
+.preview-overlay.fullscreen {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(0,0,0,0.7);
+  background: rgba(0,0,0,0.95);
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1000;
-  overflow: scroll;
+  z-index: 9999;
+  overflow: hidden;
 }
 
 .preview-backdrop {
