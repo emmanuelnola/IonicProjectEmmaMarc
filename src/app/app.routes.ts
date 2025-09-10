@@ -6,6 +6,7 @@ import { AudiosComponent } from './audios/audios.component';
 import { DocumentsComponent } from './documents/documents.component';
 import { ProgrammesComponent } from './programmes/programmes.component';
 import { GaleriePhotosComponent } from './galerie-photos/galerie-photos.component';
+import { GadgetsComponent } from './gadgets/gadgets.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -15,5 +16,6 @@ export const routes: Routes = [
   { path: 'audios', component: AudiosComponent },
   { path: 'documents', component: DocumentsComponent },
   { path: 'programmes', component: ProgrammesComponent },
-  { path: 'galeriePhotos', component: GaleriePhotosComponent }
+  { path: 'galeriePhotos', component: GaleriePhotosComponent },
+  { path: 'gadgets', component:  GadgetsComponent  }
 ];

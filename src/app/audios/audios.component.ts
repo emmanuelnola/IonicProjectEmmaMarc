@@ -14,21 +14,21 @@ export class AudiosComponent implements OnInit {
   // Liste des audios avec leur titre et objet Audio
   audios = [
     {
-      title: 'Audio 1',
+      title: 'Audio faceboock',
       audioObj: new Audio('assets/audios/song1.mp3'),
       playing: false,
       currentTime: 0,
       duration: 0
     },
     {
-      title: 'Audio 2',
+      title: 'mes voices',
       audioObj: new Audio('assets/audios/song2.mp3'),
       playing: false,
       currentTime: 0,
       duration: 0
     },
     {
-      title: 'Audio 3',
+      title: 'audio travail',
       audioObj: new Audio('assets/audios/song3.mp3'),
       playing: false,
       currentTime: 0,

@@ -1,18 +1,26 @@
-<ion-content class="gris">
-  <div class="videos-container" class="gris">
-    <h2 class="titre">Vidéos</h2>
+<ion-content>
+  <div class="video-list">
     <div class="video-card" *ngFor="let video of videos">
-      <!--  Wrapper pour garder le ratio 16:9 -->
+      <h3>{{ video.title }}</h3>
+
       <div class="video-wrapper">
-        <iframe
-          [src]="video.safeUrl"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen>
-        </iframe>
+
+        <!-- Toujours afficher la vignette en arrière-plan -->
+        <img class="thumbnail-background" [src]="'https://img.youtube.com/vi/' + video.id + '/hqdefault.jpg'" />
+
+        <!-- Iframe de la vidéo, affichée uniquement si active -->
+        <div *ngIf="activeVideo === video.id" class="iframe-wrapper">
+          <iframe [attr.src]="getSafeUrl(video.id)" frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen></iframe>
+        </div>
+
+        <!-- Bouton play cliquable seulement si pas encore actif -->
+        <div *ngIf="activeVideo !== video.id" class="thumbnail-wrapper" (click)="playVideo(video.id)">
+          <div class="play-button">▶</div>
+        </div>
+
       </div>
-      <!--  Titre sous la vidéo -->
-      <h3 class="video-title">{{ video.title }}</h3>
     </div>
   </div>
 </ion-content>
