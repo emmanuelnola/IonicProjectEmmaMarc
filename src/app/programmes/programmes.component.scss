@@ -1,35 +1,32 @@
-.main-title {
-  text-align: center;
-  font-size: 28px;
-  font-weight: bold;
-  margin-bottom: 20px;
+ion-content {
+  --background: #f9f9f9;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  overflow: scroll;
 }
 
-.image-container {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 20px;
-
-  img {
-    width: 90%;
-    max-width: 400px;
-    border: 2px solid #ccc;
-    border-radius: 10px;
-    object-fit: cover;
-  }
+.titre {
+  color: #1a3d72;
+  font-size: 48px;
 }
 
 /* Header de l'accordéon */
 .accordion-header {
-  background-color: #f0f8ff; /* fond bleu ciel clair */
-  color: #1e90ff; /* texte bleu ciel */
+  background-color: #66A7DA; /* fond bleu ciel clair */
   font-weight: bold;
+  font-size: 40px;
+}
+
+ion-accordion {
+  border: 2px solid #1e90ff; /* bordure bleue */
+  border-radius: 8px;
+  margin-bottom: 16px;
 }
 
 /* Contenu */
 .accordion-content {
+  font-size: 24px;
   padding: 12px 16px;
-  background-color: #fafafa;
+  background-color: #D1E4F3;
   border-left: 2px solid #1e90ff;
   border-right: 2px solid #1e90ff;
   border-bottom: 2px solid #1e90ff;

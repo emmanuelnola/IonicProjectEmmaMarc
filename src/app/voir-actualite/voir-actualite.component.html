@@ -1,0 +1,24 @@
+<ion-content>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12 mb-4">
+        <h2 class="titre">Actualité</h2>
+      </div>
+      <div class="col-md-12">
+        <!-- Première image (infos en bas sur l'image) -->
+        <div class="image-container first">
+          <img [src]="actualite.src" alt="image" />
+          <div class="info-bottom">
+            <span class="date-article">{{ actualite.date }}</span>
+            <span class="separator"><i class="fas fa-minus"></i> </span>
+            <span class="titre-article">{{ actualite.titre }}</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-12" [innerHTML]="actualite.content | sanitizeHtml">
+
+      </div>
+    </div>
+  </div>
+</ion-content>

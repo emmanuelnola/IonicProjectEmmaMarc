@@ -1,0 +1,20 @@
+import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { IonicModule } from '@ionic/angular';
+import { SanitizeHtml } from 'src/core/sanitize-html';
+
+@Component({
+  selector: 'app-actualites',
+  standalone: true,
+  imports: [CommonModule, IonicModule, SanitizeHtml],
+  templateUrl: './voir-actualite.component.html',
+  styleUrls: ['./voir-actualite.component.scss']
+})
+export class VoirActualiteComponent {
+  actualite = {
+    src: 'assets/blackbird-7543630_640.jpg',
+    titre: 'Article le plus récent',
+    date: '01 Septembre 2025',
+    content: '<article class="news-article" aria-labelledby="news-title"><header class="news-header"><h1 id="news-title">Tension &amp; Innovation : une matinée qui bouscule la ville</h1><p class="meta"><span class="author">Par <strong>Élise Martin</strong></span> — <time datetime="2025-09-10">10 septembre 2025</time> — <span class="category"><a href="/categories/local">Local</a></span></p></header><figure class="lead-image"><img src="https://via.placeholder.com/1200x600" alt="Vue générale de la ville au lever du jour" /><figcaption>La place centrale ce matin — Photo : <em>Photothèque Ville</em></figcaption></figure><section class="lead" role="region" aria-label="Résumé"><p><strong>Résumé :</strong> Une importante réunion publique a réuni ce matin autorités, entrepreneurs et riverains pour discuter d\'un projet d\'innovation urbaine qui promet de transformer le quartier. La rencontre a été marquée par des débats vifs mais constructifs.</p></section><section class="body"><h2>Contexte et enjeux</h2><p>Le projet, présenté par la <a href="/organisations/commune">mairie</a>, vise à installer des <span class="highlight">infrastructures intelligentes</span> (capteurs, éclairage adaptatif, mobilier connecté) sur l\'axe principal. Selon les porteurs, l\'objectif est double : améliorer la sécurité et réduire la consommation énergétique.</p><h3>Prises de position</h3><ul><li><strong>La mairie :</strong> dévoile un calendrier prévisionnel et promet des consultations larges.</li><li><strong>Associations de riverains :</strong> saluent l\'ambition mais demandent des garanties sur la protection des données.</li><li><strong>Entrepreneurs locaux :</strong> voient une opportunité de développement économique.</li></ul><blockquote cite="https://communique.example">« Nous voulons une ville plus sûre et plus durable — mais pas au prix de notre vie privée. » — <em>Représentant d\'une association</em></blockquote><h3>Impacts attendus</h3><ol><li>Amélioration de l\'éclairage public et baisse de 20% de la consommation (estimation).</li><li>Collecte de données anonymisées pour mieux planifier les transports.</li><li>Création d\'une trentaine d\'emplois locaux dans la maintenance et l\'administration.</li></ol><section class="timeline" aria-label="Chronologie"><h4>Chronologie</h4><dl><dt><time datetime="2025-09-10T09:00">09:00</time></dt><dd>Ouverture de la réunion publique.</dd><dt><time datetime="2025-09-10T10:30">10:30</time></dt><dd>Présentation technique et session questions-réponses.</dd><dt><time datetime="2025-09-10T12:00">12:00</time></dt><dd>Clôture &amp; feed-back des participants.</dd></dl></section><h3>Réactions</h3><p class="reactions">Sur les réseaux, le hashtag <code>#VilleIntelligente</code> a été utilisé plus de <span class="metric">1 200</span> fois en quelques heures. Les opinions sont partagées entre enthousiasme et vigilance.</p></section><aside class="related" aria-label="Articles liés"><h4>À lire aussi</h4><ul><li><a href="/articles/eco-energie">Comment l\'éclairage intelligent réduit la facture énergétique</a></li><li><a href="/articles/protection-donnees">Protection des données : quels garde-fous ?</a></li></ul></aside><footer class="news-footer"><p>Tags : <a href="/tags/urbanisme" class="tag">urbanisme</a>, <a href="/tags/tech" class="tag">tech</a>, <a href="/tags/energie" class="tag">énergie</a></p><p class="disclaimer">Article fictif créé à des fins de démonstration — toute ressemblance avec des événements réels serait fortuite.</p></footer></article>'
+  }
+}

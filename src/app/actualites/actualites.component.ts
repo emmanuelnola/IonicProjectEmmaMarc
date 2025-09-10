@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-actualites',
@@ -10,6 +11,7 @@ import { IonicModule } from '@ionic/angular';
   styleUrls: ['./actualites.component.scss']
 })
 export class ActualitesComponent {
+
   images = [
     {
       src: 'assets/blackbird-7543630_640.jpg',
@@ -42,4 +44,15 @@ export class ActualitesComponent {
       description: 'La troisième image contient aussi une description en bas. Ceci est la description de la première image. lorem ipsoum dolor Ceci est la description de la première image. lorem ipsoum dolor'
     }
   ];
+
+  constructor( private router: Router ) { 
+
+  }
+
+  voirActualite(imageSrc: string) {
+    // Logique pour naviguer vers la page de l'actualité avec l'image sélectionnée
+    console.log('Naviguer vers l\'actualité avec l\'image:', imageSrc);
+    // Vous pouvez utiliser le Router d'Angular pour naviguer vers une autre page
+    this.router.navigate(['/voirActualite']);
+  }
 }
