@@ -1,0 +1,35 @@
+ion-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch; /* 🔑 force toutes les colonnes à avoir la même hauteur */
+}
+
+ion-col {
+  display: flex; /* 🔑 permet d’étirer l’intérieur */
+}
+
+.equal-card {
+  flex: 1;             /* 🔑 prend toute la hauteur dispo */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* espace équilibré */
+  text-align: center;
+}
+
+ion-card-title {
+  white-space: normal;   /* permet le retour à la ligne si le titre est long */
+  word-wrap: break-word; /* coupe les très longs mots */
+}
+
+
+.titre
+{color:#1a3d72;
+  margin-left:20px;
+  font-weight: bold;
+  font-size:40px;
+  }
+
+.titre_gadget{
+  color:#67a8dc;
+  font-size:30px;
+  }

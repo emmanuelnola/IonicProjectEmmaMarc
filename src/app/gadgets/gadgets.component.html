@@ -1,0 +1,18 @@
+<ion-content>
+  <h1 class="titre">Gadgets</h1>
+  <ion-grid>
+    <ion-row>
+      <!-- 📌 Boucle sur les gadgets -->
+      <ion-col size="6" *ngFor="let gadget of gadgets">
+        <!-- Carte cliquable -->
+        <ion-card (click)="openImage(gadget)" class="equal-card">
+          <ion-img [src]="gadget.src" [alt]="gadget.title"></ion-img>
+          <ion-card-header>
+            <ion-card-title class="titre_gadget">{{ gadget.title }}</ion-card-title>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+

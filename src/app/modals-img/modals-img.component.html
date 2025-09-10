@@ -1,0 +1,14 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title class="titre_gadget">{{ title }}</ion-title>
+    <ion-buttons slot="end">
+      <!-- Bouton pour fermer le modal -->
+      <ion-button (click)="close()">Fermer</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <!-- 📌 Image affichée en grand -->
+  <ion-img [src]="img" [alt]="title"></ion-img>
+</ion-content>
