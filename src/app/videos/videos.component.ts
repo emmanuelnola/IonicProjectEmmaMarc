@@ -1,54 +1,57 @@
 import { Component } from '@angular/core';
-import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
-import { IonicModule } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
-
-
-
-
-// Interface pour représenter une vidéo
-interface Video {
-  id: string;     // ID unique de la vidéo YouTube
-  title: string;  // Titre de la vidéo
-}
+import { IonicModule } from '@ionic/angular';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 @Component({
-  selector: 'app-videos',                   // Sélecteur utilisé dans l'HTML parent
-  templateUrl: './videos.component.html',   // Template HTML du composant
-  imports: [ CommonModule, IonicModule],
-  styleUrls: ['./videos.component.scss']    // Styles SCSS du composant
+  selector: 'app-videos',
+  templateUrl: './videos.component.html',
+  styleUrls: ['./videos.component.scss'],
+  standalone: true,
+  imports: [CommonModule, IonicModule],
 })
 export class VideosComponent {
 
-  // Liste des vidéos à afficher
-  videos: Video[] = [
-    { id: 'dQw4w9WgXcQ', title: 'Les aventures de Mitoumba' },
-    { id: '3JZ_D3ELwOQ', title: 'Une saison blanche et sèche' },
-    { id: 'V-_O7nl0Ii0', title: 'Les amis' },
-    { id: 'L_jWHffIx5E', title: 'Quatrième vidéo' }
+  // Liste des vidéos YouTube
+  videos = [
+    { id: 'dQw4w9WgXcQ', title: 'Vidéo 1', date: '2025-09-11' },
+    { id: '3JZ_D3ELwOQ', title: 'Vidéo 2', date: '2025-09-10' },
+    { id: 'L_jWHffIx5E', title: 'Vidéo 3', date: '2025-09-09' },
+    { id: 'mezhU0gjP4w', title: 'Vidéo 4', date: '2025-09-08' }
   ];
 
-  // Stocke l'ID de la vidéo actuellement en lecture
-  activeVideo: string | null = null;
+  // Tableau pour savoir quelle vidéo est actuellement lancée
+  videoLoaded: boolean[] = [];
 
-  constructor(private sanitizer: DomSanitizer) {} // DomSanitizer pour sécuriser l'URL iframe
-
-  // Méthode appelée au clic sur une vignette pour lancer la vidéo
-  playVideo(videoId: string) {
-    this.activeVideo = videoId;  // On met à jour la vidéo active
+  constructor(private sanitizer: DomSanitizer) {
+    // Initialisation : aucune vidéo n’est chargée au départ
+    this.videoLoaded = this.videos.map(_ => false);
   }
 
-  // Retourne une URL sécurisée pour l'iframe (évite l'injection de script)
+  /**
+   * Retourne une URL sécurisée pour l'iframe YouTube
+   * @param videoId L'identifiant de la vidéo YouTube
+   */
   getSafeUrl(videoId: string): SafeResourceUrl {
-    return this.sanitizer.bypassSecurityTrustResourceUrl(
-      `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1&controls=1`
-    );
-    /*
-      Paramètres YouTube :
-      - autoplay=1 : démarre la vidéo automatiquement
-      - rel=0 : pas de vidéos suggérées à la fin
-      - modestbranding=1 : réduit le logo YouTube
-      - controls=1 : affiche les boutons de lecture
-    */
+    // autoplay=1 est activé seulement lors du clic sur la miniature
+    return this.sanitizer.bypassSecurityTrustResourceUrl(`https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`);
+  }
+
+  /**
+   * Retourne l'URL de la miniature YouTube
+   * @param videoId L'identifiant de la vidéo YouTube
+   */
+  getThumbnail(videoId: string) {
+    return `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
+  }
+
+  /**
+   * Fonction appelée lors du clic sur une vidéo
+   * Charge uniquement la vidéo cliquée et désactive toutes les autres
+   * @param index L'index de la vidéo dans le tableau
+   */
+  loadVideo(index: number) {
+    // Seule la vidéo cliquée devient active, toutes les autres redeviennent des miniatures
+    this.videoLoaded = this.videos.map((_, i) => i === index);
   }
 }

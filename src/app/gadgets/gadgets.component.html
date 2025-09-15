@@ -1,18 +1,14 @@
-<ion-content>
-  <h1 class="titre">Gadgets</h1>
-  <ion-grid>
-    <ion-row>
-      <!-- 📌 Boucle sur les gadgets -->
-      <ion-col size="6" *ngFor="let gadget of gadgets">
-        <!-- Carte cliquable -->
-        <ion-card (click)="openImage(gadget)" class="equal-card">
-          <ion-img [src]="gadget.src" [alt]="gadget.title"></ion-img>
-          <ion-card-header>
-            <ion-card-title class="titre_gadget">{{ gadget.title }}</ion-card-title>
-          </ion-card-header>
-        </ion-card>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
-</ion-content>
+<div *ngIf="loading">
+  <p>Chargement des images...</p>
+</div>
 
+<div *ngIf="error">
+  <p>{{ error }}</p>
+</div>
+
+<div class="image-grid" *ngIf="!loading && !error">
+  <div *ngFor="let img of gadgets" class="image-item">
+    <p>{{ img.title }}</p>
+    <img [src]="img.path" [alt]="img.title" />
+  </div>
+</div>

@@ -12,13 +12,13 @@ import { ProfessiondefoiComponent } from './professiondefoi/professiondefoi.comp
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomePage },
-  { path: 'actualites', component: ActualitesComponen},
+  { path: 'actualites', component: ActualitesComponent},
   { path: 'videos', component: VideosComponent },
   { path: 'audios', component: AudiosComponent },
   { path: 'documents', component: DocumentsComponent },
   { path: 'programmes', component: ProgrammesComponent },
   { path: 'galeriePhotos', component: GaleriePhotosComponent  },
-  { path: 'gadgets', component:  GadgetsComponent  }
+  { path: 'gadgets', component:  GadgetsComponent  },
   { path: 'professiondefoi', component: ProfessiondefoiComponent },
 //  { path: 'voirActualite', loadComponent: () => import('./voir-actualite/voir-actualite.component').then(m => m.VoirActualiteComponent) },
 

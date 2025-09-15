@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+/*import { Component } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { IonicModule} from '@ionic/angular';
 import { ImageModalComponent } from '../modals-img/modals-img.component'; // ✅ On importe le modal
@@ -30,4 +30,43 @@ export class GadgetsComponent {
     });
     await modal.present();
   }
+}*/
+
+import { Component, OnInit} from '@angular/core';
+import { ModalController } from '@ionic/angular';
+import { IonicModule} from '@ionic/angular';
+import { ImageModalComponent } from '../modals-img/modals-img.component'; // ✅ On importe le modal
+import { CommonModule } from '@angular/common';
+
+import { GadgetsService, MyImage } from '../services/gadgets.service';
+
+@Component({
+  selector: 'app-gadgets',
+ standalone: true,
+  imports: [IonicModule,CommonModule],
+  templateUrl: './gadgets.component.html',
+  styleUrls: ['./gadgets.component.scss']
+})
+export class GadgetsComponent implements OnInit {
+
+  gadgets: MyImage[] = [];   // Contiendra la liste des images
+  loading = true;           // Pour afficher un message de chargement
+  error: string | null = null;  // Pour afficher les erreurs
+
+  constructor(private gadgetsService: GadgetsService) { }
+
+  ngOnInit() {
+    this.gadgetsService.getImages().subscribe({
+      next: (data) => {
+        this.gadgets = data;
+        this.loading = false;
+      },
+      error: (err) => {
+        console.error('Erreur API:', err);
+        this.error = 'Impossible de charger les images.';
+        this.loading = false;
+      }
+    });
+  }
 }
+
