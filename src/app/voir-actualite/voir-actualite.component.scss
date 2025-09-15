@@ -1,0 +1,70 @@
+ion-content {
+  --background: #f9f9f9;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.titre {
+  color: #1a3d72;
+  font-size: 48px;
+}
+
+.image-container {
+  margin-bottom: 20px;
+  border-radius: 12px;
+  overflow: hidden;
+  background: white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+  img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+  .titre-article {
+    color: #1a3d72;
+    font-size: 38px;
+    font-weight: 700;
+    margin: 0 0 6px 0;
+  }
+  
+  .date-article {
+    color: #1a3d72;
+    font-size: 24px;
+    font-weight: 400;
+    margin: 0 0 6px 0;
+  }
+  
+  .separator {
+    font-size: 38px;
+    color: #1a3d72;
+    margin: 10px 0;
+  }
+}
+
+/* Première image : infos en bas */
+.image-container.first {
+  .info-bottom {
+    width: 100%;
+    padding: 10px;
+    display: inline-block;
+    justify-content: center;
+    align-items: center;    
+  }
+}
+
+/* Autres images : infos à droite */
+.image-container.row {
+  flex-direction: row;
+
+  img {
+    width: 60%;
+    border-right: 2px solid #eee;
+  }
+
+  .info-right {
+    padding: 10px;
+    flex: 1;
+  }
+}
+
+

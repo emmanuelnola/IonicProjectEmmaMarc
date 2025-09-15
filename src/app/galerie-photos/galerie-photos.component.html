@@ -1,0 +1,43 @@
+<ion-content>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 mb-4">
+        <h2 class="titre">Galerie Photos</h2>
+      </div>
+      <div *ngFor="let category of categories; let catIdx = index" class="col-md-12 mt-2 mb-4">
+        <div class="images-grid">
+          <ng-container *ngFor="let img of category.images.slice(0,4); let i = index">
+            <div class="image-card thumb-card" (click)="openPreview(catIdx, i)">
+              <img [src]="img.thumb || img.src" alt="{{ img.title }}" />
+              <!-- Overlay for +X more images -->
+              <div *ngIf="i === 3 && category.images.length > 4" class="more-overlay">
+                +{{ category.images.length - 4 }}
+              </div>
+            </div>
+          </ng-container>
+        </div>
+        <div class="info-bottom">
+          <span class="date-article">{{ category.date }}</span>
+          <span class="separator"><i class="fas fa-minus"></i> </span>
+          <span class="titre-article">{{ category.titre }}</span>
+        </div>
+      </div>
+
+      <!-- Overlay Preview -->
+  <div class="preview-overlay fullscreen" *ngIf="previewOpen">
+        <div class="preview-backdrop" (click)="closePreview()"></div>
+        <div class="preview-content">
+          <button class="close-btn" (click)="closePreview()">&times;</button>
+          <button class="nav-btn left" (click)="prevImage()" [disabled]="previewImageIndex === 0">&#8592;</button>
+    <img class="preview-img"
+      [src]="previewImage.src"
+      [alt]="previewImage.title"
+      (swipeleft)="nextImage()"
+      (swiperight)="prevImage()"
+    />
+          <button class="nav-btn right" (click)="nextImage()" [disabled]="previewImageIndex === categories[previewCategoryIndex].images.length - 1">&#8594;</button>
+         </div>
+      </div>
+    </div>
+  </div>
+</ion-content>

@@ -101,6 +101,7 @@
   white-space: normal;  /* titre peut aller à la ligne */
   max-width: 60%;       /* limite largeur du titre */
   z-index: 1;
+
 }
 
 .dots {
@@ -121,15 +122,20 @@
    font-weight: bold;
    margin-top:5px;
    margin-bottom:25px;
+   font-size:40px;
    }
+
+
 .couleur{
    color:#1a3d72;
    font-weight: bold;
-   font-size:20px;
+   font-size:1.6rem;
+
   }
 
 .download-btn{
    background-color:white;
-   font-size:20px;
+   font-size:30px;
+     font-weight: bold;
   }
 //#67a8dc

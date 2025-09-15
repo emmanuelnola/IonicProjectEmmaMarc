@@ -1,0 +1,36 @@
+ion-content {
+  --background: #f9f9f9;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  overflow: scroll;
+}
+
+.titre {
+  color: #1a3d72;
+  font-size: 48px;
+}
+
+/* Header de l'accordéon */
+.accordion-header {
+  background-color: #66A7DA; /* fond bleu ciel clair */
+  font-weight: bold;
+  font-size: 40px;
+}
+
+ion-accordion {
+  border: 2px solid #1e90ff; /* bordure bleue */
+  border-radius: 8px;
+  margin-bottom: 16px;
+}
+
+/* Contenu */
+.accordion-content {
+  font-size: 24px;
+  padding: 12px 16px;
+  background-color: #D1E4F3;
+  border-left: 2px solid #1e90ff;
+  border-right: 2px solid #1e90ff;
+  border-bottom: 2px solid #1e90ff;
+}
+
+.monimg{
+  width:100%;}

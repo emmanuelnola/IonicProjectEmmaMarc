@@ -1,0 +1,24 @@
+<ion-content>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12 mb-4">
+        <h1 class="titre">Programme</h1>
+      </div>
+      <div class="col-md-12">
+        <!-- Image dans un cadre -->
+        <img src="assets/blackbird-7543630_640.jpg" alt="Programme" class="img-fluid" width="100%" />
+      </div>
+      <div class="col-md-12 mt-4 mb-4">
+        <ion-accordion-group>
+          <ion-accordion value="{{ section.title }}" *ngFor="let section of sections">
+            <ion-item slot="header" color="'#1a3d72'" class="accordion-header">
+              <ion-label style="color: #1a3d72;">{{ section.title }}</ion-label>
+            </ion-item>
+            <div class="ion-padding" slot="content" class="accordion-content" [innerHtml]="section.content | sanitizeHtml"></div>
+          </ion-accordion>
+        </ion-accordion-group>
+      </div>
+    </div>
+    <!-- Titre -->
+  </div>
+</ion-content>
