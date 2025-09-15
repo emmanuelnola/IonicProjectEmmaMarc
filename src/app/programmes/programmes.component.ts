@@ -3,6 +3,9 @@ import { Component } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
 import { SanitizeHtml } from 'src/core/sanitize-html';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
+import { FormsModule } from '@angular/forms';
 
 
 @Component({
@@ -10,19 +13,60 @@ import { SanitizeHtml } from 'src/core/sanitize-html';
   templateUrl: './programmes.component.html',
   styleUrls: ['./programmes.component.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, SanitizeHtml]
+  imports: [IonicModule, CommonModule, SanitizeHtml, HttpClientModule, FormsModule]
 })
 export class ProgrammesComponent {
-  sections = [
-    { title: '01 Premier Axe du programme ', content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis in ex elementum, venenatis est in, pulvinar tortor. Etiam gravida turpis sed nisl volutpat faucibus. In id augue luctus, dapibus sapien id, vehicula ipsum. Sed ipsum massa, mollis non augue ut, maximus accumsan orci. Nulla varius pretium nisi dapibus iaculis. Aliquam finibus elementum purus, nec dictum metus pulvinar sed. Pellentesque vel ornare massa. Etiam faucibus mauris sed justo tempor, bibendum molestie diam semper. Aliquam fermentum dui ac tempor sollicitudin. Nullam arcu libero, sollicitudin sit amet venenatis a, feugiat eget eros. In sapien lorem, porta vel sem ac, porttitor facilisis erat. Integer ornare varius tortor sit amet iaculis. Maecenas vel iaculis nisi. Proin vel vestibulum odio. Curabitur id tellus nec dui fringilla porttitor sed vel lacus.' },
-    { title: '02 Second Axe du programme', content: 'Fusce in urna lorem. Nunc ac purus ac ligula scelerisque sollicitudin. Duis sit amet metus volutpat, suscipit nulla non, pharetra nunc. Sed ullamcorper interdum rutrum. Sed eleifend nulla ipsum, vel laoreet augue luctus eget. Mauris euismod ex egestas, suscipit nunc et, finibus erat. Etiam dapibus sit amet risus at pretium. Nullam nisi arcu, suscipit ut quam at, blandit scelerisque quam. Morbi tellus enim, tristique eu convallis in, laoreet ut ante. Proin faucibus gravida nisl, ullamcorper bibendum justo porta eget. Pellentesque lobortis eleifend aliquet. Cras vitae auctor orci, non gravida mauris. Proin sed quam sapien. Aliquam rhoncus ex sed arcu suscipit ultricies. Integer tristique sapien in ipsum tincidunt, eu convallis nulla commodo. Nullam ac lectus non lacus varius volutpat. Praesent gravida nulla eu porta varius.' },
-    { title: '03 Troisième Axe du programme', content: 'Praesent pellentesque, erat eu consectetur bibendum, sem quam facilisis mi, sit amet elementum mi libero vitae diam. Nullam et sem molestie, laoreet risus vitae, iaculis nulla. Ut consequat egestas leo non aliquam. Vivamus pharetra, ligula consequat viverra blandit, odio lectus ornare felis, sed vestibulum ex nunc non ex. Cras tristique enim et nisl ullamcorper, quis maximus felis hendrerit. Praesent pellentesque, nisi ut vestibulum tristique, eros lorem convallis erat, sed varius enim erat nec elit. Duis vel molestie ante, et rutrum dolor. In tincidunt, diam et mollis eleifend, lectus velit consectetur leo, in condimentum lacus felis ac elit. Integer malesuada augue purus, id dapibus tellus vehicula nec. Morbi pretium massa at efficitur pretium. Sed sit amet imperdiet est. Fusce lectus ipsum, pellentesque in odio eu, tempus interdum dui. Vestibulum ac condimentum ipsum. Aliquam gravida lorem sit amet nibh ullamcorper, quis sagittis metus volutpat. Aliquam bibendum eros leo, ut commodo neque lacinia at. Cras ut nibh velit.' },
-    { title: '011 Premier Axe du programme ', content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis in ex elementum, venenatis est in, pulvinar tortor. Etiam gravida turpis sed nisl volutpat faucibus. In id augue luctus, dapibus sapien id, vehicula ipsum. Sed ipsum massa, mollis non augue ut, maximus accumsan orci. Nulla varius pretium nisi dapibus iaculis. Aliquam finibus elementum purus, nec dictum metus pulvinar sed. Pellentesque vel ornare massa. Etiam faucibus mauris sed justo tempor, bibendum molestie diam semper. Aliquam fermentum dui ac tempor sollicitudin. Nullam arcu libero, sollicitudin sit amet venenatis a, feugiat eget eros. In sapien lorem, porta vel sem ac, porttitor facilisis erat. Integer ornare varius tortor sit amet iaculis. Maecenas vel iaculis nisi. Proin vel vestibulum odio. Curabitur id tellus nec dui fringilla porttitor sed vel lacus.' },
-    { title: '022 Second Axe du programme', content: 'Fusce in urna lorem. Nunc ac purus ac ligula scelerisque sollicitudin. Duis sit amet metus volutpat, suscipit nulla non, pharetra nunc. Sed ullamcorper interdum rutrum. Sed eleifend nulla ipsum, vel laoreet augue luctus eget. Mauris euismod ex egestas, suscipit nunc et, finibus erat. Etiam dapibus sit amet risus at pretium. Nullam nisi arcu, suscipit ut quam at, blandit scelerisque quam. Morbi tellus enim, tristique eu convallis in, laoreet ut ante. Proin faucibus gravida nisl, ullamcorper bibendum justo porta eget. Pellentesque lobortis eleifend aliquet. Cras vitae auctor orci, non gravida mauris. Proin sed quam sapien. Aliquam rhoncus ex sed arcu suscipit ultricies. Integer tristique sapien in ipsum tincidunt, eu convallis nulla commodo. Nullam ac lectus non lacus varius volutpat. Praesent gravida nulla eu porta varius.' },
-    { title: '033 Troisième Axe du programme', content: 'Praesent pellentesque, erat eu consectetur bibendum, sem quam facilisis mi, sit amet elementum mi libero vitae diam. Nullam et sem molestie, laoreet risus vitae, iaculis nulla. Ut consequat egestas leo non aliquam. Vivamus pharetra, ligula consequat viverra blandit, odio lectus ornare felis, sed vestibulum ex nunc non ex. Cras tristique enim et nisl ullamcorper, quis maximus felis hendrerit. Praesent pellentesque, nisi ut vestibulum tristique, eros lorem convallis erat, sed varius enim erat nec elit. Duis vel molestie ante, et rutrum dolor. In tincidunt, diam et mollis eleifend, lectus velit consectetur leo, in condimentum lacus felis ac elit. Integer malesuada augue purus, id dapibus tellus vehicula nec. Morbi pretium massa at efficitur pretium. Sed sit amet imperdiet est. Fusce lectus ipsum, pellentesque in odio eu, tempus interdum dui. Vestibulum ac condimentum ipsum. Aliquam gravida lorem sit amet nibh ullamcorper, quis sagittis metus volutpat. Aliquam bibendum eros leo, ut commodo neque lacinia at. Cras ut nibh velit.' },
-    { title: '0111 Premier Axe du programme ', content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis in ex elementum, venenatis est in, pulvinar tortor. Etiam gravida turpis sed nisl volutpat faucibus. In id augue luctus, dapibus sapien id, vehicula ipsum. Sed ipsum massa, mollis non augue ut, maximus accumsan orci. Nulla varius pretium nisi dapibus iaculis. Aliquam finibus elementum purus, nec dictum metus pulvinar sed. Pellentesque vel ornare massa. Etiam faucibus mauris sed justo tempor, bibendum molestie diam semper. Aliquam fermentum dui ac tempor sollicitudin. Nullam arcu libero, sollicitudin sit amet venenatis a, feugiat eget eros. In sapien lorem, porta vel sem ac, porttitor facilisis erat. Integer ornare varius tortor sit amet iaculis. Maecenas vel iaculis nisi. Proin vel vestibulum odio. Curabitur id tellus nec dui fringilla porttitor sed vel lacus.' },
-    { title: '0222 Second Axe du programme', content: 'Fusce in urna lorem. Nunc ac purus ac ligula scelerisque sollicitudin. Duis sit amet metus volutpat, suscipit nulla non, pharetra nunc. Sed ullamcorper interdum rutrum. Sed eleifend nulla ipsum, vel laoreet augue luctus eget. Mauris euismod ex egestas, suscipit nunc et, finibus erat. Etiam dapibus sit amet risus at pretium. Nullam nisi arcu, suscipit ut quam at, blandit scelerisque quam. Morbi tellus enim, tristique eu convallis in, laoreet ut ante. Proin faucibus gravida nisl, ullamcorper bibendum justo porta eget. Pellentesque lobortis eleifend aliquet. Cras vitae auctor orci, non gravida mauris. Proin sed quam sapien. Aliquam rhoncus ex sed arcu suscipit ultricies. Integer tristique sapien in ipsum tincidunt, eu convallis nulla commodo. Nullam ac lectus non lacus varius volutpat. Praesent gravida nulla eu porta varius.' },
-    { title: '0333 Troisième Axe du programme', content: 'Praesent pellentesque, erat eu consectetur bibendum, sem quam facilisis mi, sit amet elementum mi libero vitae diam. Nullam et sem molestie, laoreet risus vitae, iaculis nulla. Ut consequat egestas leo non aliquam. Vivamus pharetra, ligula consequat viverra blandit, odio lectus ornare felis, sed vestibulum ex nunc non ex. Cras tristique enim et nisl ullamcorper, quis maximus felis hendrerit. Praesent pellentesque, nisi ut vestibulum tristique, eros lorem convallis erat, sed varius enim erat nec elit. Duis vel molestie ante, et rutrum dolor. In tincidunt, diam et mollis eleifend, lectus velit consectetur leo, in condimentum lacus felis ac elit. Integer malesuada augue purus, id dapibus tellus vehicula nec. Morbi pretium massa at efficitur pretium. Sed sit amet imperdiet est. Fusce lectus ipsum, pellentesque in odio eu, tempus interdum dui. Vestibulum ac condimentum ipsum. Aliquam gravida lorem sit amet nibh ullamcorper, quis sagittis metus volutpat. Aliquam bibendum eros leo, ut commodo neque lacinia at. Cras ut nibh velit.' },
-  ];
+  response: any;
+  lang: string = 'fr';
+
+  sections: Array<{ thematique: string; body: string }> = [];
+
+  constructor(private http: HttpClient) {
+    this.fetchProgramme();
+  }
+
+  onLangChange() {
+    if (!Array.isArray(this.response)) {
+      this.sections = [];
+      return;
+    }
+    if (this.lang === 'any') {
+      this.sections = this.response.map((item: any) => ({
+        thematique: item.thematique || item.title || '',
+        body: item.body || item.content || '',
+        langcode: item.langcode || 'fr',
+        nid: item.nid
+      }));
+    } else {
+      this.sections = this.response
+        .filter((item: any) => item.langcode === this.lang)
+        .map((item: any) => ({
+          thematique: item.thematique || item.title || '',
+          body: item.body || item.content || '',
+          langcode: item.langcode || 'fr',
+          nid: item.nid
+        }));
+    }
+  }
+
+  fetchProgramme() {
+    const url = `${environment.apiLink}/api/programme`;
+    this.http.get(url).subscribe(res => {
+      this.response = res;
+      // Map response to expected format if needed
+      if (Array.isArray(res)) {
+        this.sections = res.map((item: any) => ({
+          thematique: item.thematique || item.title || '',
+          body: item.body || item.content || '',
+          langcode: item.langcode || 'fr',
+          nid: item.nid 
+        }));
+      } else {
+        this.sections = [];
+      }
+  this.onLangChange();
+    });
+
+  }
 }
 
