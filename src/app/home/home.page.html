@@ -1,10 +1,10 @@
 <ion-content class="gris">
-  <div class="row">
+  <div class="row" *ngIf="response != null">
     <div class="col-md-12">
       <div class="header row">
         <div class="col-md-12 text-center" style="line-height: 10px;">
           <img 
-            src="assets/logo.png" 
+            src="{{ environment.apiLink }}{{ response.field_logo }}" 
             alt="Logo" 
             width="600" 
             height="800" 
@@ -12,7 +12,11 @@
           >
         </div>
         <div class="col-md-12 text-center" style="color: white; font-size: 80px; height: 400px;">
-          Message d'accueil
+          <div class="row">
+            <div class="col-md-12" [innerHtml]="response.body | sanitizeHtml">
+
+            </div>
+          </div>
         </div>
       </div>
       
@@ -20,12 +24,12 @@
         <div class="row">
           <div class="col-md-12 text-center" style="position: relative; display: inline-block;">
             <img 
-              src="assets/blackbird-7543630_640.jpg" 
+              src="{{ environment.apiLink }}{{ response.field_imgapi }}" 
               alt="Logo" 
               width="100%"
               height="auto" 
               class="img-overlay">
-              <span class="overlay-text">Bienvenue</span>
+              <span class="overlay-text">{{ response.title }}</span>
           </div>
           <div class="col-md-12 text-center" class="pt-4" style="padding-left: 40px;">
             <a class="btn btn-app welcome-button" (click)="navigate('/professiondefoi')">

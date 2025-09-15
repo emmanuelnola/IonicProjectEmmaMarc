@@ -2,15 +2,18 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-actualites',
   standalone: true,
-  imports: [CommonModule, IonicModule],
+  imports: [CommonModule, IonicModule, HttpClientModule],
   templateUrl: './actualites.component.html',
   styleUrls: ['./actualites.component.scss']
 })
 export class ActualitesComponent {
+  response: any;
 
   images = [
     {
@@ -45,8 +48,17 @@ export class ActualitesComponent {
     }
   ];
 
-  constructor( private router: Router ) { 
 
+  constructor(private router: Router, private http: HttpClient) {
+    this.fetchNews();
+  }
+
+  fetchNews() {
+    const url = `${environment.apiLink}/api/news`;
+    this.http.get(url).subscribe(res => {
+      this.response = res;
+      console.log('Données reçues:', this.response);
+    });
   }
 
   voirActualite(imageSrc: string) {
@@ -55,4 +67,6 @@ export class ActualitesComponent {
     // Vous pouvez utiliser le Router d'Angular pour naviguer vers une autre page
     this.router.navigate(['/voirActualite']);
   }
+
+
 }
