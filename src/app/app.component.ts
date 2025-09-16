@@ -6,7 +6,7 @@ import { filter } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
 import { AppFontAwesomeModule } from './app-fontawesome.module';
 import { GaleriePhotosComponent } from './galerie-photos/galerie-photos.component';
-import { TranslatePipe } from '@ngx-translate/core';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 
 
 @Component({
@@ -20,8 +20,15 @@ export class AppComponent {
   showLogo = false;
   showHeader: boolean = true;
   currentRoute: string = '';
+  currentLang: string = 'fr';
 
-  constructor(private menu: MenuController, private router: Router) {
+  constructor(private menu: MenuController, private router: Router, private translate: TranslateService) {
+    // Initialize language from localStorage or default to 'fr'
+    const savedLang = localStorage.getItem('lang');
+    this.currentLang = savedLang || 'fr';
+    this.translate.setDefaultLang('fr');
+    this.translate.use(this.currentLang);
+
     this.router.events
       .pipe(filter(event => event instanceof NavigationEnd))
       .subscribe((event: any) => {
@@ -29,6 +36,12 @@ export class AppComponent {
         this.showLogo = (event.urlAfterRedirects !== '/home' && event.url !== '/');
         this.currentRoute = event.urlAfterRedirects;
       });
+  }
+
+  setLang(lang: string) {
+    this.currentLang = lang;
+    this.translate.use(lang);
+    localStorage.setItem('lang', lang);
   }
 
   closeMenuAndNavigate(path: string) {

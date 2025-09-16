@@ -18,17 +18,30 @@ import { SanitizeHtml } from 'src/core/sanitize-html';
 })
 export class HomePage {
   public environment = environment;
-  response: any = null;
+  public response: any = null;
+  public userLang: string = 'fr';
 
   constructor(private router: Router, private http: HttpClient) {
     this.fetchHome();
+    this.userLang = localStorage.getItem('lang') || 'fr';
   }
 
   fetchHome() {
   const url = `${environment.apiLink}/api/home`;
+  let apiRes: any; 
     this.http.get(url).subscribe(res => {
-      this.response = res;
+      apiRes = res;
+      this.response = apiRes.filter((item: any) => item.langcode === this.userLang)
+      .map((item: any) => ({
+        title: item.thematique || item.title || '',
+        body: item.body || item.content || '',
+        langcode: item.langcode || 'fr',
+        nid: item.nid,
+        field_imgapi: item.field_imgapi,
+        field_logo: item.field_logo
+      }));
       this.response = this.response[0];
+      console.log( this.response );
     });
   }
 

@@ -47,9 +47,13 @@
       <ion-buttons slot="start">
         <ion-menu-button></ion-menu-button>
       </ion-buttons>
-       <ion-title *ngIf="showLogo == true">
-          <img  src="assets/logo-bande.png" alt="LOGO" class="toolbar-logo" />
-        </ion-title>
+      <ion-title *ngIf="showLogo == true">
+        <img  src="assets/logo-bande.png" alt="LOGO" class="toolbar-logo" />
+      </ion-title>
+      <ion-buttons slot="end" class="langselector">
+        <ion-button (click)="setLang('fr')" [color]="currentLang === 'fr' ? 'primary' : 'white'">FR</ion-button>
+        <ion-button (click)="setLang('en')" [color]="currentLang === 'en' ? 'primary' : 'white'">EN</ion-button>
+      </ion-buttons>
     </ion-toolbar>
   </ion-header>
   <ion-content id="main-content">

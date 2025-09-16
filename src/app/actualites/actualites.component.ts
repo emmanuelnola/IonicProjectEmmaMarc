@@ -58,7 +58,6 @@ export class ActualitesComponent {
     const url = `${environment.apiLink}/api/news`;
     this.http.get(url).subscribe(res => {
       this.response = res;
-      console.log('Données reçues:', this.response);
     });
   }
 

@@ -58,3 +58,13 @@ ion-menu ion-list ion-item {
   align-items: center;     /* vertically center content */
   padding-bottom: 20px;
 }
+
+.langselector > ion-button {
+  font-size: 2.4em;
+  font-weight: bold;
+  color: white;
+}
+
+.langselector {
+  gap: 30px;
+}
