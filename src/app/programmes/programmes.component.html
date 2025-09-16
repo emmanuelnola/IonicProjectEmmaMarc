@@ -8,15 +8,6 @@
         <!-- Image dans un cadre -->
         <img src="assets/blackbird-7543630_640.jpg" alt="Programme" class="img-fluid" width="100%" />
       </div>
-      <div class="col-md-12 mt-2 mb-2" id="dropdown-filter">
-        <div class="form-group">
-          <select class="form-select w-auto form-control" [(ngModel)]="lang" (ngModelChange)="onLangChange()">
-              <option value="any">{{ 'Toutes' | translate }}</option>
-              <option value="fr">{{ 'Français' | translate }}</option>
-              <option value="en">{{ 'English' | translate }}</option>
-          </select>
-        </div>
-      </div>
       <div class="col-md-12 mt-4 mb-4" *ngIf="sections.length > 0">
         <ion-accordion-group>
           <ion-accordion value="{{ section.thematique }}" *ngFor="let section of sections">
