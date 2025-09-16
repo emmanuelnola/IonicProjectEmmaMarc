@@ -6,6 +6,7 @@ import { SanitizeHtml } from 'src/core/sanitize-html';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { FormsModule } from '@angular/forms';
+import { TranslatePipe } from '@ngx-translate/core';
 
   
 @Component({
@@ -13,7 +14,7 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './programmes.component.html',
   styleUrls: ['./programmes.component.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, SanitizeHtml, HttpClientModule, FormsModule]
+  imports: [IonicModule, CommonModule, SanitizeHtml, HttpClientModule, FormsModule, TranslatePipe]
 })
 export class ProgrammesComponent {
   response: any;

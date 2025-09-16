@@ -1,8 +1,8 @@
 <div class="audios-container ">
-  <h1 class="titre">Audios</h1>
+  <h1 class="titre">{{ 'Audios' | translate }}</h1>
   <div *ngFor="let audio of audios; let i = index" class="audio-card">
     <!-- Titre -->
-    <div class="audio-title">{{i}} {{ audio.title }}</div>
+  <div class="audio-title">{{i}} {{ audio.title | translate }}</div>
 
     <!-- Barre de progression + boutons + temps -->
     <div class="audio-controls">

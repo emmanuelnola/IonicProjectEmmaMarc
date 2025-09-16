@@ -2,7 +2,7 @@
   <div class="container">
     <div class="row">
       <div class="col-md-12 mb-4">
-        <h2 class="titre">Galerie Photos</h2>
+  <h2 class="titre">{{ 'Galerie Photos' | translate }}</h2>
       </div>
       <div *ngFor="let category of categories; let catIdx = index" class="col-md-12 mt-2 mb-4">
         <div class="images-grid">
@@ -17,9 +17,9 @@
           </ng-container>
         </div>
         <div class="info-bottom">
-          <span class="date-article">{{ category.date }}</span>
+          <span class="date-article">{{ category.date | translate }}</span>
           <span class="separator"><i class="fas fa-minus"></i> </span>
-          <span class="titre-article">{{ category.titre }}</span>
+          <span class="titre-article">{{ category.titre | translate }}</span>
         </div>
       </div>
 

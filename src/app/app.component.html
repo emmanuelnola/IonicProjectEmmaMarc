@@ -3,38 +3,38 @@
   <ion-menu contentId="main-content" side="start" menuId="main" class="wide-menu">
     <ion-header>
       <ion-toolbar>
-        Menu
+  {{ 'Menu' | translate }}
       </ion-toolbar>
     </ion-header>
     <ion-content>
       <ion-list>
         <!-- Chaque lien devient actif avec routerLinkActive -->
         <ion-menu-toggle><ion-item button (click)="closeMenuAndNavigate('/home')" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-          Accueil
+          {{ 'Accueil' | translate }}
         </ion-item></ion-menu-toggle>
         <ion-menu-toggle><ion-item button (click)="closeMenuAndNavigate('/actualites')">
-          Actualité
+          {{ 'Actualité' | translate }}
         </ion-item></ion-menu-toggle>
         <ion-menu-toggle><ion-item button (click)="closeMenuAndNavigate('/videos')">
-          Vidéos
+          {{ 'Vidéos' | translate }}
         </ion-item></ion-menu-toggle>
         <ion-menu-toggle><ion-item button (click)="closeMenuAndNavigate('/audios')">
-          Audios
+          {{ 'Audios' | translate }}
         </ion-item></ion-menu-toggle>
         <ion-menu-toggle><ion-item button (click)="closeMenuAndNavigate('/programmes')">
-          Programme
+          {{ 'Programme' | translate }}
         </ion-item></ion-menu-toggle>
         <ion-menu-toggle><ion-item button (click)="closeMenuAndNavigate('/professiondefoi')">
-          Profession de foi
+          {{ 'Profession de foi' | translate }}
         </ion-item></ion-menu-toggle>
         <ion-menu-toggle><ion-item button (click)="closeMenuAndNavigate('/galeriePhotos')">
-          Galerie
+          {{ 'Galerie' | translate }}
         </ion-item></ion-menu-toggle>
         <ion-menu-toggle><ion-item button (click)="closeMenuAndNavigate('/documents')">
-          Documents
+          {{ 'Documents' | translate }}
         </ion-item></ion-menu-toggle>
         <ion-menu-toggle><ion-item button (click)="closeMenuAndNavigate('/gadgets')">
-          Gadgets
+          {{ 'Gadgets' | translate }}
         </ion-item></ion-menu-toggle>
       </ion-list>
     </ion-content>

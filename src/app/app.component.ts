@@ -6,12 +6,13 @@ import { filter } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
 import { AppFontAwesomeModule } from './app-fontawesome.module';
 import { GaleriePhotosComponent } from './galerie-photos/galerie-photos.component';
+import { TranslatePipe } from '@ngx-translate/core';
 
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [IonicModule, RouterModule, CommonModule, AppFontAwesomeModule, GaleriePhotosComponent],
+  imports: [IonicModule, RouterModule, CommonModule, AppFontAwesomeModule, GaleriePhotosComponent, TranslatePipe],
   templateUrl: 'app.component.html',
   styleUrls: ['./app.component.scss'],
 })

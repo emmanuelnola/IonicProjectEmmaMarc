@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { TranslatePipe } from '@ngx-translate/core';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 
 @Component({
   selector: 'app-audios',
   templateUrl: './audios.component.html',
-   imports: [CommonModule, IonicModule],
+  imports: [CommonModule, IonicModule, TranslatePipe],
   styleUrls: ['./audios.component.scss'],
    standalone: true
 })

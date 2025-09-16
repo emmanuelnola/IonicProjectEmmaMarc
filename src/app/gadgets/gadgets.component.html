@@ -1,14 +1,14 @@
 <div *ngIf="loading">
-  <p>Chargement des images...</p>
+  <p>{{ 'Chargement des images...' | translate }}</p>
 </div>
 
 <div *ngIf="error">
-  <p>{{ error }}</p>
+  <p>{{ error | translate }}</p>
 </div>
 
 <div class="image-grid" *ngIf="!loading && !error">
   <div *ngFor="let img of gadgets" class="image-item">
-    <p>{{ img.title }}</p>
+  <p>{{ img.title | translate }}</p>
     <img [src]="img.path" [alt]="img.title" />
   </div>
 </div>

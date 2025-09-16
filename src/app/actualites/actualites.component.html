@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-12 mb-4">
-        <h2 class="titre">Actualités</h2>
+  <h2 class="titre">{{ 'Actualités' | translate }}</h2>
       </div>
       <div class="col-md-12">
         <!-- Première image (infos en bas sur l'image) -->
@@ -11,7 +11,7 @@
           <div class="info-bottom">
             <span class="date-article">{{ images[0].date }}</span>
             <span class="separator"><i class="fas fa-minus"></i> </span>
-            <span class="titre-article">{{ images[0].titre }}</span>
+            <span class="titre-article">{{ images[0].titre | translate }}</span>
           </div>
         </div>
       
@@ -21,7 +21,7 @@
           <div class="info-right">
             <span class="date-article">{{ img.date }}</span>
             <span class="separator"><i class="fas fa-minus"></i> </span><br>
-            <span class="titre-article">{{ img.titre }}</span>
+            <span class="titre-article">{{ img.titre | translate }}</span>
           </div>
         </div>
       </div>

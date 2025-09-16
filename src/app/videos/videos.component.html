@@ -1,7 +1,7 @@
 <ion-content class="ion-padding">
 
   <!-- Grand titre -->
-  <h1 class="titre">Vidéos</h1>
+  <h1 class="titre">{{ 'Vidéos' | translate }}</h1>
 
   <!-- Première vidéo -->
   <ion-card class="first-video" (click)="loadVideo(0)">
@@ -21,7 +21,7 @@
     </ng-template>
 
     <ion-card-header class="ion-text-center titres_videos">
-      <ion-card-title class="titres_videos">{{ videos[0].title }}</ion-card-title>
+  <ion-card-title class="titres_videos">{{ videos[0].title | translate }}</ion-card-title>
       <ion-card-subtitle class="titres_videos">{{ videos[0].date }}</ion-card-subtitle>
     </ion-card-header>
   </ion-card>
@@ -48,7 +48,7 @@
             </ng-template>
 
             <ion-card-header class="ion-text-center titres_videos">
-              <ion-card-title class="titres_videos">{{ video.title }}</ion-card-title>
+          <ion-card-title class="titres_videos">{{ video.title | translate }}</ion-card-title>
               <ion-card-subtitle class="titres_videos">{{ video.date }}</ion-card-subtitle>
             </ion-card-header>
           </ion-card>

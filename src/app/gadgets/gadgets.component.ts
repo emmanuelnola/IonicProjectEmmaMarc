@@ -2,12 +2,13 @@
 import { ModalController } from '@ionic/angular';
 import { IonicModule} from '@ionic/angular';
 import { ImageModalComponent } from '../modals-img/modals-img.component'; // ✅ On importe le modal
+import { TranslatePipe } from '@ngx-translate/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-gadgets',
   standalone: true,
-  imports: [IonicModule,CommonModule],
+  imports: [IonicModule,CommonModule, TranslatePipe],
   templateUrl: './gadgets.component.html',
   styleUrls: ['./gadgets.component.scss']
 })

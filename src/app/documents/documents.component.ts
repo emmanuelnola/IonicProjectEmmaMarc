@@ -3,11 +3,12 @@ import { IonicModule, ToastController } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
 import { DocumentsService,MyDocument} from '../services/documents.service';
 import { Component, OnInit } from '@angular/core';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-documents',
   templateUrl: 'documents.component.html',
-  imports: [ CommonModule, IonicModule],
+  imports: [ CommonModule, IonicModule, TranslatePipe],
   styleUrls: ['documents.component.scss'],
 })
 export class DocumentsComponent implements OnInit {

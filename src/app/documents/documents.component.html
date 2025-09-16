@@ -2,7 +2,7 @@
   <h1 class="le_titre">Documents</h1>
   <div class="documents-list">
     <div class="document-line" *ngFor="let doc of documents">
-      <span class="title couleur">{{ doc.title }}</span>
+  <span class="title couleur">{{ doc.title | translate }}</span>
       <span class="dots couleur"></span>
       <button ion-button fill="clear" class="download-btn telechargement" (click)="download(doc)">
         Télécharger

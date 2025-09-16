@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-12 mb-4">
-        <h1 class="titre">Programme</h1>
+          <h1 class="titre">{{ 'Programme' | translate }}</h1>
       </div>
       <div class="col-md-12">
         <!-- Image dans un cadre -->
@@ -11,9 +11,9 @@
       <div class="col-md-12 mt-2 mb-2" id="dropdown-filter">
         <div class="form-group">
           <select class="form-select w-auto form-control" [(ngModel)]="lang" (ngModelChange)="onLangChange()">
-            <option value="any">Toutes</option>
-            <option value="fr">Français</option>
-            <option value="en">English</option>
+              <option value="any">{{ 'Toutes' | translate }}</option>
+              <option value="fr">{{ 'Français' | translate }}</option>
+              <option value="en">{{ 'English' | translate }}</option>
           </select>
         </div>
       </div>

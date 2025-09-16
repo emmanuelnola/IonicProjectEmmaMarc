@@ -4,11 +4,12 @@ import { IonicModule } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { environment } from '../../environments/environment';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-actualites',
   standalone: true,
-  imports: [CommonModule, IonicModule, HttpClientModule],
+  imports: [CommonModule, IonicModule, HttpClientModule, TranslatePipe],
   templateUrl: './actualites.component.html',
   styleUrls: ['./actualites.component.scss']
 })

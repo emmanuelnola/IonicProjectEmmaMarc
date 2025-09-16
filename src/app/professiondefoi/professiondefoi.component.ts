@@ -6,6 +6,7 @@ import { SanitizeHtml } from 'src/core/sanitize-html';
 import { environment } from '../../environments/environment';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { TranslatePipe } from '@ngx-translate/core';
 
 
 @Component({
@@ -13,7 +14,7 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './professiondefoi.component.html',
   styleUrls: ['./professiondefoi.component.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, SanitizeHtml, FormsModule]
+  imports: [IonicModule, CommonModule, SanitizeHtml, FormsModule, TranslatePipe]
 })
 
 export class ProfessiondefoiComponent {

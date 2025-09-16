@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
 import { AppFontAwesomeModule } from '../app-fontawesome.module';
+import { TranslatePipe } from '@ngx-translate/core';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
@@ -10,7 +11,7 @@ import { SanitizeHtml } from 'src/core/sanitize-html';
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [IonicModule, SanitizeHtml, AppFontAwesomeModule, HttpClientModule, CommonModule],
+  imports: [IonicModule, SanitizeHtml, AppFontAwesomeModule, HttpClientModule, CommonModule, TranslatePipe],
   templateUrl: './home.page.html',
   styleUrls: ['./home.page.scss'],
 
