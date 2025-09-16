@@ -15,12 +15,12 @@
 }
 
 //les titres des audios
-.audio-title {
 
+.audio-title {
   margin-bottom: 5px;
-  margin-left:8px;
-  font-size: 1.5rem;
-  color:#67a8dc;
+  margin-left: 8px;
+  font-size: 1.1em;
+  color: #67a8dc;
 }
 
 //mise en forme de la barre de progression audio et des boutons
@@ -44,12 +44,13 @@
 }
 
 //mise en forme du titre de la page audio
-.titre{
-  font-size:50px;
-  color:#1a3d72;
-  margin-left:20px;
+
+.titre {
+  font-size: 1.5em;
+  color: #1a3d72;
+  margin-left: 8px;
   font-weight: bold;
-  }
+}
 
 //mise en forme du ion-conteneur: c'est la div qui va scroller(container)
 ion-content{
@@ -58,17 +59,27 @@ ion-content{
   align-items:center;
   }
 
-.container{
-  width:60%;
-  max-height:100%;
-//active le scroll interne
-  overflow-y:auto;
- //cache le scrollbar(firefox)
-  scrollbar-width:none;
-  //cache le scrollbar(IE/Edge)
-  -ms-overflow-style:none;
-   margin: auto;
- }
+
+.container {
+  width: 96vw;
+  max-width: 500px;
+  max-height: 100%;
+  overflow-y: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  margin: auto;
+}
+@media (min-width: 768px) {
+  .titre {
+    font-size: 2.5em;
+  }
+  .audio-title {
+    font-size: 2em;
+  }
+  .container {
+    max-width: 700px;
+  }
+}
 
 .container::-webkit-scrollbar{
     //cache la barre de scrooll(chrome,safari,opera)

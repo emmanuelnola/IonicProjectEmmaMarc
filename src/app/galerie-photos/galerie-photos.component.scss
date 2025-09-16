@@ -1,3 +1,73 @@
+// Responsive image grid and card styles for mobile
+.images-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  padding: 10px;
+  background-color: #f0f0f0;
+  border-radius: 10px;
+}
+
+.image-card {
+  position: relative;
+  width: 44vw;
+  max-width: 180px;
+  min-width: 120px;
+  text-align: center;
+  background: #f5f5f5;
+  border-radius: 10px;
+  padding: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  margin-bottom: 8px;
+}
+
+.image-card img {
+  width: 100%;
+  height: auto;
+  max-height: 160px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.image-number {
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  background: #3498db;
+  color: #fff;
+  font-size: 0.9em;
+  font-weight: bold;
+  padding: 2px 7px;
+  border-radius: 50%;
+  z-index: 2;
+}
+
+.image-title {
+  margin-top: 6px;
+  font-size: 1em;
+  font-weight: 600;
+  color: #1a3d72;
+  word-break: break-word;
+}
+
+@media (min-width: 600px) {
+  .image-card {
+    width: 180px;
+    max-width: 220px;
+    min-width: 140px;
+  }
+  .image-card img {
+    max-height: 220px;
+  }
+  .images-grid {
+    gap: 18px;
+    padding: 18px;
+  }
+  .image-title {
+    font-size: 1.1em;
+  }
+}
 ion-content {
   --background: #f9f9f9;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -10,19 +80,19 @@ ion-content {
 
 .titre {
   color: #1a3d72;
-  font-size: 48px;
+  font-size: 1.5em;
 }
 
 .titre-article {
   color: #1a3d72;
-  font-size: 38px;
+  font-size: 1.1em;
   font-weight: 700;
   margin: 0 0 6px 0;
 }
 
 .date-article {
   color: #1a3d72;
-  font-size: 24px;
+  font-size: 0.95em;
   font-weight: 400;
   margin: 0 0 6px 0;
 }
@@ -41,7 +111,7 @@ ion-content {
   height: 100%;
   background: rgba(160, 216, 233, 0.6);
   color: #fff;
-  font-size: 6em;
+  font-size: 2.5em;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -90,7 +160,7 @@ ion-content {
 
 .preview-img {
   max-width: 90vw;
-  max-height: 70vh;
+  width: 44vw;
   width: auto;
   height: auto;
   object-fit: contain;
@@ -101,92 +171,24 @@ ion-content {
 .close-btn {
   position: absolute;
   top: 8px;
+  max-height: 120px;
+  object-fit: cover;
   right: 16px;
   background: none;
   border: none;
   font-size: 2em;
-  color: #333;
+  font-size: 0.95em;
   cursor: pointer;
   z-index: 3;
 }
 
-.nav-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(0,0,0,0.3);
-  border: none;
-  color: #fff;
+.titre {
+  font-size: 2.5em;
+}
+.titre-article {
   font-size: 2em;
-  padding: 0.2em 0.6em;
-  border-radius: 50%;
-  cursor: pointer;
-  z-index: 3;
 }
-.nav-btn.left {
-  left: 8px;
+.date-article {
+  font-size: 1.5em;
 }
-.nav-btn.right {
-  right: 8px;
-}
-
-.preview-title {
-  margin-top: 8px;
-  font-size: 1.2em;
-  color: #333;
-  text-align: center;
-}
-.category-title {
-  font-size: 48px;
-  font-weight: bold;
-  color: #3498db; /* Bleu */
-  margin: 16px 0 8px;
-}
-
-.images-grid {
-  padding: 15px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 16px; /* espace entre les cartes */
-  background-color: #f0f0f0;
-  border-radius: 10px;
-}
-
-.gris{
-    background-color: #f0f0f0; /* fond gris */
-
-    padding:8px;
-   }
-
-.image-card {
-  position: relative;
-  width: 320px;
-  text-align: center;
-  background: #f5f5f5;
-  border-radius: 10px;
-  padding: 10px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-}
-
-.image-number {
-  position: absolute;
-  top: 5px;
-  left: 5px;
-  background: #3498db;
-  color: white;
-  font-size: 14px;
-  font-weight: bold;
-  padding: 4px 8px;
-  border-radius: 50%;
-}
-
-.image-card img {
-  width: 100%;
-  border-radius: 8px;
-}
-
-.image-title {
-  margin-top: 8px;
-  font-size: 14px;
-  font-weight: bold;
-}
+/* Cleaned up: removed duplicate/conflicting .image-card, .image-title, .image-number rules. Only mobile-friendly responsive styles remain above. */

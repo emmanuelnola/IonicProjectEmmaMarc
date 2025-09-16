@@ -1,41 +1,68 @@
-.header{
-  background-color:#1a3d72;
-  min-height: 900px;
-  justify-content: top;
+
+.header {
+  background-color: #1a3d72;
+  min-height: 180px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
 }
 
-.img-overlay{
+.img-overlay {
   width: 100%;
   height: auto;
-  border-top: 5px solid #66A7DA;
-  border-bottom: 90px solid #66A7DA;
+  border-top: 3px solid #66A7DA;
+  border-bottom: 24px solid #66A7DA;
   display: block;
 }
 
 .overlay-text {
   position: absolute;
-  bottom: 0; /* anchor to bottom of image */
+  bottom: 0;
   left: 50%;
-  transform: translateX(-50%); /* center horizontally */
-  font-size: 55px;
-  font-weight:500;
+  transform: translateX(-50%);
+  font-size: 1.5em;
+  font-weight: 500;
   color: white;
-  line-height: 1;
-  padding-bottom: 10px; /* optional, adjust spacing above the border */
+  line-height: 1.1;
+  padding-bottom: 6px;
 }
 
 .welcome-button {
-  height: 200px;
-  width: 300px;
+  height: 140px;
+  width: 30vw;
   text-align: center;
-  font-size: 34px;
-  line-height: 60px;
+  font-size: 0.2em;
+  line-height: 0.6em;
   background-color: #D1E4F3;
-  color:#1a3d72;
-  margin-left: 10px;
-  padding-top: 30px;
-  margin-bottom: 10px;
+  color: #1a3d72;
+  margin: 8px auto 10px auto;
+  padding-top: 8px;
+  border-radius: 12px;
+  flex-direction: column;
 }
 .welcome-button > i {
-  font-size: 100px !important;
+  font-size: 0.6em !important;
+}
+
+@media (min-width: 768px) {
+  .header {
+    min-height: 400px;
+  }
+  .overlay-text {
+    font-size: 1.4em;
+  }
+  .welcome-button {
+    height: 200px;
+    font-size: 1.7em;
+    max-width: 200px;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 8px auto 10px auto;
+    margin-left: 12px;
+  }
+  .welcome-button > i {
+    font-size: 2.4em !important;
+  }
 }

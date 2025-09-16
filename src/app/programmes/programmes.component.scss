@@ -6,14 +6,14 @@ ion-content {
 
 .titre {
   color: #1a3d72;
-  font-size: 48px;
+  font-size: 1.5em;
 }
 
 /* Header de l'accordéon */
 .accordion-header {
-  background-color: #66A7DA; /* fond bleu ciel clair */
+  background-color: #66A7DA;
   font-weight: bold;
-  font-size: 40px;
+  font-size: 1.1em;
 }
 
 ion-accordion {
@@ -24,8 +24,8 @@ ion-accordion {
 
 /* Contenu */
 .accordion-content {
-  font-size: 24px;
-  padding: 12px 16px;
+  font-size: 1em;
+  padding: 10px 8px;
   background-color: #D1E4F3;
   border-left: 2px solid #1e90ff;
   border-right: 2px solid #1e90ff;
@@ -37,5 +37,19 @@ ion-accordion {
 }
 
 .form-select {
-  font-size: 58px;
+  font-size: 1.1em;
+}
+@media (min-width: 768px) {
+  .titre {
+    font-size: 2.5em;
+  }
+  .accordion-header {
+    font-size: 2em;
+  }
+  .accordion-content {
+    font-size: 1.5em;
+  }
+  .form-select {
+    font-size: 2em;
+  }
 }
