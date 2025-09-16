@@ -7,7 +7,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { FormsModule } from '@angular/forms';
 
-
+  
 @Component({
   selector: 'app-programmes',
   templateUrl: './programmes.component.html',
@@ -64,7 +64,7 @@ export class ProgrammesComponent {
       } else {
         this.sections = [];
       }
-  this.onLangChange();
+      this.onLangChange();
     });
 
   }

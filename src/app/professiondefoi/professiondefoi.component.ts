@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { SanitizeHtml } from 'src/core/sanitize-html';
 import { environment } from '../../environments/environment';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 
 @Component({
@@ -12,12 +13,14 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
   templateUrl: './professiondefoi.component.html',
   styleUrls: ['./professiondefoi.component.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, SanitizeHtml]
+  imports: [IonicModule, CommonModule, SanitizeHtml, FormsModule]
 })
 
 export class ProfessiondefoiComponent {
+  
   professiondefoi: any;
   response: any;
+  lang: string = 'fr';
 
   constructor( private http: HttpClient ) {
     this.professiondefoi  = {
@@ -29,11 +32,25 @@ export class ProfessiondefoiComponent {
   }
 
   fetchProfessionDeFoi() {
-    const url = `${environment.apiLink}/api/news`;
+    const url = `${environment.apiLink}/api/profession`;
     this.http.get(url).subscribe(res => {
       this.response = res;
       console.log('Données reçues:', this.response);
+      this.onLangChange();
     });
+  }
+
+  onLangChange() {    
+    this.professiondefoi = this.response
+      .filter((item: any) => item.langcode === this.lang)
+      .map((item: any) => ({
+        title: item.thematique || item.title || '',
+        body: item.body || item.content || '',
+        langcode: item.langcode || 'fr',
+        nid: item.nid
+      }));
+
+    this.professiondefoi = this.professiondefoi[0];
   }
 }
 
