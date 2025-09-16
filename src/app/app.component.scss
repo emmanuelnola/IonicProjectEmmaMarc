@@ -1,3 +1,10 @@
+.active-lang {
+  --color: #67a8dc;
+}
+.inactive-lang {
+  --color: white;
+}
+
 /* custom toolbar style */
 ion-toolbar.custom-toolbar {
   --background: #173E71;   /* background color */

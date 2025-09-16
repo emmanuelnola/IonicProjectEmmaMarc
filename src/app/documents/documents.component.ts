@@ -32,7 +32,6 @@ export class DocumentsComponent implements OnInit {
 
   //  Fonction appelée quand on clique sur un document
   async download(doc:  MyDocument) {
-    console.log(doc.field_fichier);
     // Appelle la méthode du service pour récupérer le fichier en blob
     this.documentsService.downloadDocument(doc.field_fichier).subscribe({
       next: (blob:Blob) => {

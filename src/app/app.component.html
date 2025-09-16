@@ -51,8 +51,8 @@
         <img  src="{{ environment.apiLink }}{{ logoUrl }}" alt="LOGO" class="toolbar-logo" />
       </ion-title>
       <ion-buttons slot="end" class="langselector">
-        <ion-button (click)="setLang('fr')" [color]="currentLang === 'fr' ? 'primary' : 'white'">FR</ion-button>
-        <ion-button (click)="setLang('en')" [color]="currentLang === 'en' ? 'primary' : 'white'">EN</ion-button>
+        <ion-button (click)="setLang('fr')" [class]="currentLang === 'fr' ? 'active-lang' : 'inactive-lang'">FR</ion-button>
+        <ion-button (click)="setLang('en')" [class]="currentLang === 'en' ? 'active-lang' : 'inactive-lang'">EN</ion-button>
       </ion-buttons>
     </ion-toolbar>
   </ion-header>

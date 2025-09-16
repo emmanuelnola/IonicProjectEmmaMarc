@@ -1,4 +1,6 @@
 import { Component, Output, EventEmitter } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 import { HammerGestureConfig } from '@angular/platform-browser';
 import { TranslatePipe } from '@ngx-translate/core';
 import { CommonModule } from '@angular/common';
@@ -16,64 +18,27 @@ export class GaleriePhotosComponent {
   previewOpen = false;
   previewCategoryIndex = 0;
   previewImageIndex = 0;
-  
-  categories = [
-    {
-      titre: 'Un article avec des photos',
-      date: "2024-06-15",
-      images: [
-        { thumb: 'assets/images/photo3.jpg', src: 'assets/images/photo3.jpg', title: 'Chat' },
-        { thumb: 'assets/images/photo4.jpg', src: 'assets/images/photo4.jpg', title: 'Chat' },
-        { thumb: 'assets/images/prod-1.jpg', src: 'assets/images/prod-1.jpg', title: 'Chat' },
-        { thumb: 'assets/images/prod-2.jpg', src: 'assets/images/prod-2.jpg', title: 'Chat' },
-        { thumb: 'assets/images/prod-3.jpg', src: 'assets/images/prod-3.jpg', title: 'Chat' },
-        { thumb: 'assets/images/prod-4.jpg', src: 'assets/images/prod-4.jpg', title: 'Chat' },
-        { thumb: 'assets/images/prod-5.jpg', src: 'assets/images/prod-5.jpg', title: 'Chat' },
-        { thumb: 'assets/blackbird-7543630_640.jpg', src: 'assets/blackbird-7543630_640.jpg', title: 'Chien' },
-      ]
-    },
-    {
-      titre: 'Encore Un article avec des photos',
-      date: "2024-06-15",
-      images: [
-        { thumb: 'assets/images/photo3.jpg', src: 'assets/images/photo3.jpg', title: 'Chat' },
-        { thumb: 'assets/images/photo4.jpg', src: 'assets/images/photo4.jpg', title: 'Chat' },
-        { thumb: 'assets/images/prod-1.jpg', src: 'assets/images/prod-1.jpg', title: 'Chat' },
-        { thumb: 'assets/images/prod-2.jpg', src: 'assets/images/prod-2.jpg', title: 'Chat' },
-        { thumb: 'assets/images/prod-3.jpg', src: 'assets/images/prod-3.jpg', title: 'Chat' },
-        { thumb: 'assets/images/prod-4.jpg', src: 'assets/images/prod-4.jpg', title: 'Chat' },
-        { thumb: 'assets/images/prod-5.jpg', src: 'assets/images/prod-5.jpg', title: 'Chat' },
-        { thumb: 'assets/blackbird-7543630_640.jpg', src: 'assets/blackbird-7543630_640.jpg', title: 'Chien' },
-      ]
-    },
-    {
-      titre: 'Encore Un article avec des photos',
-      date: "2024-06-15",
-      images: [
-        { thumb: 'assets/images/photo3.jpg', src: 'assets/images/photo3.jpg', title: 'Chat' },
-        { thumb: 'assets/images/photo4.jpg', src: 'assets/images/photo4.jpg', title: 'Chat' },
-        { thumb: 'assets/images/prod-1.jpg', src: 'assets/images/prod-1.jpg', title: 'Chat' },
-        { thumb: 'assets/images/prod-2.jpg', src: 'assets/images/prod-2.jpg', title: 'Chat' },
-        { thumb: 'assets/images/prod-3.jpg', src: 'assets/images/prod-3.jpg', title: 'Chat' },
-        { thumb: 'assets/images/prod-4.jpg', src: 'assets/images/prod-4.jpg', title: 'Chat' },
-        { thumb: 'assets/images/prod-5.jpg', src: 'assets/images/prod-5.jpg', title: 'Chat' },
-        { thumb: 'assets/blackbird-7543630_640.jpg', src: 'assets/blackbird-7543630_640.jpg', title: 'Chien' },
-      ]
-    },
-    {
-      titre: 'Toujours un article avec des photos',
-      date: "2024-06-15",
-      images: [
-        { thumb: 'assets/blackbird-7543630_640.jpg', src: 'assets/blackbird-7543630_640.jpg', title: 'Chat' },
-        { thumb: 'assets/blackbird-7543630_640.jpg', src: 'assets/blackbird-7543630_640.jpg', title: 'Chien' },
-        { thumb: 'assets/blackbird-7543630_640.jpg', src: 'assets/blackbird-7543630_640.jpg', title: 'Lion1' },
-        { thumb: 'assets/blackbird-7543630_640.jpg', src: 'assets/blackbird-7543630_640.jpg', title: 'Lion3' },
-        { thumb: 'assets/blackbird-7543630_640.jpg', src: 'assets/blackbird-7543630_640.jpg', title: 'Lion5' },
-        { thumb: 'assets/blackbird-7543630_640.jpg', src: 'assets/blackbird-7543630_640.jpg', title: 'Lion6' },
-        { thumb: 'assets/blackbird-7543630_640.jpg', src: 'assets/blackbird-7543630_640.jpg', title: 'Lion7' }
-      ]
-    }
-  ];
+  categories: Array<{ title: string, images: Array<{ url: string, thumb: string }> }> = [];
+  environment = environment;
+
+  constructor(private http: HttpClient) {}
+
+  ngOnInit() {
+    this.http.get<any[]>(`${environment.apiLink}/api/galerie`).subscribe(apiResponse => {
+      this.categories = apiResponse.map(item => {
+        const galleryArr = item.gallerie.split(',').map((s: string) => s.trim());
+        const vignetteArr = item.vignette.split(',').map((s: string) => s.trim());
+        const images = galleryArr.map((url: string, i: number) => ({
+          url,
+          thumb: vignetteArr[i] || ''
+        }));
+        return {
+          title: item.title,
+          images
+        };
+      });
+    });
+  }
 
   openPreview(categoryIdx: number, imageIdx: number) {
     this.previewCategoryIndex = categoryIdx;
