@@ -24,6 +24,7 @@ export class ProgrammesComponent {
 
   constructor(private http: HttpClient) {
     this.fetchProgramme();
+    this.lang = localStorage.getItem('lang') || 'fr';
   }
 
   onLangChange() {
@@ -56,7 +57,9 @@ export class ProgrammesComponent {
       this.response = res;
       // Map response to expected format if needed
       if (Array.isArray(res)) {
-        this.sections = res.map((item: any) => ({
+        this.sections = res
+        .filter((item: any) => item.langcode === this.lang)
+        .map((item: any) => ({
           thematique: item.thematique || item.title || '',
           body: item.body || item.content || '',
           langcode: item.langcode || 'fr',

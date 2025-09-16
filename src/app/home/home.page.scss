@@ -11,7 +11,7 @@
   width: 100%;
   height: auto;
   border-top: 3px solid #66A7DA;
-  border-bottom: 24px solid #66A7DA;
+  border-bottom: 32px solid #66A7DA;
   display: block;
 }
 
@@ -29,10 +29,10 @@
 
 .welcome-button {
   height: 140px;
-  width: 30vw;
+  width: 140px;
   text-align: center;
-  font-size: 0.2em;
-  line-height: 0.6em;
+  font-size: 30px;
+  line-height: 32px;
   background-color: #D1E4F3;
   color: #1a3d72;
   margin: 8px auto 10px auto;
@@ -52,9 +52,9 @@
     font-size: 1.4em;
   }
   .welcome-button {
-    height: 200px;
-    font-size: 1.7em;
-    max-width: 200px;
+    height: 300px;
+    font-size: 30px;
+    width: 300px;
     display: inline-flex;
     flex-direction: column;
     align-items: center;
