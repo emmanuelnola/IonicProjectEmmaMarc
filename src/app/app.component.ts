@@ -7,7 +7,8 @@ import { CommonModule } from '@angular/common';
 import { AppFontAwesomeModule } from './app-fontawesome.module';
 import { GaleriePhotosComponent } from './galerie-photos/galerie-photos.component';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
-
+import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -21,13 +22,20 @@ export class AppComponent {
   showHeader: boolean = true;
   currentRoute: string = '';
   currentLang: string = 'fr';
+  logoUrl:string = '';
+  public environment = environment;
 
-  constructor(private menu: MenuController, private router: Router, private translate: TranslateService) {
+  constructor(private menu: MenuController, private router: Router, private translate: TranslateService, private http: HttpClient) {
     // Initialize language from localStorage or default to 'fr'
     const savedLang = localStorage.getItem('lang');
     this.currentLang = savedLang || 'fr';
     this.translate.setDefaultLang('fr');
     this.translate.use(this.currentLang);
+
+    const url = `${environment.apiLink}/api/logo-rec`;
+      this.http.get<{ field_gallery_image: string }[]>(url).subscribe(res => {
+        this.logoUrl = res[0]?.field_gallery_image || '';
+      });
 
     this.router.events
       .pipe(filter(event => event instanceof NavigationEnd))

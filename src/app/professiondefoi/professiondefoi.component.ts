@@ -52,7 +52,6 @@ export class ProfessiondefoiComponent {
       }));
 
     this.professiondefoi = this.professiondefoi[0];
-    console.log( this.professiondefoi );
   }
 }
 

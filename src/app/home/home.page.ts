@@ -41,7 +41,6 @@ export class HomePage {
         field_logo: item.field_logo
       }));
       this.response = this.response[0];
-      console.log( this.response );
     });
   }
 
