@@ -3,6 +3,11 @@ ion-content {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+.titre {
+  font-size: 1.5em;
+  color: #1a3d72;  
+}
+
 // Responsive image grid and card styles for mobile
 .images-grid {
   display: flex;
@@ -70,6 +75,9 @@ ion-content {
   }
   .image-title {
     font-size: 1.1em;
+  }
+  .titre {
+    font-size: 2.5em;
   }
 }
 
@@ -164,11 +172,7 @@ ion-content {
   z-index: 3;
 }
 
-.titre {
-  font-size: 2.5em;
-  color: #1a3d72;
-  
-}
+
 .titre-article {
   font-size: 2em;
   color: #1a3d72;
