@@ -6,27 +6,36 @@
 
 }
 
+// creer un espace entre les audios
 .audio-card {
-  background-color: #f0f0f0; /* fond gris */
+  /* fond gris */
   margin-bottom: 10px;
   padding: 10px;
-  border-radius: 6px;
+
 }
 
+//les titres des audios
 .audio-title {
-  font-weight: bold;
-  margin-bottom: 8px;
-  font-size: 1.1rem;
+
+  margin-bottom: 5px;
+  margin-left:8px;
+  font-size: 1.5rem;
+  color:#67a8dc;
 }
 
+//mise en forme de la barre de progression audio et des boutons
 .audio-controls {
+  padding:10px;
   display: flex;
   align-items: center;
+  background-color:#67a8dc;
+  border-radius: 15px;
   gap: 10px; /* espace entre barre, temps et boutons */
 }
 
 .audio-controls input[type="range"] {
   flex: 1; /* occupe le maximum d'espace */
+
 }
 
 .audio-time {
@@ -34,4 +43,64 @@
   text-align: center;
 }
 
-h2{color:#67a8dc;}
+//mise en forme du titre de la page audio
+.titre{
+  font-size:50px;
+  color:#1a3d72;
+  margin-left:20px;
+  font-weight: bold;
+  }
+
+//mise en forme du ion-conteneur: c'est la div qui va scroller(container)
+ion-content{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  }
+
+.container{
+  width:60%;
+  max-height:100%;
+//active le scroll interne
+  overflow-y:auto;
+ //cache le scrollbar(firefox)
+  scrollbar-width:none;
+  //cache le scrollbar(IE/Edge)
+  -ms-overflow-style:none;
+   margin: auto;
+ }
+
+.container::-webkit-scrollbar{
+    //cache la barre de scrooll(chrome,safari,opera)
+    display:none;
+  }
+
+
+//je veux changer la couleur de la barre audio
+
+.mon-input {
+  -webkit-appearance: none; /* nécessaire pour Chrome/Safari */
+  width: 100%;
+  height: 4px;
+  background: #1a3d72; /* couleur de la barre */
+  border-radius: 5px;
+  outline: none;
+}
+
+/* Le curseur */
+.mon-input::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 15px;
+  height: 15px;
+  background: #1a3d72; /* couleur du curseur */
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.mon-input::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  background: white;
+  border-radius: 50%;
+  cursor: pointer;
+}

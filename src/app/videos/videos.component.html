@@ -1,18 +1,60 @@
-<ion-content class="gris">
-  <div class="videos-container" class="gris">
-    <h2 class="titre">Vidéos</h2>
-    <div class="video-card" *ngFor="let video of videos">
-      <!--  Wrapper pour garder le ratio 16:9 -->
-      <div class="video-wrapper">
-        <iframe
-          [src]="video.safeUrl"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen>
-        </iframe>
+<ion-content class="ion-padding">
+
+  <!-- Grand titre -->
+  <h1 class="titre">Vidéos</h1>
+
+  <!-- Première vidéo -->
+  <ion-card class="first-video" (click)="loadVideo(0)">
+    <ng-container *ngIf="videoLoaded[0]; else thumbnail0">
+      <iframe [src]="getSafeUrl(videos[0].id)"
+              frameborder="0"
+              allowfullscreen
+              allow="autoplay; encrypted-media">
+      </iframe>
+    </ng-container>
+
+    <ng-template #thumbnail0>
+      <div class="thumbnail-container">
+        <img [src]="getThumbnail(videos[0].id)" />
+        <div class="play-button">&#9658;</div>
       </div>
-      <!--  Titre sous la vidéo -->
-      <h3 class="video-title">{{ video.title }}</h3>
-    </div>
-  </div>
+    </ng-template>
+
+    <ion-card-header class="ion-text-center titres_videos">
+      <ion-card-title class="titres_videos">{{ videos[0].title }}</ion-card-title>
+      <ion-card-subtitle class="titres_videos">{{ videos[0].date }}</ion-card-subtitle>
+    </ion-card-header>
+  </ion-card>
+
+  <!-- Autres vidéos -->
+  <ion-grid>
+    <ion-row>
+      <ng-container *ngFor="let video of videos; let i = index">
+        <ion-col size="12" size-md="6" *ngIf="i > 0">
+          <ion-card class="video-wrapper" (click)="loadVideo(i)">
+            <ng-container *ngIf="videoLoaded[i]; else thumbnail">
+              <iframe [src]="getSafeUrl(video.id)"
+                      frameborder="0"
+                      allowfullscreen
+                      allow="autoplay; encrypted-media">
+              </iframe>
+            </ng-container>
+
+            <ng-template #thumbnail>
+              <div class="thumbnail-container">
+                <img [src]="getThumbnail(video.id)" />
+                <div class="play-button">&#9658;</div>
+              </div>
+            </ng-template>
+
+            <ion-card-header class="ion-text-center titres_videos">
+              <ion-card-title class="titres_videos">{{ video.title }}</ion-card-title>
+              <ion-card-subtitle class="titres_videos">{{ video.date }}</ion-card-subtitle>
+            </ion-card-header>
+          </ion-card>
+        </ion-col>
+      </ng-container>
+    </ion-row>
+  </ion-grid>
+
 </ion-content>

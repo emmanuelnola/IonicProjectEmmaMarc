@@ -33,6 +33,9 @@
         <ion-menu-toggle><ion-item button (click)="closeMenuAndNavigate('/documents')">
           Documents
         </ion-item></ion-menu-toggle>
+        <ion-menu-toggle><ion-item button (click)="closeMenuAndNavigate('/gadgets')">
+          Gadgets
+        </ion-item></ion-menu-toggle>
       </ion-list>
     </ion-content>
   </ion-menu>
@@ -53,7 +56,7 @@
     <app-galerie *ngIf="currentRoute === '/galeriePhotos'" (previewState)="showHeader = !($event)"></app-galerie>
     <ion-router-outlet *ngIf="currentRoute !== '/galeriePhotos'"></ion-router-outlet>
   </ion-content>
-  
+
 </ion-app>
 
 
