@@ -8,15 +8,6 @@
         <!-- Image dans un cadre -->
         <img src="assets/blackbird-7543630_640.jpg" alt="Programme" class="img-fluid" width="100%" />
       </div>
-      <div class="col-md-12 mt-2 mb-2" id="dropdown-filter">
-        <div class="form-group">
-          <select class="form-select w-auto form-control" [(ngModel)]="lang" (ngModelChange)="onLangChange()">
-            <option value="any">Toutes</option>
-            <option value="fr">Français</option>
-            <option value="en">English</option>
-          </select>
-        </div>
-      </div>
       <div class="col-md-10 offset-md-1 mt-4 mb-4" id="professiondefoi-content" [innerHTML]="professiondefoi.body | sanitizeHtml">
         
       </div>

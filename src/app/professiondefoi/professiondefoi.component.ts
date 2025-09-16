@@ -27,8 +27,9 @@ export class ProfessiondefoiComponent {
     this.professiondefoi  = {
       "langcode": "English",
       "title": "Manifesto",
-      "body": "<p><span>English version here, english version here, english version here, english version here, english version here, english version here, english version here, english version here, english version here, english version here, english version here, english version here, english version here, english version here, english version here, english version here, english version here, english version here, english version here, english version here, english version here, english version here, english version here, english version here, english version here, english version here, english version here,&nbsp;</span></p>"
+      "body": "<p><span>Chargement en cours....</span></p>"
     }
+    this.lang = localStorage.getItem('lang') || 'fr';
     this.fetchProfessionDeFoi();
   }
 
@@ -36,7 +37,6 @@ export class ProfessiondefoiComponent {
     const url = `${environment.apiLink}/api/profession`;
     this.http.get(url).subscribe(res => {
       this.response = res;
-      console.log('Données reçues:', this.response);
       this.onLangChange();
     });
   }
@@ -52,6 +52,7 @@ export class ProfessiondefoiComponent {
       }));
 
     this.professiondefoi = this.professiondefoi[0];
+    console.log( this.professiondefoi );
   }
 }
 

@@ -42,6 +42,7 @@ export class AppComponent {
     this.currentLang = lang;
     this.translate.use(lang);
     localStorage.setItem('lang', lang);
+    window.location.reload();
   }
 
   closeMenuAndNavigate(path: string) {
