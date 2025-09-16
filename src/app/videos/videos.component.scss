@@ -20,11 +20,13 @@ ion-card {
   }
 }
 
-/* Première vidéo plus haute */
+/* Première vidéo plus haute (mobile) */
 .first-video img,
 .first-video iframe {
-  height: 400px;
-  margin: 0 10px;
+  height: 38vw;
+  max-height: 220px;
+  min-height: 140px;
+  margin: 0 2vw;
 }
 
 /* Miniatures avec bouton play */
@@ -39,16 +41,18 @@ ion-card {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 60px;
+  font-size: 2.5em;
   color: white;
   text-shadow: 1px 1px 5px black;
   pointer-events: none; /* Pour que le click passe au div parent */
 }
 
-/* Autres vidéos */
+/* Autres vidéos (mobile) */
 .video-wrapper img,
 .video-wrapper iframe {
-  height: 250px;
+  height: 28vw;
+  max-height: 160px;
+  min-height: 90px;
 }
 
 /* Marges et alignement des lignes */
@@ -67,31 +71,40 @@ ion-col {
   padding-right: 5px;
 }
 
-/* Grand titre */
+/* Grand titre (mobile) */
 .titre{
-  font-size:50px;
+  font-size: 2em;
   color:#1a3d72;
-  margin-left:20px;
+  margin-left: 10px;
   font-weight: bold;
 }
 
-/* Titres vidéos */
+/* Titres vidéos (mobile) */
 .titres_videos{
   margin-bottom: 5px;
-  font-size: 1.5rem;
+  font-size: 1.1em;
   color:#67a8dc;
   text-align: center;
 }
 
-/* Responsive tablette */
-@media (min-width: 768px) {
+/* Responsive tablette & desktop */
+@media (min-width: 600px) {
   .first-video img,
   .first-video iframe {
-    height: 450px;
+    height: 320px;
+    max-height: 450px;
+    margin: 0 18px;
   }
-
   .video-wrapper img,
   .video-wrapper iframe {
-    height: 280px;
+    height: 180px;
+    max-height: 280px;
+  }
+  .titre {
+    font-size: 2.5em;
+    margin-left: 20px;
+  }
+  .titres_videos {
+    font-size: 1.5em;
   }
 }
