@@ -19,7 +19,8 @@ import { TranslatePipe } from '@ngx-translate/core';
 export class ProgrammesComponent {
   response: any;
   lang: string = 'fr';
-
+  environment = environment;
+  
   sections: Array<{ thematique: string; body: string }> = [];
 
   constructor(private http: HttpClient) {

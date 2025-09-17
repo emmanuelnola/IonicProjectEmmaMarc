@@ -22,7 +22,8 @@ export class ProfessiondefoiComponent {
   professiondefoi: any;
   response: any;
   lang: string = 'fr';
-
+  environment = environment;
+  
   constructor( private http: HttpClient ) {
     this.professiondefoi  = {
       "langcode": "English",
