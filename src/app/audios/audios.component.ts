@@ -1,162 +1,121 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslatePipe } from '@ngx-translate/core';
 import { CommonModule } from '@angular/common';
-import { IonicModule } from '@ionic/angular';
+import { IonicModule, ToastController } from '@ionic/angular';
+import { AudioService, MyAudio } from '../services/audios.service';
+
 
 @Component({
   selector: 'app-audios',
   templateUrl: './audios.component.html',
-  imports: [CommonModule, IonicModule, TranslatePipe],
   styleUrls: ['./audios.component.scss'],
-   standalone: true
+  standalone: true,
+  imports: [CommonModule, IonicModule],
 })
 export class AudiosComponent implements OnInit {
 
-  // Liste des audios avec leur titre et objet Audio
-  audios = [
-    {
-      title: 'Audio faceboock',
-      audioObj: new Audio('assets/audios/song1.mp3'),
-      playing: false,
-      currentTime: 0,
-      duration: 0
-    },
-    {
-      title: 'mes voices',
-      audioObj: new Audio('assets/audios/song2.mp3'),
-      playing: false,
-      currentTime: 0,
-      duration: 0
-    },
-    {
-      title: 'audio travail',
-      audioObj: new Audio('assets/audios/song3.mp3'),
-      playing: false,
-      currentTime: 0,
-      duration: 0
-    },
-   {
-        title: 'Audio 3',
-        audioObj: new Audio('assets/audios/song3.mp3'),
-        playing: false,
-        currentTime: 0,
-        duration: 0
-      },
-     {
-          title: 'Audio 3',
-          audioObj: new Audio('assets/audios/song3.mp3'),
-          playing: false,
-          currentTime: 0,
-          duration: 0
-        },
-       {
-            title: 'Audio 3',
-            audioObj: new Audio('assets/audios/song1.mp3'),
-            playing: false,
-            currentTime: 0,
-            duration: 0
-          },
-         {
-              title: 'Audio 2',
-              audioObj: new Audio('assets/audios/song2.mp3'),
-              playing: false,
-              currentTime: 0,
-              duration: 0
-            },
-           {
-                title: 'Audio 2',
-                audioObj: new Audio('assets/audios/song2.mp3'),
-                playing: false,
-                currentTime: 0,
-                duration: 0
-              },
-             {
-                  title: 'Audio 2',
-                  audioObj: new Audio('assets/audios/song2.mp3'),
-                  playing: false,
-                  currentTime: 0,
-                  duration: 0
-                },
-               {
-                    title: 'Audio 2',
-                    audioObj: new Audio('assets/audios/song2.mp3'),
-                    playing: false,
-                    currentTime: 0,
-                    duration: 0
-                  },
-                 {
-                      title: 'Audio 2',
-                      audioObj: new Audio('assets/audios/song2.mp3'),
-                      playing: false,
-                      currentTime: 0,
-                      duration: 0
-                    },
-                   {
-                        title: 'Audio 2',
-                        audioObj: new Audio('assets/audios/song2.mp3'),
-                        playing: false,
-                        currentTime: 0,
-                        duration: 0
-                      },
-  ];
+  audios: MyAudio[] = [];          // Liste des audios récupérés depuis l'API
+  audioElement!: HTMLAudioElement; // Élément HTML audio
+  loading: boolean = false;        // Spinner pendant le chargement
+  isPlaying: boolean = false;      // État lecture / pause
+  pageLoad:boolean=true; //affiche ls elts de la page s'ils sont deja present
+  currentTime: number = 0;         // Temps écoulé
+  duration: number = 0;            // Durée totale
+  currentAudio!: MyAudio;          // Audio en cours
 
-  constructor() { }
+  private apiUrl: string = 'https://presi.lab-123.com'; // Base URL serveur
+
+  constructor(private audioService: AudioService, private toastCtrl: ToastController) {}
 
   ngOnInit() {
-    // Initialisation : récupération de la durée et mise à jour du temps
-    this.audios.forEach(audio => {
-      audio.audioObj.addEventListener('loadedmetadata', () => {
-        audio.duration = audio.audioObj.duration;
-      });
+    // Crée l’élément audio invisible
+    this.audioElement = new Audio();
 
-      audio.audioObj.addEventListener('timeupdate', () => {
-        audio.currentTime = audio.audioObj.currentTime;
-      });
+    // Met à jour la barre de progression
+    this.audioElement.ontimeupdate = () => {
+      this.currentTime = this.audioElement.currentTime;
+    };
+
+    // Quand les métadonnées sont chargées
+    this.audioElement.onloadedmetadata = () => {
+      this.duration = this.audioElement.duration;
+      this.loading = false;
+    };
+
+    // Quand la lecture est terminée
+    this.audioElement.onended = () => {
+      this.isPlaying = false;
+      this.currentTime = 0;
+    };
+
+    // Récupère la liste des audios depuis le serveur
+    this.audioService.getAudios().subscribe({
+      next: (data: MyAudio[]) =>{ this.audios = data; this.pageLoad=false; },
+      error: (err) => {console.error('❌ Erreur API audios:', err) ;this.pageLoad=false;}
     });
   }
 
-  // Play/Pause toggle
-  togglePlay(index: number) {
-    const audio = this.audios[index];
-    if (!audio.playing) {
-      // Arrêter tous les autres audios
-      this.audios.forEach((a, i) => {
-        if (i !== index) {
-          a.audioObj.pause();
-          a.playing = false;
-        }
-      });
-      audio.audioObj.play();
-      audio.playing = true;
+  // Jouer un audio
+  playAudio(audio: MyAudio) {
+    // Si on clique sur un autre audio que celui en cours
+    if (this.currentAudio !== audio) {
+      this.loading = true;
+      this.currentAudio = audio;
+      this.audioElement.src = `${this.apiUrl}${audio.field_audio}`;
+      this.audioElement.load();
+    }
+
+    this.audioElement.play().then(() => {
+      this.isPlaying = true;
+      this.loading = false;
+    }).catch(err => {
+      console.error('Erreur lecture audio:', err);
+      this.loading = false;
+    });
+  }
+
+  // Pause
+  pauseAudio() {
+    this.audioElement.pause();
+    this.isPlaying = false;
+  }
+
+  // Stop
+  stopAudio() {
+    this.audioElement.pause();
+    this.audioElement.currentTime = 0;
+    this.isPlaying = false;
+  }
+
+  // Déplacer la barre de progression
+  seekAudio(event: any) {
+    const value = event.detail.value;
+    this.audioElement.currentTime = value;
+    this.currentTime = value;
+  }
+
+  // Format mm:ss
+  formatTime(time: number): string {
+    const minutes = Math.floor(time / 60);
+    const seconds = Math.floor(time % 60);
+    return `${minutes}:${seconds < 10 ? '0' + seconds : seconds}`;
+  }
+
+  // Toggle play/pause
+  togglePlay(audio: MyAudio) {
+    if (this.isPlaying && this.currentAudio === audio) {
+      this.pauseAudio();
     } else {
-      audio.audioObj.pause();
-      audio.playing = false;
+      this.playAudio(audio);
     }
   }
-
-  // Stop audio
-  stop(index: number) {
-    const audio = this.audios[index];
-    audio.audioObj.pause();
-    audio.audioObj.currentTime = 0;
-    audio.playing = false;
-  }
-
-  // Changer la position via la barre de progression
-  seek(index: number, event: any) {
-    const audio = this.audios[index];
-    audio.audioObj.currentTime = Number(event.target.value);
-  }
-
-  // Formatage du temps en mm:ss
-  formatTime(seconds: number) {
-    const mins = Math.floor(seconds / 60);
-    const secs = Math.floor(seconds % 60);
-    return `${this.pad(mins)}:${this.pad(secs)}`;
-  }
-
-  private pad(value: number) {
-    return value < 10 ? '0' + value : value;
-  }
+  ionViewWillLeave() {
+     // Stopper l'audio quand on quitte la page
+     this.stopAudio();
+   }
 
 }
+/*le temps  <div class="time" *ngIf="currentAudio === audio">
+                      {{ formatTime(currentTime) }} / {{ formatTime(duration) }}
+                    </div>*/
+

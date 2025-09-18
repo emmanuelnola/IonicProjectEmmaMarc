@@ -1,12 +1,21 @@
 <ion-content class="ion-padding">
   <h1 class="le_titre">Documents</h1>
-  <div class="documents-list">
-    <div class="document-line" *ngFor="let doc of documents">
-  <span class="title couleur">{{ doc.title | translate }}</span>
-      <span class="dots couleur"></span>
+
+
+  <ion-spinner *ngIf="loading" name="crescent"></ion-spinner>
+
+  <div class="documents-list" *ngIf="!loading">
+    <div class="doc-card" *ngFor="let doc of documents">
+      <h2 class="doc-title">{{ doc.title }}</h2>
+      <div class="doc-icon">📄</div>
+
       <button ion-button fill="clear" class="download-btn telechargement" (click)="download(doc)">
-        Télécharger
+        ⬇ Télécharger
       </button>
     </div>
+  </div>
+
+  <div *ngIf="!loading && documents.length === 0" class="no-docs">
+    Aucun document disponible pour le moment.
   </div>
 </ion-content>

@@ -1,74 +1,51 @@
-/*import { Component } from '@angular/core';
-import { ModalController } from '@ionic/angular';
-import { IonicModule} from '@ionic/angular';
-import { ImageModalComponent } from '../modals-img/modals-img.component'; // ✅ On importe le modal
-import { TranslatePipe } from '@ngx-translate/core';
+
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { IonicModule } from '@ionic/angular';
+import { GadgetsService } from '../services/gadgets.service'; // Service pour récupérer les gadgets
+
+// Modèle pour le gadget
+interface Gadget {
+  title: string;
+  images: string[]; // Tableau d'URLs des images
+}
 
 @Component({
   selector: 'app-gadgets',
+  templateUrl: './gadgets.component.html',
+  styleUrls: ['./gadgets.component.scss'],
   standalone: true,
-  imports: [IonicModule,CommonModule, TranslatePipe],
-  templateUrl: './gadgets.component.html',
-  styleUrls: ['./gadgets.component.scss']
-})
-export class GadgetsComponent {
-  // 📌 Liste des images avec leur chemin et leur titre
-  gadgets = [
-    { src: 'assets/blackbird-7543630_640.jpg', title: 'Gadget 1' },
-    { src: 'assets/blackbird-7543630_640.jpg', title: 'Gadget 2' },
-    { src: 'assets/blackbird-7543630_640.jpg', title: 'Gadget 3' },
-    { src: 'assets/blackbird-7543630_640.jpg', title: 'Gadget 4' }
-  ];
 
-  constructor(private modalCtrl: ModalController) {}
+  imports: [CommonModule, IonicModule],
 
-  // 📌 Fonction appelée au clic → ouvre un modal avec l'image en grand
-  async openImage(gadget: {src: string, title: string}) {
-    const modal = await this.modalCtrl.create({
-      component: ImageModalComponent, // ✅ modal qu’on a créé
-      componentProps: { img: gadget.src, title: gadget.title } // On passe les données au modal
-    });
-    await modal.present();
-  }
-}*/
-
-import { Component, OnInit} from '@angular/core';
-import { ModalController } from '@ionic/angular';
-import { IonicModule} from '@ionic/angular';
-import { ImageModalComponent } from '../modals-img/modals-img.component'; // ✅ On importe le modal
-import { CommonModule } from '@angular/common';
-import { TranslatePipe } from '@ngx-translate/core';
-
-import { GadgetsService, MyImage } from '../services/gadgets.service';
-
-@Component({
-  selector: 'app-gadgets',
- standalone: true,
-  imports: [IonicModule,CommonModule, TranslatePipe],
-  templateUrl: './gadgets.component.html',
-  styleUrls: ['./gadgets.component.scss']
 })
 export class GadgetsComponent implements OnInit {
 
-  gadgets: MyImage[] = [];   // Contiendra la liste des images
-  loading = true;           // Pour afficher un message de chargement
-  error: string | null = null;  // Pour afficher les erreurs
+  gadgets: Gadget[] = [];      // Liste des gadgets récupérés
+  loading: boolean = true;     // Indique si les données sont en cours de chargement
+  private apiUrl = 'https://presi.lab-123.com'; // Racine du serveur
 
-  constructor(private gadgetsService: GadgetsService) { }
+  constructor(private gadgetsService: GadgetsService) {}
 
   ngOnInit() {
-    this.gadgetsService.getImages().subscribe({
-      next: (data) => {
-        this.gadgets = data;
-        this.loading = false;
+    // ⚡ Récupère les gadgets depuis l'API
+    this.gadgetsService.getGadgets().subscribe({
+      next: (data: any[]) => {
+        // Pour chaque gadget, transformer la chaîne d'images en tableau
+        this.gadgets = data.map(g => ({
+          title: g.title,
+          images: g.field_gallery_image
+                    .split(',')             // Sépare les URLs par virgule
+                    .map((s: string) => s.trim())     // Supprime les espaces superflus
+                    .map((s: string) => `${this.apiUrl}${s}`) // Ajoute la racine du serveur
+        }));
+        this.loading = false; // Les données sont prêtes → on enlève le spinner
       },
       error: (err) => {
-        console.error('Erreur API:', err);
-        this.error = 'Impossible de charger les images.';
-        this.loading = false;
+        console.error('Erreur récupération gadgets :', err);
+        this.loading = false; // Même en cas d'erreur, on arrête le spinner
       }
     });
   }
-}
 
+}

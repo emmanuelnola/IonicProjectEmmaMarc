@@ -1,117 +1,68 @@
-.audios-container {
-  padding: 10px;
-  max-height: 100vh; /* Scrollable */
-  overflow-y: auto;
-
-
+/* Overlay pour centrer le spinner */
+.spinner-overlay {
+  position: fixed;        /* Le positionne par rapport à la fenêtre */
+  top: 50%;               /* Milieu vertical */
+  left: 50%;              /* Milieu horizontal */
+  transform: translate(-50%, -50%); /* Centre parfaitement */
+  z-index: 9999;          /* Au-dessus de tout le contenu */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.5); /* optionnel : fond semi-transparent */
+  width: 100%;
+  height: 100%;
 }
 
-// creer un espace entre les audios
-.audio-card {
-  /* fond gris */
-  margin-bottom: 10px;
-  padding: 10px;
 
-}
+.audio_controls {
 
-//les titres des audios
-
-.audio-title {
-  margin-bottom: 5px;
-  margin-left: 8px;
-  font-size: 1.1em;
-  color: #67a8dc;
-}
-
-//mise en forme de la barre de progression audio et des boutons
-.audio-controls {
-  padding:10px;
   display: flex;
   align-items: center;
+  gap: 10px;
   background-color:#67a8dc;
-  border-radius: 15px;
-  gap: 10px; /* espace entre barre, temps et boutons */
-}
-
-.audio-controls input[type="range"] {
-  flex: 1; /* occupe le maximum d'espace */
+  border-radius:20px;
+  height:25px;
 
 }
+.progress {
+    flex: 1; // prend tout l’espace disponible
+    background-color:#67a8dc;
+  }
 
-.audio-time {
-  min-width: 70px;
-  text-align: center;
-}
 
-//mise en forme du titre de la page audio
-
-.titre {
-  font-size: 1.5em;
-  color: #1a3d72;
-  margin-left: 8px;
+.titre
+{ color:#1a3d72;
+  margin-left:5px;
   font-weight: bold;
-}
-
-//mise en forme du ion-conteneur: c'est la div qui va scroller(container)
-ion-content{
-  display:flex;
-  justify-content:center;
-  align-items:center;
+  font-family:EXO2;
+  font-size:30px;
+  margin-top:20px;
   }
 
 
-.container {
-  width: 96vw;
-  max-width: 500px;
-  max-height: 100%;
-  overflow-y: auto;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-  margin: auto;
-}
-@media (min-width: 768px) {
-  .titre {
-    font-size: 2.5em;
-  }
-  .audio-title {
-    font-size: 2em;
-  }
-  .container {
-    max-width: 700px;
-  }
-}
+.titre_audio{
+  color:#1a3d72;
+  font-size:40px;
+  margin:10px;
+  font-family:EXO2;
+  font-weight:bold;
 
-.container::-webkit-scrollbar{
-    //cache la barre de scrooll(chrome,safari,opera)
-    display:none;
   }
+ion-range {
+  --bar-background: #1a3d72;
+  --bar-background-active: #1a3d72;
+  --bar-height: 4px;
+  --bar-border-radius: 2px;
 
 
-//je veux changer la couleur de la barre audio
+  /* enlever toute bordure fantôme */
+  border: none;
+  box-shadow: none;
 
-.mon-input {
-  -webkit-appearance: none; /* nécessaire pour Chrome/Safari */
-  width: 100%;
-  height: 4px;
-  background: #1a3d72; /* couleur de la barre */
-  border-radius: 5px;
-  outline: none;
 }
 
-/* Le curseur */
-.mon-input::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  width: 15px;
-  height: 15px;
-  background: #1a3d72; /* couleur du curseur */
-  border-radius: 50%;
-  cursor: pointer;
-}
-
-.mon-input::-moz-range-thumb {
-  width: 20px;
-  height: 20px;
-  background: white;
-  border-radius: 50%;
-  cursor: pointer;
+ion-range {
+  padding: 0 12px;
+  --knob-size: 18px;
+  --bar-height: 8px; /* épaisseur de la barre */
 }

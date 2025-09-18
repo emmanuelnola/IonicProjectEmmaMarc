@@ -1,4 +1,4 @@
-/*.page-title {
+.page-title {
   text-align: center;
   font-size: 26px;
   font-weight: bold;
@@ -11,6 +11,7 @@
   border-radius: 15px;
   padding: 20px;
   margin-bottom: 20px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
   text-align: center;
   transition: transform 0.2s ease-in-out;
 }
@@ -19,26 +20,23 @@
   transform: scale(1.02);
 }
 
-
- .violet{
-   color:#67a8dc;}
-
 .doc-title {
-  font-size: 18px;
+  font-size: 30px;
   font-weight: bold;
   margin-bottom: 10px;
-  color: #333;
+  font-family:EXO2;
+  color: #67a8dc;
 }
 
 .doc-icon {
-  font-size: 50px;
+  font-size: 90px;
   margin: 10px 0;
 }
 
 .download-btn {
   display: inline-block;
   padding: 10px 20px;
-  background-color: #1e90ff;
+  background-color: #1a3d72;
   color: white;
   font-weight: bold;
   text-decoration: none;
@@ -50,92 +48,19 @@
   background-color: #005bb5;
 }
 
-.mon_contenu{
-  display:flex;
-  }
-/*
-<ion-content class="ion-padding ">
-
-  <h2 class="titre violet" > Documents</h2>
-  <div class="mon_contenu">
-    <div class="doc-card " *ngFor="let doc of documents">
-       <!-- Titre du document -->
-       <h2 class="doc-title">{{ doc.title }}</h2>
-
-       <!-- Icône PDF -->
-       <div class="doc-icon">
-         📄
-        </div>
-
-          <!-- Bouton de téléchargement -->
-        <a [href]="doc.url" download class="download-btn">
-          ⬇ Télécharger
-        </a>
-
-       </div>
-  </div>
-  <div class="mon_doc" *ngFor="let doc of documents">
-     <h1 class="titre_doc">{{ doc.title }}</h1>
-     <h1 class="points">.......................</h1>
-     <h1 class="telechargement">Télécharger</h1>
-  </div>
-
-</ion-content>
-
- 0 10px;           /* petit espace avant le bouton */
-
-.documents-list {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  margin-left:20px;
-}
-
-.document-line {
-  display: flex;
-  align-items: center;
-  flex-wrap: nowrap; /* tout reste sur une seule ligne */
-}
-
-.title {
-  white-space: normal;  /* titre peut aller à la ligne */
-  max-width: 60%;       /* limite largeur du titre */
-  z-index: 1;
-
-}
-
-.dots {
-  flex-grow: 1;          /* prend tout l’espace restant entre titre et bouton */
-  border-bottom: 1px dotted #999;
-  min-width: 100px;      /* garantit au moins 20 points selon taille police */
-  margin: 0 10px;        /* espace avant et après */
-}
-
-.download-btn {
-  flex-shrink: 0;        /* bouton ne rétrécit pas */
-}
-
-
 .le_titre{
+  margin-left:20px;
   color:#1a3d72;
-   margin-left:20px;
-   font-weight: bold;
-   margin-top:5px;
-   margin-bottom:25px;
-   font-size:40px;
-   }
-
-
-.couleur{
-   color:#1a3d72;
-   font-weight: bold;
-   font-size:1.6rem;
-
+  font-size:40px;
+  font-weight:bold;
+  font-family:EXO2;
   }
 
-.download-btn{
-   background-color:white;
-   font-size:30px;
-     font-weight: bold;
-  }
-//#67a8dc
+ion-card {
+  box-shadow: none !important;   /* enlève l'ombre */
+  border-radius: 0 !important;   /* enlève les coins arrondis */
+  margin: 0 !important;          /* enlève la marge externe */
+  padding: 0 !important;         /* enlève le padding interne */
+  background: transparent !important; /* supprime le fond blanc */
+}
+

@@ -1,32 +1,57 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
- import { Observable } from 'rxjs';
+import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
+import { map } from 'rxjs/operators';
 
-  // Modèle de données pour un document
-  export interface MyDocument {
-    id: number;
-    title: string;
-    field_fichier: string;
-  }
 
-  @Injectable({
-    providedIn: 'root'
-  })
-  export class DocumentsService {
+export interface MyDocument {
+  title: string;
+  field_fichier: string; // URL vers le PDF
+}
 
-    // Ici on utilise HTTPS
+@Injectable({
+  providedIn: 'root'
+})
+export class DocumentsService {
+  constructor(private http: HttpClient) {}
+      private apiUrl = environment.apiLink +'/api/documents';
 
-    private apiUrl = 'https://presi.lab-123.com';
-
-    constructor(private http: HttpClient) {}
-
-    // GET pour récupérer les documents
+    // Récupérer la liste des audios depuis l'API
     getDocuments(): Observable<MyDocument[]> {
-      return this.http.get<MyDocument[]>(`${this.apiUrl}`+'/api/documents');
+      return this.http.get<MyDocument[]>(this.apiUrl);
     }
-  // Télécharge un fichier à partir de son chemin
-    downloadDocument(filePath: string): Observable<Blob> {
-      const fullUrl = `${this.apiUrl}${filePath}`; // ⚡ construit l'URL complète
-      return this.http.get(fullUrl, { responseType: 'blob' });
-    }
-  }
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
