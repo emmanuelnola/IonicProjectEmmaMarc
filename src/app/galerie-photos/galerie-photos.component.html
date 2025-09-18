@@ -27,11 +27,19 @@
         <div class="preview-content">
           <button class="close-btn" (click)="closePreview()">&times;</button>
           <button class="nav-btn left" (click)="prevImage()" [disabled]="previewImageIndex === 0">&#8592;</button>
-          <img class="preview-img"
-            [src]="environment.apiLink + previewImage.url"
-            (swipeleft)="nextImage()"
-            (swiperight)="prevImage()"
-          />
+          <ng-container *ngIf="!loading; else loadingTpl">
+            <img class="preview-img"
+              [src]="environment.apiLink + previewImage.url"
+              (load)="onImageLoad()"
+              (swipeleft)="nextImage()"
+              (swiperight)="prevImage()"
+            />
+          </ng-container>
+          <ng-template #loadingTpl>
+            <div class="preview-img" style="background:#f0f0f0;min-height:180px;display:flex;align-items:center;justify-content:center;">
+              <!-- You can put a spinner or just keep it blank -->
+            </div>
+          </ng-template>
           <button class="nav-btn right" (click)="nextImage()" [disabled]="previewImageIndex === categories[previewCategoryIndex].images.length - 1">&#8594;</button>
          </div>
       </div>

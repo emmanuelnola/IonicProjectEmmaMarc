@@ -16,6 +16,7 @@ import { IonicModule } from '@ionic/angular';
 export class GaleriePhotosComponent {
   @Output() previewState = new EventEmitter<boolean>();
   previewOpen = false;
+  loading = false;
   previewCategoryIndex = 0;
   previewImageIndex = 0;
   categories: Array<{ title: string, images: Array<{ url: string, thumb: string }> }> = [];
@@ -44,6 +45,7 @@ export class GaleriePhotosComponent {
     this.previewCategoryIndex = categoryIdx;
     this.previewImageIndex = imageIdx;
     this.previewOpen = true;
+    this.loading = true;
     this.previewState.emit(true);
   }
 
@@ -56,13 +58,18 @@ export class GaleriePhotosComponent {
     const images = this.categories[this.previewCategoryIndex].images;
     if (this.previewImageIndex < images.length - 1) {
       this.previewImageIndex++;
+      this.loading = true;
     }
   }
 
   prevImage() {
     if (this.previewImageIndex > 0) {
       this.previewImageIndex--;
+      this.loading = true;
     }
+  }
+  onImageLoad() {
+    this.loading = false;
   }
 
   get previewImage() {
