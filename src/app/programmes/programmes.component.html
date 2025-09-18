@@ -12,7 +12,7 @@
         <ion-accordion-group>
           <ion-accordion value="{{ section.thematique }}" *ngFor="let section of sections">
             <ion-item slot="header" color="'#1a3d72'" class="accordion-header">
-              <ion-label style="color: #1a3d72;">{{ section.thematique }}</ion-label>
+              <ion-label>{{ section.thematique }}</ion-label>
             </ion-item>
             <div class="ion-padding" slot="content" class="accordion-content" [innerHtml]="section.body | sanitizeHtml"></div>
           </ion-accordion>

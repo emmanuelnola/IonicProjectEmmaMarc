@@ -6,7 +6,8 @@ ion-content {
 
 .titre {
   color: #1a3d72;
-  font-size: 1.5em;
+  font-size: 40px;
+  font-family: 'Exo2-Bold';
 }
 
 #professiondefoi-content {
@@ -21,9 +22,6 @@ ion-content {
 }
 
 @media (min-width: 768px) {
-  .titre {
-    font-size: 2.5em;
-  }
   #professiondefoi-content {
     font-size: 2em;
   }

@@ -83,8 +83,21 @@
 	font-weight: normal;
 	font-style: normal;
 }
+@font-face {
+	font-family: 'Exo2-Bold';
+	src: url('./assets/fonts/Exo2-Bold.ttf') format('truetype');
+	font-weight: bolder;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'Exo2-Medium';
+	src: url('./assets/fonts/Exo2-Medium.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
 
 
-html, body, p, h1, h2, h3, h4, h5, h6, span, div, button, input, textarea, select, label, a, li, ul, ol, table, th, td, ion-button, ion-item {
+
+html, body, h1, h2, h3, h4, h5, h6, span, div, button, input, textarea, select, label, a, li, ul, ol, table, th, td, ion-button, ion-item {
 	font-family: 'Exo2-Light', Arial, sans-serif;
 }

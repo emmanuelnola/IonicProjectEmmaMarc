@@ -1,8 +1,8 @@
 <ion-content class="gris">
-  <div class="row" *ngIf="response != null">
+  <div class="row">
     <div class="col-md-12">
-      <div class="header row">
-        <div class="col-md-12 text-center" style="line-height: 10px;">
+      <div class="header row" *ngIf="response != null">
+        <div class="col-md-12 text-center">
           <img 
             src="{{ environment.apiLink }}{{ response.field_logo }}" 
             alt="Logo" 
@@ -11,9 +11,9 @@
             class="img-fluid"
           >
         </div>
-        <div class="col-md-12 text-center" style="color: white; font-size: 50px; height: 400px;">
+        <div class="col-md-12 text-center" style="min-height: 320px;">
           <div class="row">
-            <div class="col-md-12" [innerHtml]="response.body | sanitizeHtml">
+            <div class="col-md-12 welcome-message" [innerHtml]="response.body | sanitizeHtml">
 
             </div>
           </div>
@@ -22,7 +22,7 @@
       
       <div class="container" style="position: relative;top: -200px;">
         <div class="row">
-          <div class="col-md-12 text-center" style="position: relative; display: inline-block;">
+          <div class="col-md-12 text-center" style="position: relative; display: inline-block;" *ngIf="response != null">
             <img 
               src="{{ environment.apiLink }}{{ response.field_imgapi }}" 
               alt="Logo" 
@@ -31,7 +31,7 @@
               class="img-overlay">
               <span class="overlay-text">{{ response.title }}</span>
           </div>
-          <div class="col-md-12 text-center" class="pt-4" style="align-content: center;">
+          <div class="col-md-12 text-center" class="pt-4" style="align-content: center; padding-left: 40px;">
             <a class="btn btn-app welcome-button" (click)="navigate('/professiondefoi')">
               <i class="fas fa-hand-holding-heart"></i><br>
               {{ 'Profession de foi' | translate }}

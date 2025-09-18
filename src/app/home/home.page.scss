@@ -1,3 +1,21 @@
+.welcome-message {
+  font-size: 60px  !important;
+  color: white;
+  font-family: 'Exo2-Bold';
+}
+
+.overlay-text {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 50px;
+  font-weight: 500;
+  color: white;
+  font-family: 'Exo2-Bold';
+
+}
+
 .header {
   background-color: #1a3d72;
   min-height: 180px;
@@ -10,21 +28,10 @@
   width: 100%;
   height: auto;
   border-top: 3px solid #66A7DA;
-  border-bottom: 32px solid #66A7DA;
+  border-bottom: 70px solid #66A7DA;
   display: block;
 }
 
-.overlay-text {
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 1.5em;
-  font-weight: 500;
-  color: white;
-  line-height: 1.1;
-  padding-bottom: 6px;
-}
 
 .welcome-button {
   height: 140px;
@@ -41,7 +48,7 @@
   margin-top: 12px;
 }
 .welcome-button > i {
-  font-size: 0.6em !important;
+  font-size: 30px !important;
 }
 
 @media (min-width: 768px) {
@@ -49,7 +56,7 @@
     min-height: 400px;
   }
   .overlay-text {
-    font-size: 1.4em;
+    font-size: 50px;
   }
   .welcome-button {
     height: 300px;
@@ -59,8 +66,9 @@
     align-items: center;
     justify-content: center;
     margin-left: 12px;
+    font-family: 'Exo2-Light';
   }
   .welcome-button > i {
-    font-size: 2.4em !important;
+    font-size: 30px !important;
   }
 }

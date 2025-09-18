@@ -6,7 +6,8 @@ ion-content {
 
 .titre {
   color: #1a3d72;
-  font-size: 1.5em;
+  font-size: 40px;
+  font-family: 'Exo2-Bold';
 }
 
 .image-container {
@@ -23,18 +24,19 @@ ion-content {
 }
 .image-container .titre-article {
   color: #1a3d72;
-  font-size: 1.1em;
-  font-weight: 700;
+  font-size: 40px;
+  font-family: 'Exo2-Bold';
   margin: 0 0 6px 0;
 }
+
 .image-container .date-article {
   color: #1a3d72;
-  font-size: 0.95em;
-  font-weight: 400;
+  font-size: 25px;
+  font-family: 'Exo2-Medium';
   margin: 0 0 6px 0;
 }
 .image-container .separator {
-  font-size: 1.1em;
+  font-size: 25px;
   color: #67a8dc;
   margin: 10px 0;
 }
@@ -61,17 +63,4 @@ ion-content {
   padding: 8px;
   flex: 1;
 }
-
-@media (min-width: 768px) {
-  .titre {
-    font-size: 2.5em;
-  }
-  .image-container .titre-article {
-    font-size: 2em;
-  }
-  .image-container .date-article {
-    font-size: 1.5em;
-  }
-}
-
 
