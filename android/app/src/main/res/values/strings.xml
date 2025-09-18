@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">ionic-menu-app</string>
-    <string name="title_activity_main">ionic-menu-app</string>
-    <string name="package_name">io.ionic.starter</string>
-    <string name="custom_url_scheme">io.ionic.starter</string>
+    <string name="app_name">API 2025</string>
+    <string name="title_activity_main">API 2025</string>
+    <string name="package_name">cm.api2025.mobileapp</string>
+    <string name="custom_url_scheme">cm.api2025.mobileapp</string>
 </resources>
