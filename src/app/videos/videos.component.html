@@ -1,60 +1,47 @@
 <ion-content class="ion-padding">
 
-  <!-- Grand titre -->
-  <h1 class="titre">{{ 'Vidéos' | translate }}</h1>
+  <h1 class="titre">Vidéos</h1>
 
-  <!-- Première vidéo -->
-  <ion-card class="first-video" (click)="loadVideo(0)">
-    <ng-container *ngIf="videoLoaded[0]; else thumbnail0">
-      <iframe [src]="getSafeUrl(videos[0].id)"
-              frameborder="0"
-              allowfullscreen
-              allow="autoplay; encrypted-media">
-      </iframe>
-    </ng-container>
+  <!-- Affichage du chargement si les vidéos ne sont pas encore récupérées -->
+  <ion-spinner *ngIf="loading" name="crescent"></ion-spinner>
 
-    <ng-template #thumbnail0>
-      <div class="thumbnail-container">
-        <img [src]="getThumbnail(videos[0].id)" />
-        <div class="play-button">&#9658;</div>
-      </div>
-    </ng-template>
+  <!-- Affichage des vidéos uniquement si elles sont disponibles -->
+  <ng-container *ngIf="!loading && videos.length > 0">
 
-    <ion-card-header class="ion-text-center titres_videos">
-  <ion-card-title class="titres_videos">{{ videos[0].title | translate }}</ion-card-title>
-      <ion-card-subtitle class="titres_videos">{{ videos[0].date }}</ion-card-subtitle>
-    </ion-card-header>
-  </ion-card>
+    <!-- Première vidéo -->
 
-  <!-- Autres vidéos -->
-  <ion-grid>
-    <ion-row>
-      <ng-container *ngFor="let video of videos; let i = index">
-        <ion-col size="12" size-md="6" *ngIf="i > 0">
-          <ion-card class="video-wrapper" (click)="loadVideo(i)">
+
+    <!-- Autres vidéos -->
+    <ion-grid>
+      <ion-row class="ion-justify-content-center ion-align-items-center">
+        <ion-col size="12" size-md="11" *ngFor="let video of videos; let i = index" >
+          <div class="first-video" (click)="loadVideo(i)">
             <ng-container *ngIf="videoLoaded[i]; else thumbnail">
-              <iframe [src]="getSafeUrl(video.id)"
+              <iframe #iframeElem
+                      [src]="getSafeUrl(video.youtube)"
                       frameborder="0"
                       allowfullscreen
-                      allow="autoplay; encrypted-media">
+                      allow="autoplay; encrypted-media"  class="mon-iframe">
               </iframe>
             </ng-container>
 
             <ng-template #thumbnail>
               <div class="thumbnail-container">
-                <img [src]="getThumbnail(video.id)" />
-                <div class="play-button">&#9658;</div>
+                <img [src]="getThumbnail(video.youtube)" />
+                <div class="play-button"><ion-icon name="chevron-forward-circle-outline"></ion-icon></div>
               </div>
             </ng-template>
 
             <ion-card-header class="ion-text-center titres_videos">
-          <ion-card-title class="titres_videos">{{ video.title | translate }}</ion-card-title>
-              <ion-card-subtitle class="titres_videos">{{ video.date }}</ion-card-subtitle>
+
+              <ion-card-title class="titres_videos">{{ video.title }}</ion-card-title>
+
             </ion-card-header>
-          </ion-card>
+          </div>
         </ion-col>
-      </ng-container>
-    </ion-row>
-  </ion-grid>
+      </ion-row>
+    </ion-grid>
+
+  </ng-container>
 
 </ion-content>

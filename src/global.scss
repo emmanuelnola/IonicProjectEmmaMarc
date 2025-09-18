@@ -36,6 +36,7 @@
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
 @import '@ionic/angular/css/palettes/dark.system.css';
 
+<<<<<<< HEAD
 @font-face {
 	font-family: 'Exo2-BoldItalic';
 	src: url('./assets/fonts/Exo2-BoldItalic.ttf') format('truetype');
@@ -98,6 +99,59 @@
 
 
 
+
 html, body, h1, h2, h3, h4, h5, h6, span, div, button, input, textarea, select, label, a, li, ul, ol, table, th, td, ion-button, ion-item {
 	font-family: 'Exo2-Light', Arial, sans-serif;
 }
+
+/* Normal */
+@font-face {
+  font-family: 'Exo2';  /* même nom pour tous les styles */
+  src: url('assets/fonts/Exo2-BoldItalic.ttf') format('truetype');
+  font-weight: 700;
+  font-style: italic;
+}
+
+/* Gras */
+@font-face {
+  font-family: 'Exo2';  /* même nom */
+  src: url('assets/fonts/Exo2-Italic-VariableFont_wght.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+/* Italique */
+@font-face {
+  font-family: 'Exo2';  /* même nom */
+  src: url('assets/fonts/Exo2-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+}
+
+
+/* Gras */
+@font-face {
+  font-family: 'Exo2';  /* même nom */
+  src: url('assets/fonts/Exo2-LightItalic.ttf') format('truetype');
+  font-weight: 300;
+  font-style: italic;
+}
+
+/* Italique */
+@font-face {
+  font-family: 'Exo2';  /* même nom */
+  src: url('assets/fonts/Exo2-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+}
+
+/* Italique */
+@font-face {
+  font-family: 'Exo2';  /* même nom */
+  src: url('assets/fonts/Exo2-SemiBoldItalic.ttf') format('truetype');
+  font-weight: 600;
+  font-style: italic;
+}
+
+
+

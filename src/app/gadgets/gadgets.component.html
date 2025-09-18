@@ -1,14 +1,32 @@
-<div *ngIf="loading">
-  <p>{{ 'Chargement des images...' | translate }}</p>
-</div>
 
-<div *ngIf="error">
-  <p>{{ error | translate }}</p>
-</div>
+<ion-content class="ion-padding">
+<h1 class="titre"> Gadgets</h1>
+  <!-- Spinner pendant le chargement -->
+  <ion-spinner *ngIf="loading" name="crescent"></ion-spinner>
 
-<div class="image-grid" *ngIf="!loading && !error">
-  <div *ngFor="let img of gadgets" class="image-item">
-  <p>{{ img.title | translate }}</p>
-    <img [src]="img.path" [alt]="img.title" />
+  <!-- Liste des gadgets -->
+  <div *ngIf="!loading">
+    <ion-card *ngFor="let gadget of gadgets" class="gadget-card">
+
+      <!-- Titre du gadget -->
+      <ion-card-header>
+        <ion-card-title class="titre_gadget">{{ gadget.title }}</ion-card-title>
+      </ion-card-header>
+
+      <!-- Galerie d'images -->
+      <ion-grid>
+        <ion-row>
+          <ion-col size="12" size-md="6" *ngFor="let img of gadget.images">
+
+            <ion-card>
+              <img [src]="img" />
+            </ion-card>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+    </ion-card>
+
   </div>
-</div>
+
+</ion-content>

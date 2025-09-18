@@ -1,16 +1,39 @@
-<div class="audios-container ">
-  <h1 class="titre">{{ 'Audios' | translate }}</h1>
-  <div *ngFor="let audio of audios; let i = index" class="audio-card">
-    <!-- Titre -->
-  <div class="audio-title">{{i}} {{ audio.title | translate }}</div>
 
-    <!-- Barre de progression + boutons + temps -->
-    <div class="audio-controls">
-      <input type="range" min="0" [max]="audio.duration" [value]="audio.currentTime" class="mon-input"
-             (input)="seek(i, $event)">
-      <span class="audio-time">{{ formatTime(audio.currentTime) }} / {{ formatTime(audio.duration) }}</span>
-      <button (click)="togglePlay(i)"><ion-icon name="pause-outline" *ngIf="!audio.playing"></ion-icon><ion-icon  name="caret-forward-outline" *ngIf="audio.playing"></ion-icon></button>
-      <button (click)="stop(i)"><ion-icon name="stop-circle-outline"></ion-icon></button>
-    </div>
-  </div>
-</div>
+<ion-content class="ion-padding">
+     <h1 class="titre_audio">Audios</h1>
+      <div *ngIf="pageLoad" class="spinner-overlay"><ion-spinner name="crescent"></ion-spinner></div>
+         <!-- Spinner centré pendant le chargement -->
+          <div *ngIf="loading" class="spinner-overlay">
+            <ion-spinner name="crescent"></ion-spinner>
+          </div>
+
+           <!-- Liste des audios -->
+         <div>
+           <div *ngFor="let audio of audios">
+               <div class="titre">
+                 <ion-label class="titre">
+                  {{ audio.title }}
+                </ion-label>
+               </div>
+              <div class="audio_controls">
+                 <div class="progress">
+                    <ion-range min="0" [max]="duration" [value]="currentAudio === audio ? currentTime : 0"
+                     (ionChange)="seekAudio($event)">
+                   </ion-range>
+                 </div>
+
+                <div class="buttons">
+                  <ion-button fill="clear" (click)="togglePlay(audio)">
+                     <ion-icon name="pause-outline" *ngIf="isPlaying && currentAudio === audio"></ion-icon><ion-icon  name="caret-forward-outline" *ngIf="!isPlaying || currentAudio !== audio"></ion-icon>
+                  </ion-button>
+                   <ion-button fill="clear" (click)="stopAudio()"><ion-icon name="stop-circle-outline"></ion-icon></ion-button>
+                </div>
+
+           </div>
+
+         </div>
+       </div>
+
+</ion-content>
+
+
