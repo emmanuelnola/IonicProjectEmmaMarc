@@ -43,13 +43,18 @@ ion-menu {
 }
 
 ion-menu ion-header {
-  height: 64px;
+  height: 72px;
   display: flex;
   align-items: center;
   justify-content: left;
   font-size: 40px;
+  padding-top: 32px;
   padding-left: 16px;
   font-family: 'Exo2-Bold';
+}
+
+ion-list {
+  padding-top: 14px;
 }
 
 ion-menu ion-list ion-item ion-content {
