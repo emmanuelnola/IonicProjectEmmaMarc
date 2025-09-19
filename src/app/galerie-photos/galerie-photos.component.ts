@@ -17,6 +17,7 @@ export class GaleriePhotosComponent {
   @Output() previewState = new EventEmitter<boolean>();
   previewOpen = false;
   loading = false;
+  imageKey = 0;
   previewCategoryIndex = 0;
   previewImageIndex = 0;
   categories: Array<{ title: string, images: Array<{ url: string, thumb: string }> }> = [];
@@ -46,6 +47,7 @@ export class GaleriePhotosComponent {
     this.previewImageIndex = imageIdx;
     this.previewOpen = true;
     this.loading = true;
+    this.imageKey++;
     this.previewState.emit(true);
   }
 
@@ -59,6 +61,7 @@ export class GaleriePhotosComponent {
     if (this.previewImageIndex < images.length - 1) {
       this.previewImageIndex++;
       this.loading = true;
+      this.imageKey++;
     }
   }
 
@@ -66,6 +69,7 @@ export class GaleriePhotosComponent {
     if (this.previewImageIndex > 0) {
       this.previewImageIndex--;
       this.loading = true;
+      this.imageKey++;
     }
   }
   onImageLoad() {
