@@ -38,6 +38,7 @@ export class ProfessiondefoiComponent {
     const url = `${environment.apiLink}/api/profession`;
     this.http.get(url).subscribe(res => {
       this.response = res;
+      this.professiondefoi = this.response[0]
       this.onLangChange();
     });
   }
