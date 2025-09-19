@@ -6,7 +6,7 @@ ion-content {
 
 .titre {
   color: #1a3d72;
-  font-size: 40px;
+  font-size: 20px;
   font-family: 'Exo2-Bold';
 }
 
@@ -14,7 +14,7 @@ ion-content {
 .accordion-header {
   background-color: #66A7DA;
   ion-label {
-    font-size: 30px;
+    font-size: 15px;
     font-family: 'Exo2-Bold';
   } 
 }
@@ -27,7 +27,7 @@ ion-accordion {
 
 /* Contenu */
 .accordion-content {
-  font-size: 30px;
+  font-size: 15px;
   padding: 10px 8px;
   background-color: #D1E4F3;
   border-left: 2px solid #1e90ff;
