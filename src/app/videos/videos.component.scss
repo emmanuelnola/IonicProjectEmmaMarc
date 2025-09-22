@@ -36,12 +36,11 @@ ion-card {
   position: relative;
   display: inline-block;
 
-  height:300px;
 }
-.mon-iframe{
+/*.mon-iframe{
   width: 100%;
-  height:300px;
-  }
+  height:250px;
+  }*/
 
 .thumbnail-container .play-button {
   position: absolute;
@@ -55,12 +54,12 @@ ion-card {
 }
 
 /* Autres vidéos (mobile) */
-.video-wrapper img,
+/*.video-wrapper img,
 .video-wrapper iframe {
   height: 28vw;
   max-height: 160px;
   min-height: 90px;
-}
+}*/
 
 /* Marges et alignement des lignes */
 ion-grid {
@@ -82,9 +81,9 @@ ion-col {
 .titre{
     margin-left:20px;
     color:#1a3d72;
-    font-size:40px;
+    font-size:20px;
     font-weight:bold;
-    font-family:EXO2;
+    font-family:EXO2-Medium;
 
 
 }
@@ -92,9 +91,8 @@ ion-col {
 /* Titres vidéos (mobile) */
 .titres_videos{
   color:#1a3d72;
-     font-size:25px;
-     font-weight:bold;
-     font-family:EXO2;
+     font-size:1em;
+     font-family:EXO2-Medium;
 
 }
 
@@ -106,11 +104,11 @@ ion-col {
     max-height: 450px;
     margin: 0 18px;
   }
-  .video-wrapper img,
+  /*.video-wrapper img,
   .video-wrapper iframe {
     height: 180px;
     max-height: 280px;
-  }
+  }*/
   .titre {
     font-size: 2.5em;
     margin-left: 20px;
@@ -156,7 +154,7 @@ ion-col {
 
   iframe {
     width: 100%;
-    height: 250px;
+
   }
 
 

@@ -14,7 +14,7 @@
     <!-- Autres vidéos -->
     <ion-grid>
       <ion-row class="ion-justify-content-center ion-align-items-center">
-        <ion-col size="12" size-md="11" *ngFor="let video of videos; let i = index" >
+        <ion-col size="12" size-md="10" *ngFor="let video of videos; let i = index" >
           <div class="first-video" (click)="loadVideo(i)">
             <ng-container *ngIf="videoLoaded[i]; else thumbnail">
               <iframe #iframeElem
