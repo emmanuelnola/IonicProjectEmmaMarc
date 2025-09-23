@@ -24,32 +24,19 @@ export class ProgrammesComponent {
   sections: Array<{ thematique: string; body: string }> = [];
 
   constructor(private http: HttpClient) {
-    this.fetchProgramme();
     this.lang = localStorage.getItem('lang') || 'fr';
+    this.fetchProgramme();
   }
 
   onLangChange() {
-    if (!Array.isArray(this.response)) {
-      this.sections = [];
-      return;
-    }
-    if (this.lang === 'any') {
-      this.sections = this.response.map((item: any) => ({
+    this.sections = this.response
+      .filter((item: any) => item.langcode === this.lang)
+      .map((item: any) => ({
         thematique: item.thematique || item.title || '',
         body: item.body || item.content || '',
         langcode: item.langcode || 'fr',
         nid: item.nid
       }));
-    } else {
-      this.sections = this.response
-        .filter((item: any) => item.langcode === this.lang)
-        .map((item: any) => ({
-          thematique: item.thematique || item.title || '',
-          body: item.body || item.content || '',
-          langcode: item.langcode || 'fr',
-          nid: item.nid
-        }));
-    }
   }
 
   fetchProgramme() {
@@ -58,7 +45,7 @@ export class ProgrammesComponent {
       this.response = res;
       // Map response to expected format if needed
       if (Array.isArray(res)) {
-        this.sections = res
+      this.sections = res
         .filter((item: any) => item.langcode === this.lang)
         .map((item: any) => ({
           thematique: item.thematique || item.title || '',
@@ -66,10 +53,7 @@ export class ProgrammesComponent {
           langcode: item.langcode || 'fr',
           nid: item.nid 
         }));
-      } else {
-        this.sections = [];
-      }
-      this.onLangChange();
+      }    
     });
 
   }
