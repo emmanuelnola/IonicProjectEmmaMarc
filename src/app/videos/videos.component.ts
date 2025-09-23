@@ -18,6 +18,7 @@ export class VideosComponent implements OnInit {
   videos: Video[] = [];
   videoLoaded: boolean[] = [];
   loading = true;
+  lang: string = 'fr';
 
   @ViewChildren('iframeElem') iframeElems!: QueryList<ElementRef<HTMLIFrameElement>>;
 
@@ -29,7 +30,7 @@ export class VideosComponent implements OnInit {
   ngOnInit() {
     this.videosService.getVideos().subscribe({
       next: (data) => {
-        this.videos = data;
+        this.videos = data.filter((item: any) => item.langcode === this.lang);
         this.loading = false;
         this.videoLoaded = this.videos.map(() => false);
       },
