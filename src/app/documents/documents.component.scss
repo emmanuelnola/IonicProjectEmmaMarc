@@ -21,10 +21,10 @@
 }
 
 .doc-title {
-  font-size: 30px;
-  font-weight: bold;
+  font-size: 1em;
+
   margin-bottom: 10px;
-  font-family:EXO2;
+  font-family:EXO2-Medium;
   color: #67a8dc;
 }
 
@@ -51,9 +51,9 @@
 .le_titre{
   margin-left:20px;
   color:#1a3d72;
-  font-size:40px;
+  font-size:20px;
   font-weight:bold;
-  font-family:EXO2;
+  font-family:EXO2-Medium;
   }
 
 ion-card {
@@ -64,3 +64,9 @@ ion-card {
   background: transparent !important; /* supprime le fond blanc */
 }
 
+a {
+  color: inherit;           /* Utilise la couleur du parent */
+  text-decoration: none;    /* Supprime le soulignement */
+  font-weight: normal;      /* Supprime le gras si nécessaire */
+  cursor: default;          /* Optionnel, enlève le pointeur */
+}
