@@ -5,7 +5,6 @@ import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { map } from 'rxjs/operators';
 import { Capacitor } from '@capacitor/core';
-import { Browser } from '@capacitor/browser';
 import { Platform } from '@ionic/angular';
 import { Filesystem } from '@capacitor/filesystem'; // Pour stocker les fichiers sur mobile
 import { FileOpener } from '@capacitor-community/file-opener';  // Pour ouvrir le PDF
