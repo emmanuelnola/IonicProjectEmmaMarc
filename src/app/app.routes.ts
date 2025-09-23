@@ -20,6 +20,6 @@ export const routes: Routes = [
   { path: 'galeriePhotos', component: GaleriePhotosComponent  },
   { path: 'gadgets', component:  GadgetsComponent  },
   { path: 'professiondefoi', component: ProfessiondefoiComponent },
-//  { path: 'voirActualite', loadComponent: () => import('./voir-actualite/voir-actualite.component').then(m => m.VoirActualiteComponent) },
+  { path: 'voir-actualites/:nid', loadComponent: () => import('./voir-actualite/voir-actualite.component').then(m => m.VoirActualiteComponent) },
 
 ];

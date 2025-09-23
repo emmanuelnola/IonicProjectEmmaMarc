@@ -1,17 +1,15 @@
 <ion-content>
-  <div class="container-fluid">
+  <div class="container-fluid" *ngIf="actualite != null">
     <div class="row">
       <div class="col-md-12 mb-4">
-        <h2 class="titre">Actualité</h2>
+        <h2 class="titre">{{ actualite.titre }}</h2>
       </div>
-      <div class="col-md-12">
+      <div class="col-md-12" >
         <!-- Première image (infos en bas sur l'image) -->
         <div class="image-container first">
-          <img [src]="actualite.src" alt="image" />
+          <img [src]="environment.apiLink + actualite.src" alt="image" />
           <div class="info-bottom">
-            <span class="date-article">{{ actualite.date }}</span>
-            <span class="separator"><i class="fas fa-minus"></i> </span>
-            <span class="titre-article">{{ actualite.titre }}</span>
+            <span class="date-article" [innerHTML]="actualite.date | sanitizeHtml"></span>
           </div>
         </div>
       </div>

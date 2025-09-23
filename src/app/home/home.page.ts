@@ -20,9 +20,11 @@ export class HomePage {
   public environment = environment;
   public response: any = null;
   public userLang: string = 'fr';
+  public logoCarre: string = '';
 
   constructor(private router: Router, private http: HttpClient) {
     this.fetchHome();
+    this.fetchLogo();
     this.userLang = localStorage.getItem('lang') || 'fr';
   }
 
@@ -42,6 +44,14 @@ export class HomePage {
       }));
       this.response = this.response[0];
     });
+  }
+
+  fetchLogo() {
+    const url = `${environment.apiLink}/api/logo`;
+    let apiRes: any; 
+      this.http.get<any[]>(url).subscribe(res => {
+        this.logoCarre = res[0].field_gallery_image;
+        });
   }
 
   navigate(path: string) {

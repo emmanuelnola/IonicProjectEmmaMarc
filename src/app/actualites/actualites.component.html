@@ -6,7 +6,7 @@
       </div>
       <div class="col-md-12" *ngIf="response.length > 0">
         <!-- Première image (infos en bas sur l'image) -->
-        <div class="image-container first" >
+        <div class="image-container first" (click)="voirActualite(response[0].nid)">
           <img [src]="environment.apiLink + response[0].src" alt="image" />
           <div class="info-bottom">
             <span class="date-article" [innerHtml]="response[0].date | sanitizeHtml"></span>
@@ -16,7 +16,7 @@
         </div>
       
         <!-- Les autres images (infos à droite + description en bas) -->
-        <div *ngFor="let img of response.slice(1)" class="image-container row" (click)="voirActualite(img.src)">
+        <div *ngFor="let img of response.slice(1)" class="image-container row" (click)="voirActualite(img.nid)">
           <img [src]="environment.apiLink + img.src" alt="image" />
           <div class="info-right">
             <span class="date-article" [innerHtml]="img.date | sanitizeHtml"></span>

@@ -41,11 +41,10 @@ export class ActualitesComponent {
     });
   }
 
-  voirActualite(imageSrc: string) {
-    // Logique pour naviguer vers la page de l'actualité avec l'image sélectionnée
-    console.log('Naviguer vers l\'actualité avec l\'image:', imageSrc);
-    // Vous pouvez utiliser le Router d'Angular pour naviguer vers une autre page
-    this.router.navigate(['/voirActualite']);
+  voirActualite(nid: string | number) {
+    console.log('Navigating to actualite with nid:', nid);
+    // Navigue vers la page de l'actualité avec le nid sélectionné
+    this.router.navigate(['/voir-actualites', nid]);
   }
 
 
