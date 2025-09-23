@@ -27,6 +27,11 @@
                      <ion-icon name="pause-outline" *ngIf="isPlaying && currentAudio === audio"></ion-icon><ion-icon  name="caret-forward-outline" *ngIf="!isPlaying || currentAudio !== audio"></ion-icon>
                   </ion-button>
                    <ion-button fill="clear" (click)="stopAudio()"><ion-icon name="stop-circle-outline"></ion-icon></ion-button>
+                   <ion-button fill="clear" (click)="download(audio)">
+                       <a [href]="pdfUrl" target="_blank" [download]="nomFichier">
+                          <ion-icon name="arrow-up-circle-outline"></ion-icon>
+                       </a>
+                   </ion-button>
                 </div>
 
            </div>

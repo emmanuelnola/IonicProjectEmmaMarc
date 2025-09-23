@@ -3,6 +3,7 @@ import { TranslatePipe } from '@ngx-translate/core';
 import { CommonModule } from '@angular/common';
 import { IonicModule, ToastController } from '@ionic/angular';
 import { AudioService, MyAudio } from '../services/audios.service';
+import { environment } from '../../environments/environment';
 
 
 @Component({
@@ -22,6 +23,9 @@ export class AudiosComponent implements OnInit {
   currentTime: number = 0;         // Temps écoulé
   duration: number = 0;            // Durée totale
   currentAudio!: MyAudio;          // Audio en cours
+
+      pdfUrl:string="";
+     nomFichier:string="";
 
   private apiUrl: string = 'https://presi.lab-123.com'; // Base URL serveur
 
@@ -113,6 +117,13 @@ export class AudiosComponent implements OnInit {
      // Stopper l'audio quand on quitte la page
      this.stopAudio();
    }
+
+  download(audio: MyAudio){
+
+    this.pdfUrl=this.pdfUrl=`${environment.apiLink}${audio.field_audio}`;
+    this.nomFichier= `${audio.title}.mp3`;
+
+    }
 
 }
 /*le temps  <div class="time" *ngIf="currentAudio === audio">

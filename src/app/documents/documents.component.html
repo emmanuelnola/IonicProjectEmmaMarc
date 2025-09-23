@@ -11,7 +11,7 @@
 
       <button ion-button fill="clear" class="download-btn telechargement" (click)="download(doc)">
 
-         <a [href]="pdfUrl" target="_blank" download="monfichier.pdf">
+         <a [href]="pdfUrl" target="_blank" [download]="nomFichier">
           Télécharger le PDF
         </a>
       </button>

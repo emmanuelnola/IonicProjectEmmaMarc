@@ -21,6 +21,9 @@ export class DocumentsComponent implements OnInit {
   documents: MyDocument[] = [];
    loading: boolean = true;
    pdfUrl:string="";
+   nomFichier:string="";
+   progress = 0;
+   downloading = false;
 
   constructor(
     private documentsService: DocumentsService,
@@ -42,10 +45,26 @@ export class DocumentsComponent implements OnInit {
   }
 
 
-   // Fonction pour télécharger et ouvrir un document PDF
+
    async download(doc: MyDocument) {
-      this.pdfUrl=`${environment.apiLink}${doc.field_fichier}`;
-    //   await  this.documentsService.downloadAndOpenPdf(  `${environment.apiLink}${doc.field_fichier}`,doc.title);
+     this.pdfUrl=`${environment.apiLink}${doc.field_fichier}`;
+     this.nomFichier= `${doc.title}.pdf`;}
+     /* this.downloading = true;
+          const url = `${environment.apiLink}${doc.field_fichier}`;
+          const fileName = `${doc.title}.pdf`;
+
+          const uri = await this.documentsService.downloadFile(url, fileName, (percent) => {
+            this.progress = percent;
+          });
+
+          this.downloading = false;
+          if (uri) {
+            console.log('PDF téléchargé :', uri);
+
+          }
+        }*/
+
+     // await  this.documentsService.downloadFile(  `${environment.apiLink}${doc.field_fichier}`,doc.title);}
         /*   if (success) {
              await this.showToast(`${doc.title} téléchargé et ouvert !`, 'success');
            } else {

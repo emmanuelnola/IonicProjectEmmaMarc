@@ -61,6 +61,14 @@ ion-range {
 
 }
 
+a {
+  color: inherit;           /* Utilise la couleur du parent */
+  text-decoration: none;    /* Supprime le soulignement */
+  font-weight: normal;      /* Supprime le gras si nécessaire */
+  cursor: default;          /* Optionnel, enlève le pointeur */
+}
+
+
 ion-range {
   padding: 0 12px;
   --knob-size: 18px;
