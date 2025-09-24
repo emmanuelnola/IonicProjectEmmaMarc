@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+  <!-- Autoriser le traffic HTTP (non chiffré) -->
+  <base-config cleartextTrafficPermitted="true">
+    <trust-anchors>
+      <certificates src="system" />
+      <certificates src="user" />
+    </trust-anchors>
+  </base-config>
+
+  <!-- Domaines spécifiques autorisés -->
+  <domain-config cleartextTrafficPermitted="true">
+    <domain includeSubdomains="true">presi.lab-123.com</domain>
+    <domain includeSubdomains="true">lab-123.com</domain>
+    <domain includeSubdomains="true">prod.lab-123.com</domain>
+    <domain includeSubdomains="true">localhost</domain>
+    <domain includeSubdomains="true">10.0.2.2</domain>
+    <domain includeSubdomains="true">192.168.1.1</domain>
+  </domain-config>
+</network-security-config>

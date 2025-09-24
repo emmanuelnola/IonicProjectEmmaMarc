@@ -74,3 +74,37 @@ ion-range {
   --knob-size: 18px;
   --bar-height: 8px; /* épaisseur de la barre */
 }
+
+
+
+/*-------------------------------------------------------------------------------*/
+
+
+
+
+ion-item {
+  --padding-start: 0;
+  --inner-padding-end: 0;
+  margin: 10px 0;
+}
+
+.progress-info {
+  text-align: center;
+  margin: 16px 0;
+
+  h3 {
+    margin: 0;
+    font-size: 1.5em;
+    font-weight: bold;
+  }
+}
+
+ion-progress-bar {
+  margin: 16px 0;
+  height: 10px;
+  border-radius: 5px;
+}
+
+/*ion-button {
+  margin: 5px 0;
+}*/

@@ -1,8 +1,9 @@
 
 
 import { Component, OnInit, signal } from '@angular/core';
-import { ToastController, IonicModule } from '@ionic/angular';  // Pour les toasts
+import { ToastController, IonicModule, AlertController } from '@ionic/angular';  // Pour les toasts
 import { DocumentsService, MyDocument } from '../services/documents.service';
+import { DownloadFileService } from '../services/downloadFile.service';
 import { Capacitor } from '@capacitor/core';
 import { environment } from '../../environments/environment';
 
@@ -26,8 +27,9 @@ export class DocumentsComponent implements OnInit {
    downloading = false;
 
   constructor(
-    private documentsService: DocumentsService,
-    private toastController: ToastController
+    private documentsService: DownloadFileService,
+     private alertController: AlertController
+
   ) {}
 
   ngOnInit() {
@@ -47,8 +49,31 @@ export class DocumentsComponent implements OnInit {
 
 
    async download(doc: MyDocument) {
-     this.pdfUrl=`${environment.apiLink}${doc.field_fichier}`;
-     this.nomFichier= `${doc.title}.pdf`;}
+     try {
+             const filePath = await this.documentsService.download(`${environment.apiLink}${doc.field_fichier}`, `${doc.title}.pdf`);
+
+             await this.showAlert(
+               '✅ Téléchargement réussi!',
+               `"${doc.title}" a été enregistré dans "${filePath}".`
+             );
+
+           } catch (error) {
+             await this.showAlert(
+               '❌ Erreur',
+               `Impossible de télécharger "${doc.title}"`
+             );
+           }
+
+
+   }
+
+    private async showAlert(header: string, message: string) {
+          const alert = await this.alertController.create({
+            header,
+            message,
+            buttons: ['OK']
+          });
+          await alert.present();
+        }
 
 }
-
