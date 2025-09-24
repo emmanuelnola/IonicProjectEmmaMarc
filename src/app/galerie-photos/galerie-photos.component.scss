@@ -53,16 +53,6 @@ ion-content {
   z-index: 2;
 }
 
-.image-title {
-  margin-top: 6px;
-  font-size: 1em;
-  font-weight: 600;
-  color: #1a3d72;
-  word-break: break-word;
-  font-family: 'Exo2-Medium'; 
-}
-
-
 .thumb-card {
   cursor: pointer;
   position: relative;
@@ -139,6 +129,8 @@ ion-content {
   border-radius: 8px;
   margin-bottom: 12px;
 }
+
+
 .preview-img-loading {
   width: 1px;
   width: 1px;
@@ -164,10 +156,11 @@ ion-content {
 .titre-article {
   color: #1a3d72;
   font-size: 15px;
-  font-family: 'Exo2-Bold';
+  font-family: 'Exo2-Medium';
   font-weight: 700;
   margin: 0 0 6px 0;
 }
+
 .date-article {
   font-size: 15px;
   color: #1a3d72;

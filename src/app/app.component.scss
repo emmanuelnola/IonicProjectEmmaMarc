@@ -43,12 +43,12 @@ ion-menu {
 }
 
 ion-menu ion-header {
-  height: 72px;
+  height: 70px;
   display: flex;
   align-items: center;
   justify-content: left;
   font-size: 40px;
-  padding-top: 32px;
+  padding-top: 30px;
   padding-left: 16px;
   font-family: 'Exo2-Bold';
 }
@@ -72,8 +72,9 @@ ion-menu ion-list ion-item ion-content {
   font-size: 1.1em;
   font-weight: bold;
   color: white;
+  margin-right: 1px;
 }
 
 .langselector {
-  gap: 12px;
+  gap: 1px;
 }
