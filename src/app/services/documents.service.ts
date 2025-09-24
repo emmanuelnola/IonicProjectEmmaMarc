@@ -1,4 +1,4 @@
-import { ToastController } from '@ionic/angular';
+
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -22,7 +22,7 @@ export interface MyDocument {
   providedIn: 'root'
 })
 export class DocumentsService {
-  constructor(private http: HttpClient,  private toastController: ToastController, private platform: Platform) {}
+  constructor(private http: HttpClient,   private platform: Platform) {}
       private apiUrl = environment.apiLink +'/api/documents';
 
     // Récupérer la liste des audios depuis l'API

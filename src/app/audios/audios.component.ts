@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslatePipe } from '@ngx-translate/core';
 import { CommonModule } from '@angular/common';
-import { IonicModule, ToastController } from '@ionic/angular';
-import { AudioService, MyAudio } from '../services/audios.service';
+import { IonicModule, ToastController , AlertController} from '@ionic/angular';
+import {  DownloadFileService, MyAudio } from '../services/downloadFile.service';
+
+
 import { environment } from '../../environments/environment';
 
 
@@ -24,12 +26,19 @@ export class AudiosComponent implements OnInit {
   duration: number = 0;            // Durée totale
   currentAudio!: MyAudio;          // Audio en cours
 
-      pdfUrl:string="";
-     nomFichier:string="";
+/*--------------------*/
+ //variable necessaire au telechargement
+   isDownloading = false;
+    currentDownload!: MyAudio;
+    downloadProgress = 0;
+    message = '';
+    downloadedBytes = 0;
+    totalBytes = 0;
+    /*-----*/
 
-  private apiUrl: string = 'https://presi.lab-123.com'; // Base URL serveur
+  private apiUrl: string =environment.apiLink; // Base URL serveur
 
-  constructor(private audioService: AudioService, private toastCtrl: ToastController) {}
+  constructor(private audioService: DownloadFileService,  private alertController: AlertController) {}
 
   ngOnInit() {
     // Crée l’élément audio invisible
@@ -57,6 +66,20 @@ export class AudiosComponent implements OnInit {
       next: (data: MyAudio[]) =>{ this.audios = data; this.pageLoad=false; },
       error: (err) => {console.error('❌ Erreur API audios:', err) ;this.pageLoad=false;}
     });
+
+     // Configurer le callback de progression
+     this.audioService.setProgressCallback((progress) => {
+
+        this.downloadProgress = progress;
+
+         // Forcer la mise à jour de la vue
+         setTimeout(() => {
+          // Cette ligne force Angular à détecter les changements
+          this.downloadProgress = progress;
+           }, 0);
+     });
+
+
   }
 
   // Jouer un audio
@@ -118,12 +141,59 @@ export class AudiosComponent implements OnInit {
      this.stopAudio();
    }
 
-  download(audio: MyAudio){
 
-    this.pdfUrl=this.pdfUrl=`${environment.apiLink}${audio.field_audio}`;
-    this.nomFichier= `${audio.title}.mp3`;
+
+
+    // Télécharger un audio
+    async downloadAudio(audio: MyAudio) {
+      this.isDownloading = true;
+
+      this.currentDownload = audio;
+      this.downloadProgress = 0;
+      this.message = '';
+
+
+      try {
+        const filePath = await this.audioService.download(`${environment.apiLink}${audio.field_audio}`, `${audio.title}.mp3`);
+
+        await this.showAlert(
+          '✅ Téléchargement réussi!',
+          `"${audio.title}" a été enregistré dans "${filePath}".`
+        );
+
+      } catch (error) {
+        await this.showAlert(
+          '❌ Erreur',
+          `Impossible de télécharger "${audio.title}"`
+        );
+      }
+
+      this.isDownloading = false;
+      this.currentDownload = audio;
 
     }
+
+     // Annuler le téléchargement
+      cancelDownload() {
+        this.isDownloading = false;
+        //this.currentDownload = '';
+        this.downloadProgress = 0;
+        this.showAlert('Info', 'Téléchargement annulé');
+      }
+
+    private async showAlert(header: string, message: string) {
+      const alert = await this.alertController.create({
+        header,
+        message,
+        buttons: ['OK']
+      });
+      await alert.present();
+    }
+
+
+
+
+
 
 }
 /*le temps  <div class="time" *ngIf="currentAudio === audio">
