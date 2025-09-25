@@ -33,8 +33,8 @@ export class AppComponent {
     this.translate.use(this.currentLang);
 
     const url = `${environment.apiLink}/api/logo-rec`;
-      this.http.get<{ field_gallery_image: string }[]>(url).subscribe(res => {
-        this.logoUrl = res[0]?.field_gallery_image || '';
+      this.http.get<{ field_gallery_image: string, langcode: string }[]>(url).subscribe(res => {
+        this.logoUrl = res.filter( x => x.langcode == this.currentLang )[0]?.field_gallery_image || '';
       });
 
     this.router.events
