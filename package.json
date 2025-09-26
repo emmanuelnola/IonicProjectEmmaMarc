@@ -14,17 +14,19 @@
   "private": true,
   "dependencies": {
     "@angular/animations": "^20.0.0",
-    "@angular/common": "^20.0.0",
-    "@angular/compiler": "^20.0.0",
-    "@angular/core": "^20.0.0",
-    "@angular/forms": "^20.0.0",
+    "@angular/common": "^17.3.12",
+    "@angular/forms": "^17.3.12",
     "@angular/platform-browser": "^20.0.0",
     "@angular/platform-browser-dynamic": "^20.0.0",
-    "@angular/router": "^20.0.0",
+    "@angular/router": "^17.3.12",
     "@awesome-cordova-plugins/core": "^8.1.0",
     "@capacitor-community/file-opener": "^7.0.1",
     "@capacitor-community/http": "^1.4.1",
     "@capacitor/android": "^7.4.3",
+
+    "@awesome-cordova-plugins/file-opener": "^8.1.0",
+
+
     "@capacitor/app": "7.0.2",
     "@capacitor/browser": "^7.0.2",
     "@capacitor/core": "^7.4.3",
@@ -55,8 +57,10 @@
     "@angular-eslint/eslint-plugin-template": "^20.0.0",
     "@angular-eslint/schematics": "^20.0.0",
     "@angular-eslint/template-parser": "^20.0.0",
-    "@angular/cli": "^20.0.0",
-    "@angular/compiler-cli": "^20.0.0",
+    "@angular/cli": "^17.3.17",
+    "@angular/compiler": "^17.3.12",
+    "@angular/compiler-cli": "^17.3.12",
+    "@angular/core": "^17.3.12",
     "@angular/language-service": "^20.0.0",
     "@capacitor/cli": "^7.4.3",
     "@ionic/angular-toolkit": "^12.0.0",
@@ -74,7 +78,7 @@
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
-    "typescript": "~5.8.0"
+    "typescript": "^5.2.2"
   },
   "description": "An Ionic project"
 }

@@ -22,10 +22,12 @@ export class DocumentsComponent implements OnInit {
   documents: MyDocument[] = [];
    loading: boolean = true;
    pdfUrl:string="";
+
    nomFichier:string="";
    progress = 0;
    downloading = false;
   fileName:string="";
+
   constructor(
     private documentsService: DownloadFileService,
      private alertController: AlertController
@@ -49,7 +51,9 @@ export class DocumentsComponent implements OnInit {
 
 
 
+
    async download(doc: MyDocument) {
+
      try {  this.fileName=this.getLastPathElement(`${environment.apiLink}${doc.field_fichier}`)
              const filePath = await this.documentsService.downloadFile(`${environment.apiLink}${doc.field_fichier}`,this.fileName);
 
@@ -83,3 +87,4 @@ export class DocumentsComponent implements OnInit {
             }
 
 }
+

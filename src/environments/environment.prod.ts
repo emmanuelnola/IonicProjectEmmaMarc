@@ -2,8 +2,8 @@
 
 export const environment = {
   production: true,
-  apiLink: "https://paulbiya2025.cm"
 
+  apiLink: "https://paulbiya2025.cm"
 
 };
 
