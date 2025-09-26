@@ -2,7 +2,7 @@ import type { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
   appId: 'io.ionic.starter',
-  appName: 'ionic-menu-app',
+  appName: 'API_2025',
   webDir: 'www',
    plugins: {
       // Configuration pour ignorer CORS
@@ -16,9 +16,8 @@ const config: CapacitorConfig = {
       cleartext: true,
       // Autoriser les origines multiples
       allowNavigation: [
-        'presi.lab-123.com',
-        '*.lab-123.com',
-        'prod.lab-123.com'
+        'paulbiya2025.cm',
+
       ]
     }
 };

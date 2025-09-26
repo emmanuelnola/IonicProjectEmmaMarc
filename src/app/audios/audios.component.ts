@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { TranslatePipe } from '@ngx-translate/core';
 import { CommonModule } from '@angular/common';
 import { IonicModule, ToastController , AlertController} from '@ionic/angular';
 import {  DownloadFileService, MyAudio } from '../services/downloadFile.service';
-
-
 import { environment } from '../../environments/environment';
 
 
@@ -13,10 +10,13 @@ import { environment } from '../../environments/environment';
   templateUrl: './audios.component.html',
   styleUrls: ['./audios.component.scss'],
   standalone: true,
-  imports: [CommonModule, IonicModule],
+  imports: [CommonModule, IonicModule]
 })
+
+
 export class AudiosComponent implements OnInit {
 
+  lang: string = 'fr';
   audios: MyAudio[] = [];          // Liste des audios récupérés depuis l'API
   audioElement!: HTMLAudioElement; // Élément HTML audio
   loading: boolean = false;        // Spinner pendant le chargement
@@ -34,6 +34,7 @@ export class AudiosComponent implements OnInit {
     message = '';
     downloadedBytes = 0;
     totalBytes = 0;
+    fileName=" ";
     /*-----*/
 
   private apiUrl: string =environment.apiLink; // Base URL serveur
@@ -41,6 +42,7 @@ export class AudiosComponent implements OnInit {
   constructor(private audioService: DownloadFileService,  private alertController: AlertController) {}
 
   ngOnInit() {
+    this.lang = localStorage.getItem('lang') || 'fr';
     // Crée l’élément audio invisible
     this.audioElement = new Audio();
 
@@ -63,7 +65,8 @@ export class AudiosComponent implements OnInit {
 
     // Récupère la liste des audios depuis le serveur
     this.audioService.getAudios().subscribe({
-      next: (data: MyAudio[]) =>{ this.audios = data; this.pageLoad=false; },
+      next: (data: MyAudio[]) =>{ this.audios = data.filter((item: any) => item.langcode === this.lang);
+        this.pageLoad=false; },
       error: (err) => {console.error('❌ Erreur API audios:', err) ;this.pageLoad=false;}
     });
 
@@ -154,7 +157,8 @@ export class AudiosComponent implements OnInit {
 
 
       try {
-        const filePath = await this.audioService.download(`${environment.apiLink}${audio.field_audio}`, `${audio.title}.mp3`);
+        this.fileName=this.getLastPathElement(`${environment.apiLink}${audio.field_audio}`);
+        const filePath = await this.audioService.downloadFile(`${environment.apiLink}${audio.field_audio}`,this.fileName);
 
         await this.showAlert(
           '✅ Téléchargement réussi!',
@@ -191,7 +195,10 @@ export class AudiosComponent implements OnInit {
     }
 
 
-
+  private getLastPathElement(path: string): string {
+                const segments = path.split('/').filter(segment => segment !== '');
+                return segments.length > 0 ? segments[segments.length - 1] : '';
+              }
 
 
 

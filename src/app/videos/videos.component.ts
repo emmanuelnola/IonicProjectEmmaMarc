@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChildren, QueryList, ElementRef } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { TranslatePipe } from '@ngx-translate/core';
 
 import { VideosService, Video } from '../services/videos.service';
 import { IonicModule } from '@ionic/angular';
@@ -11,7 +12,7 @@ import { CommonModule } from '@angular/common';
   templateUrl: './videos.component.html',
   styleUrls: ['./videos.component.scss'],
   standalone: true,
-  imports: [CommonModule, IonicModule],
+  imports: [CommonModule, IonicModule, TranslatePipe],
 })
 export class VideosComponent implements OnInit {
 
@@ -28,6 +29,7 @@ export class VideosComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.lang = localStorage.getItem('lang') || 'fr';
     this.videosService.getVideos().subscribe({
       next: (data) => {
         this.videos = data.filter((item: any) => item.langcode === this.lang);

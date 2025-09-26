@@ -2,10 +2,10 @@
 
 import { Component, OnInit, signal } from '@angular/core';
 import { ToastController, IonicModule, AlertController } from '@ionic/angular';  // Pour les toasts
-import { DocumentsService, MyDocument } from '../services/documents.service';
-import { DownloadFileService } from '../services/downloadFile.service';
+import { DownloadFileService ,MyDocument} from '../services/downloadFile.service';
 import { Capacitor } from '@capacitor/core';
 import { environment } from '../../environments/environment';
+import { TranslatePipe } from '@ngx-translate/core';
 
 import { CommonModule } from '@angular/common';
 
@@ -14,10 +14,10 @@ import { CommonModule } from '@angular/common';
   templateUrl: './documents.component.html',
   styleUrls: ['./documents.component.scss'],
   standalone: true,          // Composant standalone
-  imports: [IonicModule ,CommonModule ]    // Nécessaire pour ion-list, ion-item, ion-button
+  imports: [IonicModule ,CommonModule, TranslatePipe ]    // Nécessaire pour ion-list, ion-item, ion-button
 })
 export class DocumentsComponent implements OnInit {
-
+  lang: string = 'fr';
   // Signal pour stocker et mettre à jour la liste des documents de manière réactive
   documents: MyDocument[] = [];
    loading: boolean = true;
@@ -25,7 +25,7 @@ export class DocumentsComponent implements OnInit {
    nomFichier:string="";
    progress = 0;
    downloading = false;
-
+  fileName:string="";
   constructor(
     private documentsService: DownloadFileService,
      private alertController: AlertController
@@ -33,9 +33,10 @@ export class DocumentsComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.lang = localStorage.getItem('lang') || 'fr';
       this.documentsService.getDocuments().subscribe({
          next: (docs) => {
-           this.documents = docs;
+           this.documents = docs.filter((item: any) => item.langcode === this.lang);
            this.loading = false;
          },
          error: async (err) => {
@@ -49,8 +50,8 @@ export class DocumentsComponent implements OnInit {
 
 
    async download(doc: MyDocument) {
-     try {
-             const filePath = await this.documentsService.download(`${environment.apiLink}${doc.field_fichier}`, `${doc.title}.pdf`);
+     try {  this.fileName=this.getLastPathElement(`${environment.apiLink}${doc.field_fichier}`)
+             const filePath = await this.documentsService.downloadFile(`${environment.apiLink}${doc.field_fichier}`,this.fileName);
 
              await this.showAlert(
                '✅ Téléchargement réussi!',
@@ -74,6 +75,11 @@ export class DocumentsComponent implements OnInit {
             buttons: ['OK']
           });
           await alert.present();
-        }
+    }
+
+  private getLastPathElement(path: string): string {
+              const segments = path.split('/').filter(segment => segment !== '');
+              return segments.length > 0 ? segments[segments.length - 1] : '';
+            }
 
 }
