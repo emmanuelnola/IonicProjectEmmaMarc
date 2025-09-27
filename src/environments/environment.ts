@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiLink: "https://presi.lab-123.com"
+  apiLink: "https://prod.lab-123.com"
 };
 
 /*

@@ -20,14 +20,23 @@ export class GaleriePhotosComponent {
   imageKey = 0;
   previewCategoryIndex = 0;
   previewImageIndex = 0;
+  public userLang: string = 'fr';
   categories: Array<{ title: string, images: Array<{ url: string, thumb: string }> }> = [];
   environment = environment;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    this.userLang = localStorage.getItem('lang') || 'fr';
+    this.fetchImages();
+  }
 
   ngOnInit() {
+    
+  }
+
+  fetchImages() {
     this.http.get<any[]>(`${environment.apiLink}/api/galerie`).subscribe(apiResponse => {
-      this.categories = apiResponse.map(item => {
+      let imagesToMap = apiResponse.filter( x => x.langcode = this.userLang );
+      this.categories = imagesToMap.map(item => {
         const galleryArr = item.gallerie.split(',').map((s: string) => s.trim());
         const vignetteArr = item.vignette.split(',').map((s: string) => s.trim());
         const images = galleryArr.map((url: string, i: number) => ({

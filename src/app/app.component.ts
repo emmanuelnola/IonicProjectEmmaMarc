@@ -31,25 +31,29 @@ export class AppComponent {
     this.currentLang = savedLang || 'fr';
     this.translate.setDefaultLang('fr');
     this.translate.use(this.currentLang);
+    this.fetchLogo();
+       
+    this.router.events
+    .pipe(filter(event => event instanceof NavigationEnd))
+    .subscribe((event: any) => {
+      // Hide logo on '/home', show otherwise
+      this.showLogo = (event.urlAfterRedirects !== '/home' && event.url !== '/');
+      this.currentRoute = event.urlAfterRedirects;
+    });
+  }
 
+  fetchLogo() {
     const url = `${environment.apiLink}/api/logo-rec`;
       this.http.get<{ field_gallery_image: string, langcode: string }[]>(url).subscribe(res => {
         this.logoUrl = res.filter( x => x.langcode == this.currentLang )[0]?.field_gallery_image || '';
-      });
-
-    this.router.events
-      .pipe(filter(event => event instanceof NavigationEnd))
-      .subscribe((event: any) => {
-        // Hide logo on '/home', show otherwise
-        this.showLogo = (event.urlAfterRedirects !== '/home' && event.url !== '/');
-        this.currentRoute = event.urlAfterRedirects;
-      });
+      });   
   }
 
   setLang(lang: string) {
     this.currentLang = lang;
     this.translate.use(lang);
     localStorage.setItem('lang', lang);
+    this.fetchLogo();
     window.location.reload();
   }
 

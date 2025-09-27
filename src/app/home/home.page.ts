@@ -29,29 +29,28 @@ export class HomePage {
   }
 
   fetchHome() {
-  const url = `${environment.apiLink}/api/home`;
-  let apiRes: any; 
-    this.http.get(url).subscribe(res => {
-      apiRes = res;
-      this.response = apiRes.filter((item: any) => item.langcode === this.userLang)
-      .map((item: any) => ({
-        title: item.thematique || item.title || '',
-        body: item.body || item.content || '',
-        langcode: item.langcode || 'fr',
-        nid: item.nid,
-        field_imgapi: item.field_imgapi,
-        field_logo: item.field_logo
-      }));
-      this.response = this.response[0];
-    });
+    const url = `${environment.apiLink}/api/home`;
+    let apiRes: any; 
+      this.http.get(url).subscribe(res => {
+        apiRes = res;
+        this.response = apiRes.filter((item: any) => item.langcode === this.userLang)
+        .map((item: any) => ({
+          title: item.thematique || item.title || '',
+          body: item.body || item.content || '',
+          langcode: item.langcode || 'fr',
+          nid: item.nid,
+          field_imgapi: item.field_imgapi,
+          field_logo: item.field_logo
+        }));
+        this.response = this.response[0];
+      });
   }
 
   fetchLogo() {
     const url = `${environment.apiLink}/api/logo`;
-    let apiRes: any; 
-      this.http.get<any[]>(url).subscribe(res => {
-        this.logoCarre = res[0].field_gallery_image;
-        });
+    this.http.get<any[]>(url).subscribe(res => {
+      this.logoCarre = res.filter( x => x.langcode == this.userLang )[0].field_gallery_image;
+    });
   }
 
   navigate(path: string) {
