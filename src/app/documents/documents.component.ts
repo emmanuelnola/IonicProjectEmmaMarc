@@ -1,11 +1,10 @@
 
-
-import { Component, OnInit, signal } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ToastController, IonicModule, AlertController } from '@ionic/angular';  // Pour les toasts
-import { DocumentsService, MyDocument } from '../services/documents.service';
-import { DownloadFileService } from '../services/downloadFile.service';
+import { DownloadFileService ,MyDocument} from '../services/downloadFile.service';
 import { Capacitor } from '@capacitor/core';
 import { environment } from '../../environments/environment';
+import { TranslatePipe } from '@ngx-translate/core';
 
 import { CommonModule } from '@angular/common';
 
@@ -14,17 +13,31 @@ import { CommonModule } from '@angular/common';
   templateUrl: './documents.component.html',
   styleUrls: ['./documents.component.scss'],
   standalone: true,          // Composant standalone
-  imports: [IonicModule ,CommonModule ]    // Nécessaire pour ion-list, ion-item, ion-button
+  imports: [IonicModule ,CommonModule, TranslatePipe ]    // Nécessaire pour ion-list, ion-item, ion-button
 })
 export class DocumentsComponent implements OnInit {
-
+  lang: string = 'fr';
   // Signal pour stocker et mettre à jour la liste des documents de manière réactive
   documents: MyDocument[] = [];
    loading: boolean = true;
    pdfUrl:string="";
+
    nomFichier:string="";
    progress = 0;
    downloading = false;
+  fileName:string="";
+
+
+   //variable necessaire au telechargement
+     isDownloading =false;
+      currentDownload!: MyDocument;
+      downloadProgress = 0;
+      message = '';
+      downloadedBytes = 0;
+      totalBytes = 0;
+       visible:boolean=true;
+       visibleMsgDownload:boolean=true
+      /*-----*/
 
   constructor(
     private documentsService: DownloadFileService,
@@ -33,9 +46,10 @@ export class DocumentsComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.lang = localStorage.getItem('lang') || 'fr';
       this.documentsService.getDocuments().subscribe({
          next: (docs) => {
-           this.documents = docs;
+           this.documents = docs.filter((item: any) => item.langcode === this.lang);
            this.loading = false;
          },
          error: async (err) => {
@@ -44,13 +58,33 @@ export class DocumentsComponent implements OnInit {
 
          }
        });
+
+       // Configurer le callback de progression
+          this.documentsService.setProgressCallback((progress) => {
+
+             this.downloadProgress = progress;
+
+              // Forcer la mise à jour de la vue
+              setTimeout(() => {
+               // Cette ligne force Angular à détecter les changements
+               this.downloadProgress = progress;
+                }, 0);
+          });
   }
 
 
-
    async download(doc: MyDocument) {
-     try {
-             const filePath = await this.documentsService.download(`${environment.apiLink}${doc.field_fichier}`, `${doc.title}.pdf`);
+
+
+          this.isDownloading = true;
+           this.visible=false;
+           this.currentDownload = doc;
+           this.downloadProgress = 0;
+           this.message = '';
+
+
+     try {  this.fileName=this.getLastPathElement(`${environment.apiLink}${doc.field_fichier}`)
+             const filePath = await this.documentsService.downloadFile(`${environment.apiLink}${doc.field_fichier}`,this.fileName);
 
              await this.showAlert(
                '✅ Téléchargement réussi!',
@@ -63,6 +97,10 @@ export class DocumentsComponent implements OnInit {
                `Impossible de télécharger "${doc.title}"`
              );
            }
+       this.isDownloading = false;
+       this.currentDownload = doc;
+       this.visible=true;
+
 
 
    }
@@ -74,6 +112,14 @@ export class DocumentsComponent implements OnInit {
             buttons: ['OK']
           });
           await alert.present();
-        }
+    }
+
+  private getLastPathElement(path: string): string {
+              const segments = path.split('/').filter(segment => segment !== '');
+              return segments.length > 0 ? segments[segments.length - 1] : '';
+   }
 
 }
+
+
+

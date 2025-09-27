@@ -9,14 +9,45 @@
       <h2 class="doc-title">{{ doc.title }}</h2>
       <div class="doc-icon">📄</div>
 
-      <button ion-button fill="clear" class="download-btn telechargement" (click)="download(doc)">
+      <button ion-button fill="clear" class="download-btn telechargement"  *ngIf="visible "  (click)="download(doc)">
 
-         <a [href]="pdfUrl" target="_blank" [download]="nomFichier">
-          Télécharger le PDF
+        <a [href]="pdfUrl" target="_blank"  [download]="nomFichier">
+          {{ 'Télécharger' | translate }}
+
+
         </a>
       </button>
+
+
+      <div *ngIf="isDownloading && currentDownload === doc">
+        <ion-card >
+          <ion-card-header>
+            <ion-card-title> {{ 'Télécharger' | translate }}</ion-card-title>
+
+          </ion-card-header>
+
+          <ion-card-content>
+            <!-- Barre de progression -->
+            <ion-progress-bar
+              [value]="downloadProgress / 100"
+              color="primary">
+            </ion-progress-bar>
+
+            <!-- Pourcentage -->
+            <div class="progress-info">
+              <ion-text color="primary">
+                <h3>{{ downloadProgress }}%</h3>
+              </ion-text>
+            </div>
+
+          </ion-card-content>
+        </ion-card>
+      </div>
+
     </div>
   </div>
+
+
 
   <div *ngIf="!loading && documents.length === 0" class="no-docs">
     Aucun document disponible pour le moment.

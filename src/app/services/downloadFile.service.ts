@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
-import { Filesystem, Directory } from '@capacitor/filesystem';
+import { Filesystem, Directory, Encoding } from '@capacitor/filesystem';
+
 
 export interface MyAudio {
   title: string;
@@ -20,11 +21,12 @@ export interface MyDocument {
 export class DownloadFileService {
   private apiUrlAudio = environment.apiLink +'/api/audio'; // base URL du serveur
   private apiUrlDoc = environment.apiLink +'/api/documents';
-    // Callback pour la progression
-    private progressCallback: ((progress: number) => void) | null = null;
-
 
   constructor(private http: HttpClient) {}
+
+   // Callback pour la progression
+   private progressCallback: ((progress: number) => void) | null = null;
+
 
   // Récupérer la liste des audios depuis l'API
    getDocuments(): Observable<MyDocument[]> {
@@ -41,14 +43,16 @@ export class DownloadFileService {
       this.progressCallback = callback;
     }
 
-    async download(audioUrl: string, fileName: string): Promise<string> {
+    async downloadFile(audioUrl: string,fileName: string): Promise<string> {
        return new Promise((resolve, reject) => {
+
+
          const xhr = new XMLHttpRequest();
 
          xhr.open('GET', audioUrl, true);
          xhr.responseType = 'blob';
 
-         // ✅ VÉRITABLE GESTION DE LA PROGRESSION
+         //  VÉRITABLE GESTION DE LA PROGRESSION
                xhr.onprogress = (event) => {
                  console.log('Événement progression déclenché!', event.loaded, event.total);
 
@@ -61,7 +65,7 @@ export class DownloadFileService {
          xhr.onloadstart = () => {
              console.log('Début du téléchargement');
               if (this.progressCallback) {
-                  this.progressCallback(0);
+                  this.progressCallback(5); // 5% pour indiquer le début
                 }
           };
 
@@ -72,16 +76,16 @@ export class DownloadFileService {
                const blob = xhr.response;
                console.log('Taille du blob:', blob.size);
 
-            // ✅ FORCER une progression à 50% pendant la conversion
+            // ✅ FORCER une progression à 80% pendant la conversion
              if (this.progressCallback) {
-                 this.progressCallback(50);
+                 this.progressCallback(80);
              }
 
                const base64Data = await this.blobToBase64(blob);
 
-              // ✅ FORCER une progression à 75% pendant la sauvegarde
+              // ✅ FORCER une progression à 90% pendant la sauvegarde
                if (this.progressCallback) {
-                  this.progressCallback(75);
+                  this.progressCallback(90);
                 }
 
                const result = await Filesystem.writeFile({
@@ -130,4 +134,17 @@ export class DownloadFileService {
           });
         }
 
+
+
 }
+
+
+
+
+
+
+
+
+
+
+
