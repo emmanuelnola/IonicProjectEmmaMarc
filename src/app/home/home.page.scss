@@ -4,12 +4,11 @@ ion-content {
 
 .img-home-logo {
   width: 50%;
-  height: auto;
-  margin: auto;
+  margin: 0px;
 }
 
 .welcome-message {
-  font-size: 30px  !important;
+  font-size: 15px  !important;
   color: white;
   font-family: 'Exo2-Bold';
 }
@@ -19,7 +18,7 @@ ion-content {
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
-  font-size: 50px;
+  font-size: 30px;
   font-weight: 500;
   color: white;
   font-family: 'Exo2-Bold';
@@ -38,7 +37,7 @@ ion-content {
   width: 100%;
   height: auto;
   border-top: 3px solid #66A7DA;
-  border-bottom: 70px solid #66A7DA;
+  border-bottom: 45px solid #66A7DA;
   display: block;
 }
 

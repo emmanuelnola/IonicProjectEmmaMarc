@@ -35,7 +35,8 @@ export class GaleriePhotosComponent {
 
   fetchImages() {
     this.http.get<any[]>(`${environment.apiLink}/api/galerie`).subscribe(apiResponse => {
-      let imagesToMap = apiResponse.filter( x => x.langcode = this.userLang );
+      let imagesToMap = apiResponse.filter( x => x.langcode == this.userLang );
+      console.log(imagesToMap);
       this.categories = imagesToMap.map(item => {
         const galleryArr = item.gallerie.split(',').map((s: string) => s.trim());
         const vignetteArr = item.vignette.split(',').map((s: string) => s.trim());
