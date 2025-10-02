@@ -20,7 +20,7 @@ interface Gadget {
 
 })
 export class GadgetsComponent implements OnInit {
-
+   lang: string = 'fr';
   gadgets: Gadget[] = [];      // Liste des gadgets récupérés
   loading: boolean = true;     // Indique si les données sont en cours de chargement
   private apiUrl = 'https://presi.lab-123.com'; // Racine du serveur
@@ -28,17 +28,23 @@ export class GadgetsComponent implements OnInit {
   constructor(private gadgetsService: GadgetsService) {}
 
   ngOnInit() {
+      this.lang = localStorage.getItem('lang') || 'fr';
+
     // ⚡ Récupère les gadgets depuis l'API
     this.gadgetsService.getGadgets().subscribe({
       next: (data: any[]) => {
         // Pour chaque gadget, transformer la chaîne d'images en tableau
         this.gadgets = data.map(g => ({
           title: g.title,
+          langcode:g.langcode,
           images: g.field_gallery_image
                     .split(',')             // Sépare les URLs par virgule
                     .map((s: string) => s.trim())     // Supprime les espaces superflus
                     .map((s: string) => `${this.apiUrl}${s}`) // Ajoute la racine du serveur
-        }));
+
+        }))
+        .filter((item: any) => item.langcode === this.lang);
+
         this.loading = false; // Les données sont prêtes → on enlève le spinner
       },
       error: (err) => {

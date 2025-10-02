@@ -84,11 +84,11 @@ export class DocumentsComponent implements OnInit {
 
 
      try {  this.fileName=this.getLastPathElement(`${environment.apiLink}${doc.field_fichier}`)
-             const filePath = await this.documentsService.downloadFile(`${environment.apiLink}${doc.field_fichier}`,this.fileName);
+             const filePath = await this.documentsService.downloadFile(`${environment.apiLink}${doc.field_fichier}`,this.fileName,'pdf');
 
              await this.showAlert(
                '✅ Téléchargement réussi!',
-               `"${doc.title}" a été enregistré dans "${filePath}".`
+               `"${doc.title}" a été enregistré dans Documents.`
              );
 
            } catch (error) {

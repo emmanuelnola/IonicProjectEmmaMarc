@@ -45,12 +45,12 @@ export class DownloadFileService {
       this.progressCallback = callback;
     }
 
-    async downloadFile(audioUrl: string,fileNom: string): Promise<string> {
+    async downloadFile(audioUrl: string,fileNom: string, typeFile:string): Promise<string> {
 
 
        return new Promise((resolve, reject) => {
 
-          const fileName = `${this.removeExtension(fileNom)}_${new Date().getTime()}.pdf`;
+          const fileName = `${this.removeExtension(fileNom)}_${new Date().getTime()}.${typeFile}`;
           console.log(fileName);
           const xhr = new XMLHttpRequest();
 

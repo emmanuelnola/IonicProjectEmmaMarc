@@ -3,9 +3,9 @@
     <div class="col-md-12">
       <div class="header row" *ngIf="response != null">
         <div class="col-md-12 text-center" style="padding: 0px;">
-          <img 
-            src="{{ environment.apiLink }}{{ logoCarre }}" 
-            alt="Logo" 
+          <img
+            src="{{ environment.apiLink }}{{ logoCarre }}"
+            alt="Logo"
             class="img-home-logo img-fluid"
           >
         </div>
@@ -17,15 +17,15 @@
           </div>
         </div>
       </div>
-      
+
       <div class="container" style="position: relative;top: -45px;">
         <div class="row">
           <div class="col-md-12 text-center" style="position: relative; display: inline-block;" *ngIf="response != null">
-            <img 
-              src="{{ environment.apiLink }}{{ response.field_imgapi }}" 
-              alt="Logo" 
+            <img
+              src="{{ environment.apiLink }}{{ response.field_imgapi }}"
+              alt="Logo"
               width="100%"
-              height="auto" 
+              height="auto"
               class="img-overlay">
               <span class="overlay-text">{{ response.title }}</span>
           </div>

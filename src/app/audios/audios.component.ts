@@ -159,11 +159,11 @@ export class AudiosComponent implements OnInit {
 
       try {
         this.fileName=this.getLastPathElement(`${environment.apiLink}${audio.field_audio}`);
-        const filePath = await this.audioService.downloadFile(`${environment.apiLink}${audio.field_audio}`,this.fileName);
+        const filePath = await this.audioService.downloadFile(`${environment.apiLink}${audio.field_audio}`,this.fileName,'mp3');
 
         await this.showAlert(
           '✅ Téléchargement réussi!',
-          `"${audio.title}" a été enregistré dans "${filePath}".`
+          `"${audio.title}" a été enregistré dans Documents.`
         );
 
       } catch (error) {
