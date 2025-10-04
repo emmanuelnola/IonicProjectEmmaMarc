@@ -2,6 +2,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
+import { environment } from '../../environments/environment';
 import { GadgetsService } from '../services/gadgets.service'; // Service pour récupérer les gadgets
 
 // Modèle pour le gadget
@@ -21,9 +22,10 @@ interface Gadget {
 })
 export class GadgetsComponent implements OnInit {
    lang: string = 'fr';
-  gadgets: Gadget[] = [];      // Liste des gadgets récupérés
+  gadgets: Gadget[] = [];      // Lise des gadgets récupérés
   loading: boolean = true;     // Indique si les données sont en cours de chargement
-  private apiUrl = 'https://presi.lab-123.com'; // Racine du serveur
+   private apiUrl: string =environment.apiLink;// Racine du serveur
+
 
   constructor(private gadgetsService: GadgetsService) {}
 
